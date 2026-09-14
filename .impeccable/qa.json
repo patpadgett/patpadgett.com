@@ -1,0 +1,122 @@
+[
+  {
+    "width": 390,
+    "overflow": false,
+    "h1": 1,
+    "links": [
+      {
+        "text": "Music\nRecords, songs & other noise.\nmusic.patpadgett.com",
+        "href": "https://music.patpadgett.com/",
+        "height": 138.375
+      },
+      {
+        "text": "Résumé\nThe work behind the name.\nresume.patpadgett.com",
+        "href": "https://resume.patpadgett.com/",
+        "height": 138.375
+      },
+      {
+        "text": "Blog\nThoughts, notes & rabbit holes.\nblog.patpadgett.com",
+        "href": "https://blog.patpadgett.com/",
+        "height": 138.375
+      },
+      {
+        "text": "Say hello\npat@patpadgett.com",
+        "href": "mailto:pat@patpadgett.com",
+        "height": 51
+      },
+      {
+        "text": "GitHub",
+        "href": "https://github.com/patpadgett",
+        "height": 44
+      },
+      {
+        "text": "LinkedIn",
+        "href": "https://www.linkedin.com/in/patpadgett",
+        "height": 44
+      }
+    ],
+    "font": true,
+    "focus": "https://music.patpadgett.com",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "overflow": false,
+    "h1": 1,
+    "links": [
+      {
+        "text": "Music\nRecords, songs & other noise.\nmusic.patpadgett.com",
+        "href": "https://music.patpadgett.com/",
+        "height": 112.1875
+      },
+      {
+        "text": "Résumé\nThe work behind the name.\nresume.patpadgett.com",
+        "href": "https://resume.patpadgett.com/",
+        "height": 112.1875
+      },
+      {
+        "text": "Blog\nThoughts, notes & rabbit holes.\nblog.patpadgett.com",
+        "href": "https://blog.patpadgett.com/",
+        "height": 112.1875
+      },
+      {
+        "text": "Say hello\npat@patpadgett.com",
+        "href": "mailto:pat@patpadgett.com",
+        "height": 54
+      },
+      {
+        "text": "GitHub",
+        "href": "https://github.com/patpadgett",
+        "height": 44
+      },
+      {
+        "text": "LinkedIn",
+        "href": "https://www.linkedin.com/in/patpadgett",
+        "height": 44
+      }
+    ],
+    "font": true,
+    "focus": "https://music.patpadgett.com",
+    "errors": []
+  },
+  {
+    "width": 320,
+    "overflow": false,
+    "h1": 1,
+    "links": [
+      {
+        "text": "Music\nRecords, songs & other noise.\nmusic.patpadgett.com",
+        "href": "https://music.patpadgett.com/",
+        "height": 138.375
+      },
+      {
+        "text": "Résumé\nThe work behind the name.\nresume.patpadgett.com",
+        "href": "https://resume.patpadgett.com/",
+        "height": 138.375
+      },
+      {
+        "text": "Blog\nThoughts, notes & rabbit holes.\nblog.patpadgett.com",
+        "href": "https://blog.patpadgett.com/",
+        "height": 138.375
+      },
+      {
+        "text": "Say hello\npat@patpadgett.com",
+        "href": "mailto:pat@patpadgett.com",
+        "height": 51
+      },
+      {
+        "text": "GitHub",
+        "href": "https://github.com/patpadgett",
+        "height": 44
+      },
+      {
+        "text": "LinkedIn",
+        "href": "https://www.linkedin.com/in/patpadgett",
+        "height": 44
+      }
+    ],
+    "font": true,
+    "focus": "https://music.patpadgett.com",
+    "errors": []
+  }
+]
