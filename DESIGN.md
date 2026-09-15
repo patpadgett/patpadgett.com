@@ -103,6 +103,12 @@ Hover and keyboard focus change the row surface and inset its contents by 16px o
 - Feedback: `.destination` hover/focus = tinted band via `::before` (no reflow), `.name` translateX 12px, arrow translate(3,-3); `:active` pushes further in 100ms. Ease `cubic-bezier(.16,1,.3,1)`, 220–280ms.
 - Reduced motion: no vat canvas; transitions collapse to .01ms; translates removed; the hover band still appears (feedback survives).
 
+## Rules & footer (polish)
+- Rule system: 2px ink opens AND closes the destination list; 1px `--line` between rows and under the bio. Nothing else draws a rule.
+- Footer: two structurally identical `.foot__col` stacks (bold link row / 13px muted line) so baselines match; right column carries GitHub · LinkedIn over "Tampa Bay, Florida".
+- Tagline 20px balanced; arrows 32px `justify-self:end` so they sit on the column edge.
+- Breakpoints: ≤1000 photo 200; ≤820 photo 160 beside text (160px column); ≤640 stacked, photo 112.
+
 ## Delight
 - The blue period is the seal: click it (or press Space with nothing focused) and the vat pours again from the period's corner. It is `aria-hidden`, not a tab stop, so it never gets ahead of the destinations. `.is-pressed` gives a 100ms press.
 - `404.html` lives in the same world: "Nothing here." + the requested path, then the three destination rows and "the front". Root-absolute asset paths so it renders at any depth. `noindex`.
