@@ -99,6 +99,6 @@ Hover and keyboard focus change the row surface and inset its contents by 16px o
 - Don't interpret this document as deployment approval or proof that external destinations are reachable.
 
 ## Motion
-- Focal: the vat pours in stirred (`stir=1.35`, off-centre) and settles over ~2.5s on load; cursor or finger across the name re-stirs it. That is the one authored moment.
+- Focal: the vat pours in stirred (`stir=1.35`, off-centre) and settles on wall-clock time (~1s constant) then FREEZES — rAF stops. Pointer/finger over the `h1` re-stirs it. One scheduler; context loss tears down to solid ink and rebuilds on restore; ResizeObserver drops the fill for one frame and rebuilds the mask so no stale geometry ever shows.
 - Feedback: `.destination` hover/focus = tinted band via `::before` (no reflow), `.name` translateX 12px, arrow translate(3,-3); `:active` pushes further in 100ms. Ease `cubic-bezier(.16,1,.3,1)`, 220–280ms.
 - Reduced motion: no vat canvas; transitions collapse to .01ms; translates removed; the hover band still appears (feedback survives).

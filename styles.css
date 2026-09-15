@@ -3,7 +3,7 @@
 *{box-sizing:border-box}body{margin:0}::selection{color:var(--paper);background:var(--ink)}html{scrollbar-color:var(--ink) var(--paper)}
 main{width:min(1040px,100%);margin:auto;padding:64px 48px 56px;min-height:100svh;display:flex;flex-direction:column}
 header{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;padding-bottom:54px}
-h1{font-size:clamp(56px,7.3vw,96px);font-weight:800;line-height:.98;letter-spacing:-.04em;margin:0;position:relative}.period{color:var(--focus)}
+h1{font-size:clamp(56px,7.3vw,96px);font-weight:800;line-height:.98;letter-spacing:-.04em;margin:0;position:relative;overflow:clip;overflow-clip-margin:.3em}.period{color:var(--focus)}
 .vat{position:absolute;top:0;left:0;pointer-events:none;z-index:0;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-size:100% 100%;-webkit-mask-size:100% 100%}.vat-on{color:transparent;isolation:isolate;-webkit-text-stroke:1.25px var(--ink);paint-order:stroke fill}.vat-on>*:not(.vat){position:relative;z-index:1}.vat-on .period{color:var(--focus);-webkit-text-stroke:0}
 @media(prefers-reduced-motion:reduce){.vat{display:none}.vat-on{color:var(--ink)}}
 .intro{margin:0 0 5px;font-size:18px;line-height:1.6;font-weight:500}

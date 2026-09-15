@@ -97,35 +97,52 @@
   }
 
   // --- interaction + loop -----------------------------------------------------
-  let mx = 0.62, my = 0.45, stir = 1.35, tgt = 0, running = false, raf = 0, t0 = performance.now();
-  const onMove = e => {
-    const r = canvas.getBoundingClientRect();
-    const nx = (e.clientX - r.left) / r.width, ny = 1 - (e.clientY - r.top) / r.height;
-    const dx = nx - mx, dy = ny - my;
-    mx = nx; my = ny;
-    tgt = Math.min(1, tgt + Math.hypot(dx, dy) * 6);
-  };
-  addEventListener('pointermove', onMove, { passive: true });
-  // touch: stir while a finger crosses the name without stealing the scroll
-  h1.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) onMove({ clientX: t.clientX, clientY: t.clientY }); }, { passive: true });
+  // One scheduler. `stir` decays on wall-clock time, and when it is settled the
+  // loop stops: the pour is a gesture with an end, not a process.
+  let mx = 0.62, my = 0.45, stir = 1.35, tgt = 0, raf = 0, last = 0, t0 = performance.now(), visible = true, alive = true;
+  const SETTLED = 0.012;
+  function schedule() { if (alive && visible && !raf) raf = requestAnimationFrame(frame); }
   function frame(now) {
-    if (!running) return;
-    stir += (tgt - stir) * 0.045; tgt *= 0.94; // decay: the vat settles (~2.5s from the poured state)
+    raf = 0;
+    const dt = Math.min(0.05, (now - (last || now)) / 1000); last = now;
+    stir += (tgt - stir) * (1 - Math.exp(-dt * 2.2));     // ~1s time constant, device independent
+    tgt *= Math.exp(-dt * 3.0);
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.uniform2f(uR, canvas.width, canvas.height);
     gl.uniform1f(uT, (now - t0) / 1000);
     gl.uniform2f(uM, mx, my);
     gl.uniform1f(uS, stir);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); 
-    raf = requestAnimationFrame(frame);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (stir > SETTLED || tgt > SETTLED) schedule();      // else: frozen until the next stir
+    else last = 0;
   }
-  const io = new IntersectionObserver(([e]) => {
-    running = e.isIntersecting && document.visibilityState === 'visible';
-    if (running && !raf) raf = requestAnimationFrame(frame); else if (!running) { cancelAnimationFrame(raf); raf = 0; }
-  });
-  io.observe(canvas);
-  addEventListener('visibilitychange', () => { running = document.visibilityState === 'visible'; if (running && !raf) raf = requestAnimationFrame(frame); });
-  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(buildMask, 120); });
+  const onMove = e => {
+    const r = canvas.getBoundingClientRect();
+    const nx = (e.clientX - r.left) / r.width, ny = 1 - (e.clientY - r.top) / r.height;
+    if (nx < -0.1 || nx > 1.1 || ny < -0.1 || ny > 1.1) return;
+    const dx = nx - mx, dy = ny - my; mx = nx; my = ny;
+    tgt = Math.min(1, tgt + Math.hypot(dx, dy) * 6);
+    schedule();
+  };
+  h1.addEventListener('pointermove', onMove, { passive: true });
+  h1.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) onMove({ clientX: t.clientX, clientY: t.clientY }); }, { passive: true });
 
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { buildMask(); running = true; raf = requestAnimationFrame(frame); });
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting && document.visibilityState === 'visible'; if (visible) schedule(); else if (raf) { cancelAnimationFrame(raf); raf = 0; } }).observe(canvas);
+  addEventListener('visibilitychange', () => { visible = document.visibilityState === 'visible'; if (visible) schedule(); });
+
+  // Degradation after init: drop back to solid ink instantly; rebuild if the context returns.
+  function teardown() { alive = false; if (raf) cancelAnimationFrame(raf); raf = 0; canvas.style.display = 'none'; h1.classList.remove('vat-on'); }
+  canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); teardown(); });
+  canvas.addEventListener('webglcontextrestored', () => { alive = true; canvas.style.display = ''; h1.classList.add('vat-on'); buildMask(); stir = 0.6; schedule(); });
+
+  // Geometry change: never show a stale mask. Solid ink during the rebuild, one frame later re-enable.
+  let rebuildRaf = 0;
+  new ResizeObserver(() => {
+    if (!alive) return;
+    h1.classList.remove('vat-on');
+    if (rebuildRaf) cancelAnimationFrame(rebuildRaf);
+    rebuildRaf = requestAnimationFrame(() => { rebuildRaf = 0; buildMask(); h1.classList.add('vat-on'); tgt = Math.max(tgt, 0.25); schedule(); });
+  }).observe(h1);
+
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { buildMask(); schedule(); });
 })();
