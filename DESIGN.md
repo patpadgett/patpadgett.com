@@ -102,3 +102,7 @@ Hover and keyboard focus change the row surface and inset its contents by 16px o
 - Focal: the vat pours in stirred (`stir=1.35`, off-centre) and settles on wall-clock time (~1s constant) then FREEZES — rAF stops. Pointer/finger over the `h1` re-stirs it. One scheduler; context loss tears down to solid ink and rebuilds on restore; ResizeObserver drops the fill for one frame and rebuilds the mask so no stale geometry ever shows.
 - Feedback: `.destination` hover/focus = tinted band via `::before` (no reflow), `.name` translateX 12px, arrow translate(3,-3); `:active` pushes further in 100ms. Ease `cubic-bezier(.16,1,.3,1)`, 220–280ms.
 - Reduced motion: no vat canvas; transitions collapse to .01ms; translates removed; the hover band still appears (feedback survives).
+
+## Delight
+- The blue period is the seal: click it (or press Space with nothing focused) and the vat pours again from the period's corner. It is `aria-hidden`, not a tab stop, so it never gets ahead of the destinations. `.is-pressed` gives a 100ms press.
+- `404.html` lives in the same world: "Nothing here." + the requested path, then the three destination rows and "the front". Root-absolute asset paths so it renders at any depth. `noindex`.

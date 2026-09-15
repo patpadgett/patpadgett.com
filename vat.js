@@ -127,6 +127,19 @@
   h1.addEventListener('pointermove', onMove, { passive: true });
   h1.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) onMove({ clientX: t.clientX, clientY: t.clientY }); }, { passive: true });
 
+
+  // Discovery: the blue period is the seal. Press it and the vat pours again, from the period's own corner.
+  const period = h1.querySelector('.period');
+  if (period) {
+    period.setAttribute('aria-hidden', 'true');   // decorative for AT; not a tab stop ahead of the destinations
+    const pour = () => { const r = canvas.getBoundingClientRect(), pr = period.getBoundingClientRect();
+      mx = ((pr.left + pr.width / 2) - r.left) / r.width; my = 1 - ((pr.top + pr.height / 2) - r.top) / r.height;
+      stir = Math.max(stir, 1.25); tgt = 0.6; schedule(); period.classList.add('is-pressed'); setTimeout(() => period.classList.remove('is-pressed'), 260); };
+    period.addEventListener('click', pour);
+    // keyboard: Space with nothing focused pours too (no tab stop, no stolen focus)
+    addEventListener('keydown', e => { if (e.key === ' ' && (document.activeElement === document.body || document.activeElement === null)) { e.preventDefault(); pour(); } });
+  }
+
   new IntersectionObserver(([e]) => { visible = e.isIntersecting && document.visibilityState === 'visible'; if (visible) schedule(); else if (raf) { cancelAnimationFrame(raf); raf = 0; } }).observe(canvas);
   addEventListener('visibilitychange', () => { visible = document.visibilityState === 'visible'; if (visible) schedule(); });
 
