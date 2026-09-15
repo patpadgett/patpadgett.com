@@ -97,3 +97,8 @@ Hover and keyboard focus change the row surface and inset its contents by 16px o
 - Do retain responsive reflow and reduced-motion support.
 - Don't add card scaffolding, stock imagery, or decorative motion to this compact directory.
 - Don't interpret this document as deployment approval or proof that external destinations are reachable.
+
+## Motion
+- Focal: the vat pours in stirred (`stir=1.35`, off-centre) and settles over ~2.5s on load; cursor or finger across the name re-stirs it. That is the one authored moment.
+- Feedback: `.destination` hover/focus = tinted band via `::before` (no reflow), `.name` translateX 12px, arrow translate(3,-3); `:active` pushes further in 100ms. Ease `cubic-bezier(.16,1,.3,1)`, 220–280ms.
+- Reduced motion: no vat canvas; transitions collapse to .01ms; translates removed; the hover band still appears (feedback survives).

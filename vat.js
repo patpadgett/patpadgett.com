@@ -97,7 +97,7 @@
   }
 
   // --- interaction + loop -----------------------------------------------------
-  let mx = 0.5, my = 0.5, stir = 0, tgt = 0, running = false, raf = 0, t0 = performance.now();
+  let mx = 0.62, my = 0.45, stir = 1.35, tgt = 0, running = false, raf = 0, t0 = performance.now();
   const onMove = e => {
     const r = canvas.getBoundingClientRect();
     const nx = (e.clientX - r.left) / r.width, ny = 1 - (e.clientY - r.top) / r.height;
@@ -106,9 +106,11 @@
     tgt = Math.min(1, tgt + Math.hypot(dx, dy) * 6);
   };
   addEventListener('pointermove', onMove, { passive: true });
+  // touch: stir while a finger crosses the name without stealing the scroll
+  h1.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) onMove({ clientX: t.clientX, clientY: t.clientY }); }, { passive: true });
   function frame(now) {
     if (!running) return;
-    stir += (tgt - stir) * 0.08; tgt *= 0.94; // decay: the vat settles
+    stir += (tgt - stir) * 0.045; tgt *= 0.94; // decay: the vat settles (~2.5s from the poured state)
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.uniform2f(uR, canvas.width, canvas.height);
     gl.uniform1f(uT, (now - t0) / 1000);
