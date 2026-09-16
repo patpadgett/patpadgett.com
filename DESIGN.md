@@ -1,118 +1,63 @@
----
-name: Patrick Padgett homepage
-description: An acid-yellow personal index with ruled destination links.
-colors:
-  paper: "#e8ed38"
-  ink: "#20231c"
-  muted: "#505529"
-  line: "#a4aa31"
-  focus: "#303ab1"
-  hover: "#dce22f"
-typography:
-  display:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "clamp(56px,7.3vw,96px)"
-    fontWeight: 800
-    lineHeight: 0.98
-    letterSpacing: "-0.04em"
-  title:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "clamp(30px,4.2vw,46px)"
-    fontWeight: 650
-    lineHeight: 1.2
-    letterSpacing: "-0.035em"
-  body:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "15px"
-    lineHeight: 1.6
-  label:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "12px"
-    letterSpacing: "0.01em"
-components:
-  destination:
-    textColor: "{colors.ink}"
-    padding: "28px 0"
-  destination-hover:
-    backgroundColor: "{colors.hover}"
-    padding: "28px 16px"
----
+# DESIGN.md — genx.patpadgett.com · "The Bedroom, 1988"
 
-# Design System: Patrick Padgett
+Candidate replacement for the patpadgett.com hub, designed for and from a 1980s/90s kid. Owner-pinned world (2026-09-16): a fusion of three concept-seed candidates — Channel 3 (woodgrain console TV, the roll), The Cartridge Shelf (NES carts, the pick) and Dial-up BBS Nightboard (the challenger). Seed key 18c9a192.
 
-## Overview
+## Thesis
+The page is a kid's bedroom on a Saturday morning. The woodgrain Zenith is the front door (channels 3 MUSIC · 4 WORK · 5 BLOG), the NES shelf under it is the table of contents (MUSIC · INTERESTS · WORK), the VHS clamshell is the bio, the cassette is the record, the sticker sheet is the interests, the Mac Plus running Hermes II BBS is where the work started, and the Garbage Pail Kids wax pack is the contact footer.
 
-**Creative North Star: "Independent-record mailorder sheet"**
+## Photoreal pass (owner request, 2026-09-16)
+Objects are photographs, not CSS drawings: gpt-image-2 plates on transparent backgrounds in assets/plates/*.webp (tv, cassette, vhs, cart, mac, waxpack, sticker, grain). Real content is positioned onto measured regions of each plate (percent boxes in styles.css: TV glass 11.5/14/62/65, knob centre 86/21 ⌀11, cassette clear label strip 10/15.5/80/17, cart recess 40.5/13.5/44.5/53.5, Mac glass 17.5/19.5/66/34, VHS sleeve 20.5/12.5/68/81 at −1.6°). Regenerating a plate means re-measuring its box.
+Portrait: real photo → tools/film.py (126 Instamatic square print: soft lens, magenta/cyan dye drift, blown warm highlights, clumpy RGB grain, edge-only chromatic fringe, halation, seven-segment '88 7 14 stamp, cream border) → assets/portrait-film.png.
+Mac Color Classic screen cycles on scroll (IntersectionObserver, ≥45% visible): Hermes II login → ACiD-style ANSI (inline SVG pixel letters, so block art never depends on font metrics) → THINK Pascal window (System 7 chrome). Tabs under the screen switch manually; reduced motion stops the cycle.
+Soundtrack: assets/audio/bedroom-1988.mp3 — ACE-Step, seed 1988, 60 steps, 120 s loop, 128 kbps, 1.5 s fades; opt-in PLAY on the tape deck (browsers block autoplay with sound, and it would be rude anyway). Provenance line in footer.
 
-The implemented surface is a flat personal index: saturated paper, near-black lettering, large identity typography, and full-width ruled links. Typography and spacing carry the hierarchy; no photography, cards, gradients, or decorative imagery are used. This records the existing code-led implementation, not a proposed redesign or a comp match.
+## Materials
+- Walnut veneer: `--walnut/-2/-3/-hi` with a repeating-linear-gradient grain on body and cabinet. Woodgrain on almost everything, as briefed.
+- CRT glass: `.tv__glass` 4:3, rounded-rect, inset vignette, `.scan` scanlines (multiply). Phosphor is the only place gradients/glow are allowed.
+- Grey plastic (`--grey*`) for cartridges; label art black band + flat colour; gold seal.
+- ANSI 16-colour on black for the BBS (`.ansi .c/.m/.y/.g/.w`).
+- Pastel + neon as flat fields/stickers: slime `#39ff14`, pink `#ff6ec7` (label pink darkened to `#c2185b` for contrast), cyan `#22d3ee`, Countach red `#d81e1e`, yellow `#ffd53d`, lavender, peach.
 
-## Colors
+## Type
+- Bangers (display, cartoon title lettering) — `--disp`
+- Press Start 2P (pixel: knob detents, labels, guide head) — `--pix`, floor 11px
+- VT323 (terminal: BBS screen, asides) — `--term`
+- Nunito variable (reading) — `--body`, 16–19px
+All self-hosted in assets/fonts (latin subset only).
 
-Paper covers the page; ink carries primary text and the navigation's top rule. Muted olive identifies destination addresses and the contact email. Line provides subordinate row separators. The blue focus accent marks the name's period and keyboard outlines. Hover supplies a slightly darker yellow-green row surface.
+## Signature interaction — the knob
+`#knob` (button): press → turns to next channel, shows a 2.6 s station bumper on the glass; press again while the bumper shows → tunes in (navigates). Arrow keys and mouse-wheel turn it. TV Guide rows are real links; with JS they flash a "TUNING IN…" bumper for 700 ms first (modifier-clicks and reduced-motion bypass). Detent click sound is Web Audio, OFF by default (`#sound` toggle, aria-pressed).
 
-Text selection reverses ink and paper. The scrollbar uses the same pair. The document declares a light color scheme and a paper-colored browser theme.
-
-## Typography
-
-Manrope is self-hosted at `assets/manrope.woff2`, declares variable weights 200–800, uses `font-display: swap`, and falls back to sans-serif. The name deliberately occupies two lines. Desktop display and destination-title values are recorded above.
-
-The introduction is 18px/1.6 at weight 500. Descriptions are 15px/1.6; domain labels are 12px. Footer links are 14px at weight 650; the email is 12px at weight 450. These are short directory labels, not long-form reading measures.
-
-At widths up to 640px, the name is 64px, destination titles 34px, introduction 16px/1.5, descriptions 14px, footer links 13px, and email 11px. At widths up to 360px, the name becomes 58px.
+## Motion grammar
+Power-on: colour bars hold 1.1 s, title snaps in with `steps(6)` (`.js .title`). Reels spin, cursor blinks. Everything else is snap, no eased fades. `prefers-reduced-motion` → `.static`, all animation ≈0.
 
 ## Layout
+Strict cell grid (raised from the split-flap candidate). Desktop: TV 1.55fr / panel 1fr; shelf 3 carts; VHS spine 56px; cassette 1/1; stickers 3×3; Mac .9fr / log 1.3fr; pack 5 cards. ≤900: single column, stickers 2 cols, pack 3. ≤640: cartridges become horizontal shelf rows (`.cart__label` two-column), VHS spine horizontal, pack 2 + full-width gum, guide URLs hidden. ≤380: knob 72px, stickers 1 col, pack 1 col. 0 overflow at 320/390/1366.
 
-A centered, border-box main container has a maximum width of 1040px, padding of 64px 48px 32px, and minimum height of 100svh. Its vertical flex layout pushes the footer toward the bottom when space permits without fixing it over content.
+## Detector exceptions (world, not defects)
+- Repeating-gradient stripes = woodgrain and cartridge grip ridges.
+- Glow text-shadows on `.title__*` and `.detents .on` = CRT phosphor (inside the glass only).
+- `#ddd on #39ff14/#22d3ee/#c2185b` = static read of `.cart__label small`, which actually sits on the black top band of the label gradient.
+- `#000 on #000` = `.bumper` before JS assigns its channel class, and cassette shell.
+- Nested cards = physical objects (cartridge label inside cartridge, sticker inside sheet).
+- `.mac__case` bottom inset shadow = the Mac's chin, not a side-tab accent.
 
-The desktop header aligns the introduction beside the name at the bottom, with a 32px gap and 54px bottom padding. Destination rows use a `1fr 1fr 32px` grid, 24px column gaps, and 28px vertical padding.
+## Content
+Work log years supplied by the owner 2026-09-16 (1992/1993/1994/1995); no placeholders remain.
 
-At 640px and below, main padding becomes 40px 24px 24px; the introduction moves below the name with 24px top margin, and header bottom padding becomes 32px. Rows use `1fr 28px`, an 8px gap, and 22px vertical padding. Descriptions sit below titles; arrows span both rows. Below 361px, side padding is 20px.
+## Critique #1–#2 refinements
+Title visible without JS and under reduced motion (`.js:not(.static)` gates power-on). Manual Mac tab pick pauses the cycle. Mobile order TV → cartridge shelf → TV Guide → deck. Dial hint lives at the foot of the TV Guide (the control panel has no clear room). Inline links and Mac tabs ≥44px. Mobile microtype floors: tape 10/11px, VHS 8/11px, deck 9px, cart subtitles 7px (catalogue-code exception). Wax-pack caption rotates +15° to match the plate. `.log li:last-child` (current availability) is boxed. Plates ship in -xs/-s/full srcset; initial transfer ≈1 MB, MP3 (1.9 MB) only on PLAY. Footer carries no process copy; provenance is here.
 
-Footer spacing is 28px on desktop, 20px on mobile, and 14px at the narrow breakpoint. Its top padding is 40px on desktop and 30px on mobile; the contact link takes the available space before social links.
+## Madballs + Garbage Pail Pat (owner request)
+Interests became MADBALLS: nine original gross-out rubber-ball characters (gpt-image-2, transparent PNG → assets/toys/ball-*.webp ≤512px), one per obsession, each with a yellow blister-card name tag (`.ball__tag`) and one line. Contact became five original GPK-style painted cards (assets/toys/card-*.webp, 2:3): white sticker border, flat colour field per card (`--bg`), yellow name banner, blue "1a–5a" badge; the wax-pack plate sits above them. Characters are homage to the brief's references (NES texture, checkerboard high-tops, masked swordsman) with no rendered text; the tools/toys.py prompts are the source of truth — re-render any card with `python3 tools/toys.py <name>`.
 
-## Elevation & Depth
+## The Color Classic screens (current)
+1. **ZTerm** — System 7 chrome (`.macos--dark`, `.macwin--zterm`), black VT100 pane (`.zterm`): `CONNECT 2400` → `SunOS UNIX (databank)` → `databank login: patpadgett` → `who` / `finger` → `databank%` prompt with blinking cursor. Host name "databank" is owner-pinned.
+2. **ANSI** — owner-supplied artwork assets/bbs-ansi.jpg (The Dark Side BBS, ACiD-style, SysOp Agroman), bezel cropped to the glass → assets/ansi/dark-side{,-s}.webp, `object-fit:cover`, drawn top-down in 30 steps over 4.5 s (`@keyframes ansidraw`, clip-path) like a 2400-baud ANSI pour; dwell 9 s. tools/ansi.py (generated Hermes II scroller) is retired but kept.
+3. **Pascal** — THINK Pascal window, WhoIsOn.p external.
 
-No shadows, overlays, or simulated depth. Rules and tonal interaction feedback supply separation on a single flat plane.
+## The coffee table
+Section `#table` between Music and Madballs. Photoreal worn laminate table plate (assets/mags/table.webp) with an amber ashtray plate (ashtray.webp) bottom-right and CSS smoke (five blurred radial puffs, `@keyframes puff`, 5.5 s staggered; static fallback shows two puffs). Eight owner-supplied covers (assets/mags/mag0..7.jpg — Kerrang!, SPIN, Thrasher, Hit Parader, RIP, Rolling Stone, CREEM, Circus) fanned via per-item `--x/--y/--r/--z`; click lifts one (`.mag.up`: to top-centre, z 20, scale 1.7 desktop / 1.25 mobile) with a caption and dims the rest (`.table.has-up`); click again, Esc, or clicking bare table puts it down. Buttons carry aria-pressed; hint line is a live region.
 
-## Shapes
-
-Rectilinear, unboxed navigation. A 2px top rule introduces the destination list, and 1px rules divide its rows. Authored SVG northeast arrows use a consistent 1.7 stroke width and no fill; their boxes are 30px on desktop and 26px on mobile. No raster assets ship as part of this page.
-
-## Components
-
-**Destination row:** one native anchor includes its title, description, displayed address, and decorative `aria-hidden` arrow. The three exact destinations are `https://music.patpadgett.com`, `https://resume.patpadgett.com`, and `https://blog.patpadgett.com`; they navigate in the current tab.
-
-Hover and keyboard focus change the row surface and inset its contents by 16px on each side. Hover moves the arrow 2px right and 2px upward. Padding and transform transition over 0.22s with `cubic-bezier(.16,1,.3,1)`; background color transitions over 0.22s with the CSS default easing. Reduced-motion preference removes transitions; content is visible without animation.
-
-**Keyboard focus:** a 3px solid accent outline uses a 5px offset on ordinary links and a -3px inset on destination rows.
-
-**Contact footer:** email, GitHub, and LinkedIn are native links. Link targets have a minimum height of 44px and 6px vertical padding. Hover underlines footer text with a 5px underline offset.
-
-**Document semantics:** English language, one h1, main/header/nav/footer structure, and a named navigation landmark. There is no JavaScript UI, form, asynchronous data, or applicable loading/empty/disabled state.
-
-## Do's and Don'ts
-
-- Do preserve the acid-yellow field, locally hosted type, clear hierarchy, ruled rows, and visible focus treatment.
-- Do keep each primary destination a whole-row native link with the exact requested URL.
-- Do retain responsive reflow and reduced-motion support.
-- Don't add card scaffolding, stock imagery, or decorative motion to this compact directory.
-- Don't interpret this document as deployment approval or proof that external destinations are reachable.
-
-## Motion
-- Focal: the vat pours in stirred (`stir=1.35`, off-centre) and settles on wall-clock time (~1s constant) then FREEZES — rAF stops. Pointer/finger over the `h1` re-stirs it. One scheduler; context loss tears down to solid ink and rebuilds on restore; ResizeObserver drops the fill for one frame and rebuilds the mask so no stale geometry ever shows.
-- Feedback: `.destination` hover/focus = tinted band via `::before` (no reflow), `.name` translateX 12px, arrow translate(3,-3); `:active` pushes further in 100ms. Ease `cubic-bezier(.16,1,.3,1)`, 220–280ms.
-- Reduced motion: no vat canvas; transitions collapse to .01ms; translates removed; the hover band still appears (feedback survives).
-
-## Rules & footer (polish)
-- Rule system: 2px ink opens AND closes the destination list; 1px `--line` between rows and under the bio. Nothing else draws a rule.
-- Footer: two structurally identical `.foot__col` stacks (bold link row / 13px muted line) so baselines match; right column carries GitHub · LinkedIn over "Tampa Bay, Florida".
-- Tagline 20px balanced; arrows 32px `justify-self:end` so they sit on the column edge.
-- Breakpoints: ≤1000 photo 200; ≤820 photo 160 beside text (160px column); ≤640 stacked, photo 112.
-
-## Delight
-- The blue period is the seal: click it (or press Space with nothing focused) and the vat pours again from the period's corner. It is `aria-hidden`, not a tab stop, so it never gets ahead of the destinations. `.is-pressed` gives a 100ms press.
-- `404.html` lives in the same world: "Nothing here." + the requested path, then the three destination rows and "the front". Root-absolute asset paths so it renders at any depth. `noindex`.
-
-## Critique #3 refinements
-- Space pours only while the heading is on screen; off-screen it keeps its native page-down job.
-- Mobile footer sublines share 12px so both columns' baselines match.
+## The shelf (current)
+Four cartridges, parody launch titles → sections: SUPER BASS BROS. (Music), MAG HUNT (The coffee table), MADBALL'S PUNCH-OUT!! (Madballs), SYSOP'S QUEST (Work). Label = 8-bit art window (assets/carts/label-*.webp, tools/carts.py) over a black→dark-red band with cream title and gold destination line; recess grid `minmax(0,1fr) auto` so the band never clips. Homage is the joke (moustache-free rocker, laughing dog with a magazine, boxer vs rubber ball, kid at a modem).
