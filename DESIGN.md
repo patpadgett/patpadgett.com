@@ -112,3 +112,7 @@ Hover and keyboard focus change the row surface and inset its contents by 16px o
 ## Delight
 - The blue period is the seal: click it (or press Space with nothing focused) and the vat pours again from the period's corner. It is `aria-hidden`, not a tab stop, so it never gets ahead of the destinations. `.is-pressed` gives a 100ms press.
 - `404.html` lives in the same world: "Nothing here." + the requested path, then the three destination rows and "the front". Root-absolute asset paths so it renders at any depth. `noindex`.
+
+## Critique #3 refinements
+- Space pours only while the heading is on screen; off-screen it keeps its native page-down job.
+- Mobile footer sublines share 12px so both columns' baselines match.

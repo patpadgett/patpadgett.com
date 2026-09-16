@@ -137,7 +137,8 @@
       stir = Math.max(stir, 1.25); tgt = 0.6; schedule(); period.classList.add('is-pressed'); setTimeout(() => period.classList.remove('is-pressed'), 260); };
     period.addEventListener('click', pour);
     // keyboard: Space with nothing focused pours too (no tab stop, no stolen focus)
-    addEventListener('keydown', e => { if (e.key === ' ' && (document.activeElement === document.body || document.activeElement === null)) { e.preventDefault(); pour(); } });
+    // only while the heading is on screen — off-screen, Space keeps its normal page-down job
+    addEventListener('keydown', e => { if (e.key !== ' ' || (document.activeElement !== document.body && document.activeElement !== null)) return; const r = h1.getBoundingClientRect(); if (r.bottom <= 0 || r.top >= innerHeight) return; e.preventDefault(); pour(); });
   }
 
   new IntersectionObserver(([e]) => { visible = e.isIntersecting && document.visibilityState === 'visible'; if (visible) schedule(); else if (raf) { cancelAnimationFrame(raf); raf = 0; } }).observe(canvas);
