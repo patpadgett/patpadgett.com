@@ -70,9 +70,10 @@
 .reader{border:0;padding:0;background:transparent;width:min(1120px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:visible;overscroll-behavior:contain;color:#1a1210}
 .reader::backdrop{background:rgba(9,6,12,.985)}
 .reader__bar{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;margin:0 0 10px;color:var(--cream)}
-.reader__resume{margin:0 auto 0 0;padding:6px 12px;background:#e6d9b9;color:#3a2a1a;border-radius:4px;font:400 13px/1.4 var(--body);white-space:nowrap}
+.reader__resume{display:inline-flex;align-items:center;gap:6px;margin:0 auto 0 0;padding:0 12px;min-height:44px;background:#e6d9b9;color:#3a2a1a;border-radius:4px;font:400 13px/1.4 var(--body);white-space:nowrap;transition:opacity .25s}
+/* on desktop the note can leave the row without moving anything; on mobile it fades but keeps its row */
 .reader__resume[hidden]{display:none!important}
-.reader__resume .page__again{padding:0;color:#1a1210;font:800 13px/1.4 var(--body)}
+.reader__resume .page__again{padding:12px 0;min-height:44px;color:#1a1210;font:800 13px/1.4 var(--body)}
 .reader__bar>span{font:400 12px/1.4 var(--pix);color:#c99a63;min-width:0}
 .reader__bar>span i{font-style:normal}
 .reader__close{white-space:nowrap;border:2px solid var(--cream);background:#0000;color:#fff;padding:10px 14px;min-height:44px;cursor:pointer;font:900 14px/1 var(--body);border-radius:6px}
@@ -142,8 +143,10 @@
   .reader__spread{display:block;height:auto;-webkit-overflow-scrolling:touch;max-height:calc(100dvh - 100px);margin:10px;box-shadow:0 0 0 1px #d8ccaa,0 0 0 8px var(--navy),0 0 0 9px #0b0f1c;overflow:auto;border-radius:6px;padding-bottom:env(safe-area-inset-bottom)}
   .reader__spread::after{display:none}
   .reader__bar>span{font-size:11px}
-  .reader__bar{flex-wrap:wrap}
-  .reader__resume{order:3;flex:1 1 100%;white-space:normal;margin:0}
+  .reader__bar{flex-wrap:wrap;margin:0 10px 10px;gap:8px 12px}
+  .reader__bar>span{flex:1 1 0;padding-right:8px}
+  .reader__resume{order:3;flex:1 1 100%;white-space:normal;margin:0;justify-content:center}
+  .reader__resume.is-fading{display:inline-flex!important;opacity:0;pointer-events:none;visibility:hidden}
   .reader__bar>span i{display:none}
   .reader__close span{display:none}
   .reader__spread::before{display:none}

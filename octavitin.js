@@ -23,7 +23,11 @@
     var s = scroller(), p = paras[i]; if (!p) return;
     s.scrollTop += p.getBoundingClientRect().top - s.getBoundingClientRect().top - 4;
   }
-  function toTop() { spread.scrollTop = 0; page.scrollTop = 0; if (resume) resume.hidden = true; try { localStorage.setItem(KEY, '0'); } catch (e) {} }
+  var mobile = matchMedia('(max-width: 640px)');
+  /* mobile: keep the note's row and fade it, so the reading surface never jumps; desktop: the row can drop out */
+  function hideResume() { if (!resume) return; if (mobile.matches && scroller() === spread) { resume.classList.add('is-fading'); resume.setAttribute('aria-hidden', 'true'); } else { resume.hidden = true; } }
+  function showResume() { if (!resume) return; resume.hidden = false; resume.classList.remove('is-fading'); resume.removeAttribute('aria-hidden'); }
+  function toTop() { spread.scrollTop = 0; page.scrollTop = 0; hideResume(); try { localStorage.setItem(KEY, '0'); } catch (e) {} }
   /* the focusable, keyboard-scrollable region is whichever one scrolls */
   function syncTab() { var s = scroller(); page.tabIndex = s === page ? 0 : -1; spread.tabIndex = s === spread ? 0 : -1; if (s === spread) spread.setAttribute('aria-label', page.getAttribute('aria-label')); else spread.removeAttribute('aria-label'); }
   addEventListener('resize', syncTab);
@@ -38,8 +42,8 @@
     /* reading position persists on this device by paragraph; Start from the top resets it */
     var i = loadPos();
     restoring = true;
-    if (i > 0) { scrollToPara(i); if (resume) resume.hidden = false; resumedAt = scroller().scrollTop; }
-    else if (resume) resume.hidden = true;
+    if (i > 0) { showResume(); scrollToPara(i); resumedAt = scroller().scrollTop; }
+    else if (resume) { resume.hidden = true; resume.classList.remove('is-fading'); }
     setTimeout(function () { restoring = false; }, 50);
     document.body.style.overflow = 'hidden';
     close.focus({ preventScroll: true });
@@ -62,7 +66,7 @@
   function onScroll() {
     if (restoring) return;
     /* the resume note steps aside once the reader has moved on deliberately */
-    if (resume && !resume.hidden && Math.abs(scroller().scrollTop - resumedAt) > 40) resume.hidden = true;
+    if (resume && !resume.hidden && !resume.classList.contains('is-fading') && Math.abs(scroller().scrollTop - resumedAt) > 40) hideResume();
     savePos();
   }
   spread.addEventListener('scroll', onScroll); page.addEventListener('scroll', onScroll);
