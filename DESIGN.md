@@ -1,68 +1,269 @@
-# DESIGN.md — genx.patpadgett.com · "The Bedroom, 1988"
+---
+name: patpadgett.com — The Bedroom, 1988
+description: Patrick Padgett's one-page front door, built as a 1980s kid's bedroom of photoreal objects that hold real content.
+colors:
+  walnut-room: "#24140a"
+  ink: "#1a1210"
+  cream: "#f3e7cf"
+  paper: "#f6efdc"
+  crt-black: "#050409"
+  slime: "#39ff14"
+  pink: "#ff6ec7"
+  cyan: "#22d3ee"
+  countach-red: "#d81e1e"
+  yellow: "#ffd53d"
+  lavender: "#c9b6ff"
+  peach: "#ffb385"
+  tape-cream: "#efe4c6"
+  kraft: "#c7a066"
+  book-navy: "#171d32"
+  orangle: "#ffb16b"
+  card-cream: "#f2e6c4"
+  dos-blue: "#0000aa"
+  dos-yellow: "#ffff55"
+  greenbar-paper: "#f3f0e6"
+  greenbar-band: "#d5e6d3"
+typography:
+  display:
+    fontFamily: "Bangers, Impact, sans-serif"
+    fontSize: "clamp(42px, 6vw, 84px)"
+    fontWeight: 400
+    lineHeight: 0.9
+    letterSpacing: "0.02em"
+  pixel:
+    fontFamily: "'Press Start 2P', monospace"
+    fontSize: "11px"
+    fontWeight: 400
+    lineHeight: 1
+  terminal:
+    fontFamily: "VT323, monospace"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 1.6
+  body:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: 1.5
+  book:
+    fontFamily: "'Brygada 1918', Georgia, serif"
+    fontSize: "clamp(36px, 4vw, 54px)"
+    fontWeight: 700
+    lineHeight: 0.95
+    letterSpacing: "-0.03em"
+  printout:
+    fontFamily: "'Courier Prime', 'Courier New', monospace"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 1.47
+rounded:
+  hairline: "1px"
+  chip: "3px"
+  button: "6px"
+  disc: "50%"
+spacing:
+  xs: "8px"
+  sm: "14px"
+  md: "20px"
+  section: "clamp(48px, 7vw, 90px)"
+  gutter: "clamp(12px, 3vw, 40px)"
+components:
+  button-primary:
+    backgroundColor: "{colors.slime}"
+    textColor: "#000000"
+    typography: "{typography.body}"
+    rounded: "{rounded.button}"
+    padding: "16px 20px"
+    height: "48px"
+  button-book:
+    backgroundColor: "{colors.orangle}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.button}"
+    padding: "16px 20px"
+    height: "52px"
+  button-ghost:
+    backgroundColor: "#00000055"
+    textColor: "#ffffff"
+    typography: "{typography.body}"
+    rounded: "{rounded.button}"
+    padding: "16px 20px"
+    height: "48px"
+  guide-card:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "2px"
+    padding: "14px 16px 8px"
+  guide-channel-badge:
+    backgroundColor: "{colors.ink}"
+    textColor: "#ffffff"
+    typography: "{typography.pixel}"
+    rounded: "{rounded.chip}"
+    padding: "10px 0"
+    width: "42px"
+  tape-label:
+    backgroundColor: "{colors.tape-cream}"
+    textColor: "{colors.ink}"
+    typography: "{typography.pixel}"
+    rounded: "{rounded.hairline}"
+    padding: "6px 7px 5px"
+  section-tag:
+    textColor: "#c99a63"
+    typography: "{typography.pixel}"
+    rounded: "{rounded.chip}"
+    padding: "6px 8px"
+---
 
-Candidate replacement for the patpadgett.com hub, designed for and from a 1980s/90s kid. Owner-pinned world (2026-09-16): a fusion of three concept-seed candidates — Channel 3 (woodgrain console TV, the roll), The Cartridge Shelf (NES carts, the pick) and Dial-up BBS Nightboard (the challenger). Seed key 18c9a192.
+# Design System: patpadgett.com — The Bedroom, 1988
 
-## Thesis
-The page is a kid's bedroom on a Saturday morning. The woodgrain Zenith is the front door (channels 3 MUSIC · 4 WORK · 5 BLOG), the NES shelf under it is the table of contents (MUSIC · INTERESTS · WORK), the VHS clamshell is the bio, the cassette is the record, the sticker sheet is the interests, the Mac Plus running Hermes II BBS is where the work started, and the Garbage Pail Kids wax pack is the contact footer.
+## Overview
 
-## Photoreal pass (owner request, 2026-09-16)
-Objects are photographs, not CSS drawings: gpt-image-2 plates on transparent backgrounds in assets/plates/*.webp (tv, cassette, vhs, cart, mac, waxpack, sticker, grain). Real content is positioned onto measured regions of each plate (percent boxes in styles.css: TV glass 11.5/14/62/65, knob centre 86/21 ⌀11, cassette clear label strip 10/15.5/80/17, cart recess 40.5/13.5/44.5/53.5, Mac glass 17.5/19.5/66/34, VHS sleeve 20.5/12.5/68/81 at −1.6°). Regenerating a plate means re-measuring its box.
-Portrait: real photo → tools/film.py (126 Instamatic square print: soft lens, magenta/cyan dye drift, blown warm highlights, clumpy RGB grain, edge-only chromatic fringe, halation, seven-segment '88 7 14 stamp, cream border) → assets/portrait-film.png.
-Mac Color Classic screen cycles on scroll (IntersectionObserver, ≥45% visible): Hermes II login → ACiD-style ANSI (inline SVG pixel letters, so block art never depends on font metrics) → THINK Pascal window (System 7 chrome). Tabs under the screen switch manually; reduced motion stops the cycle.
-Soundtrack: assets/audio/bedroom-1988.mp3 — ACE-Step, seed 1988, 60 steps, 120 s loop, 128 kbps, 1.5 s fades; opt-in PLAY on the tape deck (browsers block autoplay with sound, and it would be rude anyway). Provenance line in footer.
+**Creative North Star: "The Bedroom, 1988"**
 
-## Materials
-- Walnut veneer: `--walnut/-2/-3/-hi` with a repeating-linear-gradient grain on body and cabinet. Woodgrain on almost everything, as briefed.
-- CRT glass: `.tv__glass` 4:3, rounded-rect, inset vignette, `.scan` scanlines (multiply). Phosphor is the only place gradients/glow are allowed.
-- Grey plastic (`--grey*`) for cartridges; label art black band + flat colour; gold seal.
-- ANSI 16-colour on black for the BBS (`.ansi .c/.m/.y/.g/.w`).
-- Pastel + neon as flat fields/stickers: slime `#39ff14`, pink `#ff6ec7` (label pink darkened to `#c2185b` for contrast), cyan `#22d3ee`, Countach red `#d81e1e`, yellow `#ffd53d`, lavender, peach.
+The page is a kid's bedroom on a Saturday morning, and every object in it is doing a job. The woodgrain console TV is the front door; its TV Guide is the plain-language table of contents; the Space Command remote and the channel knob are the same routes as toys. The NES shelf, the VHS clamshell, the cassette, the coffee-table magazines, the Madballs, the Color Classic, the library hardcover and the Garbage Pail wax pack each hold one piece of real content — music, bio, work history, interests, the book, contact. Nothing is a decoration with content bolted on; the content is set into the object.
 
-## Type
-- Bangers (display, cartoon title lettering) — `--disp`
-- Press Start 2P (pixel: knob detents, labels, guide head) — `--pix`, floor 11px
-- VT323 (terminal: BBS screen, asides) — `--term`
-- Nunito variable (reading) — `--body`, 16–19px
-All self-hosted in assets/fonts (latin subset only).
+Objects are photographs, not CSS drawings: gpt-image-2 plates on transparent backgrounds (assets/plates/*.webp, assets/toys/*.webp, assets/octavitin/*.webp), with live HTML positioned onto measured regions of each plate. Text on wood is cream; text on the CRT glows; text on paper is ink in a typewriter or pixel face. The whole page is dark walnut with a fixed grain, dimmed by a radial vignette so cream type reads.
 
-## Signature interaction — the knob
-`#knob` (button): press → turns to next channel, shows a 2.6 s station bumper on the glass; press again while the bumper shows → tunes in (navigates). Arrow keys and mouse-wheel turn it. TV Guide rows are real links; with JS they flash a "TUNING IN…" bumper for 700 ms first (modifier-clicks and reduced-motion bypass). Detent click sound is Web Audio, OFF by default (`#sound` toggle, aria-pressed).
+Density is high on purpose, but the hierarchy is fixed: identity on the glass first, the cream guide second, everything else is exploration. The one confirmed anti-reference is the earlier "acid-yellow / ink vat" hub and any generic retro-template look — neon-on-black gradients, floating tags, imported stock bedroom photos.
 
-## Motion grammar
-Power-on: colour bars hold 1.1 s, title snaps in with `steps(6)` (`.js .title`). Reels spin, cursor blinks. Everything else is snap, no eased fades. `prefers-reduced-motion` → `.static`, all animation ≈0.
+**Key Characteristics:**
+- Photoreal plates with measured content boxes; regenerate a plate → re-measure its box.
+- Woodgrain everywhere; phosphor glow only inside the glass.
+- Four house faces with strict jobs (cartoon display, pixel labels, terminal, reading body) plus two guest faces owned by their sections (Brygada for the book, Courier Prime for the printout).
+- Motion is mechanical: steps, snaps, detents, one authored moment per object. Nothing eases in for decoration.
+- Every toy control has a plain-language twin (guide row, caption, aria-label).
+
+## Colors
+
+A dark walnut room lit by a cream TV Guide, with 1980s pastel-and-neon accents used as flat fields, never gradients.
+
+### Primary
+- **Walnut Room** (`{colors.walnut-room}`): the body, under a fixed grain plate and vignette. Everything sits on this.
+- **Cream** (`{colors.cream}`): all type on wood — headings, ledes, captions.
+- **Paper** (`{colors.paper}`): the TV Guide card; the only large light surface in the hero.
+- **Ink** (`{colors.ink}`): type on paper, kraft and tape; the channel badge fill.
+
+### Secondary
+- **Slime** (`{colors.slime}`): the primary button, focus rings, Channel 4's bumper text. Green is "go".
+- **Yellow** (`{colors.yellow}`): skip link, Madball name tags, the ledger CTA.
+- **Countach Red** (`{colors.countach-red}`): POWER, Channel 3, TONIGHT on the library card.
+- **Cyan** (`{colors.cyan}`): the remote's status line; Channel 5's bumper.
+- **Pink, Lavender, Peach** (`{colors.pink}`, `{colors.lavender}`, `{colors.peach}`): flat sticker and card fields only.
+
+### Tertiary (section-owned)
+- **Book Navy + Orangle** (`{colors.book-navy}`, `{colors.orangle}`): Octavitin's cover, bumper 6, the book CTA. Orangle is the book's slime.
+- **Card Cream + Kraft** (`{colors.card-cream}`, `{colors.kraft}`): library card and pocket.
+- **Tape Cream** (`{colors.tape-cream}`): masking-tape labels on the remote.
+- **DOS Blue + DOS Yellow** (`{colors.dos-blue}`, `{colors.dos-yellow}`): bumper 7 and the ledger — grime95's own terminal palette.
+- **Green-bar Paper + Band** (`{colors.greenbar-paper}`, `{colors.greenbar-band}`): the dot-matrix printout.
+
+### Neutral
+- **CRT Black** (`{colors.crt-black}`): the glass at rest; the only true black.
+- Grey plastic for cartridges and knob comes from the plates, not tokens.
+
+### Named Rules
+**The Phosphor Rule.** Glow (text-shadow, box-shadow blur) is allowed only inside `.tv__glass`, on the pilot lamp and the Mac screen. Everywhere else, shadows are hard offsets (`4px 4px 0 #000`, `0 5px 0 <darker>`).
+**The Flat Field Rule.** Accents are solid fills. No gradients except material ones — woodgrain, cartridge ridges, green-bar paper, the knob's radial plastic.
+
+## Typography
+
+**Display Font:** Bangers (with Impact, sans-serif)
+**Label/Pixel Font:** Press Start 2P (monospace)
+**Terminal Font:** VT323 (monospace)
+**Body Font:** Nunito variable 300–900 (system-ui, sans-serif)
+**Section guests:** Brygada 1918 (the book, its card, the reader), Courier Prime + Doto (the printout)
+
+All self-hosted in assets/fonts, latin subset only.
+
+**Character:** cartoon shout for headings, arcade pixel for anything that labels a control, green-screen terminal for anything a computer typed, and a friendly rounded sans for reading. The pairing reads as "kid's stuff that works".
+
+### Hierarchy
+- **Display** (400, `clamp(42px,6vw,84px)`, 0.9): section headings, "Get in touch", with a 4px hard black shadow. The TV title is the same face at `clamp(30px,6vw,96px)`.
+- **Book title** (700, `clamp(36px,4vw,54px)`, 0.95, −0.03em): Octavitin's title on the pitch and the cover only.
+- **Lede** (400, 19px, 1.5, Nunito): one line under each heading, ≤60ch.
+- **Body** (400, 17px, 1.5, Nunito): prose; the reader uses Brygada at 17–19px on cream.
+- **Label** (400, 11px, 1, Press Start 2P): tape labels, shelf captions, section tags, guide head. 11px is the floor for anything functional.
+- **Terminal** (400, 15px/1.6, VT323): the library card's typewriter lines, the Mac screens, the remote status.
+- **Micro** (6–9px, Press Start 2P / Nunito 800): engraving only — SPACE COMMAND, ON/OFF, cartridge band subtitles. Never the sole carrier of meaning.
+
+### Named Rules
+**The Twin Label Rule.** Anything set below 11px must have a ≥11px twin that says the same thing (shelf caption, guide description, aria-label).
 
 ## Layout
-Strict cell grid (raised from the split-flap candidate). Desktop: TV 1.55fr / panel 1fr; shelf 3 carts; VHS spine 56px; cassette 1/1; stickers 3×3; Mac .9fr / log 1.3fr; pack 5 cards. ≤900: single column, stickers 2 cols, pack 3. ≤640: cartridges become horizontal shelf rows (`.cart__label` two-column), VHS spine horizontal, pack 2 + full-width gum, guide URLs hidden. ≤380: knob 72px, stickers 1 col, pack 1 col. 0 overflow at 320/390/1366.
 
-## Detector exceptions (world, not defects)
-- Repeating-gradient stripes = woodgrain and cartridge grip ridges.
-- Glow text-shadows on `.title__*` and `.detents .on` = CRT phosphor (inside the glass only).
-- `#ddd on #39ff14/#22d3ee/#c2185b` = static read of `.cart__label small`, which actually sits on the black top band of the label gradient.
-- `#000 on #000` = `.bumper` before JS assigns its channel class, and cassette shell.
-- Nested cards = physical objects (cartridge label inside cartridge, sticker inside sheet).
-- `.mac__case` bottom inset shadow = the Mac's chin, not a side-tab accent.
+`.room` is a 1320px column with `clamp(12px,3vw,40px)` gutters. The hero (`.set`) is a three-column grid, `1.9fr / 240px / 0.7fr` — TV | remote | guide — with the cartridge shelf spanning below (five carts, `repeat(5, minmax(0,170px))`). DOM order is TV → guide → remote → shelf so keyboard order follows the mobile reading order.
 
-## Content
-Work log years supplied by the owner 2026-09-16 (1992/1993/1994/1995); no placeholders remain.
+Sections stack with `clamp(48px,7vw,90px)` top padding and open with a section tag (PP-001…PP-006) beside the display heading and one lede line. Each section is its own still life: Music (cassette), the coffee table (magazine fan), Madballs (3×3), Work (Mac + log), Octavitin (pitch | book | card, `0.75fr / 1.2fr / 0.7fr`), Booking records (Polaroid stack | printer), Contact (five GPK cards under the wax pack).
 
-## Critique #1–#2 refinements
-Title visible without JS and under reduced motion (`.js:not(.static)` gates power-on). Manual Mac tab pick pauses the cycle. Mobile order TV → cartridge shelf → TV Guide → deck. Dial hint lives at the foot of the TV Guide (the control panel has no clear room). Inline links and Mac tabs ≥44px. Mobile microtype floors: tape 10/11px, VHS 8/11px, deck 9px, cart subtitles 7px (catalogue-code exception). Wax-pack caption rotates +15° to match the plate. `.log li:last-child` (current availability) is boxed. Plates ship in -xs/-s/full srcset; initial transfer ≈1 MB, MP3 (1.9 MB) only on PLAY. Footer carries no process copy; provenance is here.
+Breakpoints: ≤1100px the hero goes single-column (TV capped at 560px, then guide, then remote, then shelf) so the whole guide fits the first screen; ≤960px sections collapse to one column and the book section becomes pitch → CTA → book → card; ≤640px the shelf is 2×2 + 1 centered, pack 2-up; ≤380px knob 72px; ≤340px the TV title drops a size. No horizontal overflow at 320/390/1024/1440 (the coffee-table fan is intentionally clipped).
 
-## Madballs + Garbage Pail Pat (owner request)
-Interests became MADBALLS: nine original gross-out rubber-ball characters (gpt-image-2, transparent PNG → assets/toys/ball-*.webp ≤512px), one per obsession, each with a yellow blister-card name tag (`.ball__tag`) and one line. Contact became five original GPK-style painted cards (assets/toys/card-*.webp, 2:3): white sticker border, flat colour field per card (`--bg`), yellow name banner, blue "1a–5a" badge; the wax-pack plate sits above them. Characters are homage to the brief's references (NES texture, checkerboard high-tops, masked swordsman) with no rendered text; the tools/toys.py prompts are the source of truth — re-render any card with `python3 tools/toys.py <name>`.
+Measured plate boxes (percent of plate): TV glass 11.5/14/62/65, knob 80.5/12.8 ⌀11, pilot lamp 89.9/38.5 ⌀1.3; cartridge label recess 40.5/13.5/44.5/53.5; remote keys at 17/29.1/41.2/53.2/65.3/77.4% height (seven-button plate: 18/29/40/51/62/73/84), MOTION switch at 96.5%; book cover face 6/2.5/90/95; printer slot x 13→87%.
 
-## The Color Classic screens (current)
-1. **ZTerm** — System 7 chrome (`.macos--dark`, `.macwin--zterm`), black VT100 pane (`.zterm`): `CONNECT 2400` → `SunOS UNIX (databank)` → `databank login: patpadgett` → `who` / `finger` → `databank%` prompt with blinking cursor. Host name "databank" is owner-pinned.
-2. **ANSI** — owner-supplied artwork assets/bbs-ansi.jpg (The Dark Side BBS, ACiD-style, SysOp Agroman), bezel cropped to the glass → assets/ansi/dark-side{,-s}.webp, `object-fit:cover`, drawn top-down in 30 steps over 4.5 s (`@keyframes ansidraw`, clip-path) like a 2400-baud ANSI pour; dwell 9 s. tools/ansi.py (generated Hermes II scroller) is retired but kept.
-3. **Pascal** — THINK Pascal window, WhoIsOn.p external.
+## Elevation & Depth
 
-## The coffee table
-Section `#table` between Music and Madballs. Photoreal worn laminate table plate (assets/mags/table.webp) with an amber ashtray plate (ashtray.webp) bottom-right and CSS smoke (five blurred radial puffs, `@keyframes puff`, 5.5 s staggered; static fallback shows two puffs). Eight owner-supplied covers (assets/mags/mag0..7.jpg — Kerrang!, SPIN, Thrasher, Hit Parader, RIP, Rolling Stone, CREEM, Circus) fanned via per-item `--x/--y/--r/--z`; click lifts one (`.mag.up`: to top-centre, z 20, scale 1.7 desktop / 1.25 mobile) with a caption and dims the rest (`.table.has-up`); click again, Esc, or clicking bare table puts it down. Buttons carry aria-pressed; hint line is a live region.
+Hybrid, by material. Objects cast one soft drop-shadow onto the wood (`filter: drop-shadow(0 26px 22px rgba(0,0,0,.7))` on the remote and plates) because they are things on a floor. Paper and tape cast hard, short offsets (`1px 2px 0 rgba(0,0,0,.55)`) because they are flat. Type on wood carries a hard 4px black shadow; buttons a 5px "3D" base that compresses 2px on hover. Inside the glass, depth is glow and vignette (`inset 0 0 40px #000`). Nothing floats; nothing has a diffuse UI shadow.
 
-## The shelf (current)
-Four cartridges, parody launch titles → sections: SUPER BASS BROS. (Music), MAG HUNT (The coffee table), MADBALL'S PUNCH-OUT!! (Madballs), SYSOP'S QUEST (Work). Label = 8-bit art window (assets/carts/label-*.webp, tools/carts.py) over a black→dark-red band with cream title and gold destination line; recess grid `minmax(0,1fr) auto` so the band never clips. Homage is the joke (moustache-free rocker, laughing dog with a magazine, boxer vs rubber ball, kid at a modem).
+### Shadow Vocabulary
+- **Object on floor** (`drop-shadow(0 26px 22px rgba(0,0,0,.7))`): photoreal plates.
+- **Paper on plate** (`1px 2px 0 rgba(0,0,0,.55)`): tape labels, stickers.
+- **Lettering on wood** (`4px 4px 0 #000`): display headings.
+- **Button base** (`0 5px 0 <darker of fill>`, hover `0 3px 0` + `translateY(2px)`): all buttons.
+- **Glass** (`inset 0 0 40px #000, inset 0 0 4px #ffffff22`): the CRT.
 
-## PP-006 · Booking records (grime95!)
-Section `#grime95` after Octavitin; channel 7 on the knob, guide and remote. The remote plate was regenerated with seven buttons (assets/plates/remote7.webp, tools/grime-plates.py; button centres 18/29/40/51/62/73/84 % of plate height, MOTION switch moved to the wood at 95.5 %). Knob detents re-spaced to five stops (−104/−52/0/52/104°). Bumper 7 = DOS blue on yellow, the terminal's own palette.
-The desk: a stack of three Polaroids (`#stack`, a button: top card −4° with its top edge on the paper's top edge, two fanned beneath at −11° / +9°) = the three most recent bookings, to the LEFT of a photoreal beige 9-pin dot-matrix printer (assets/plates/printer.webp, slot measured x 13→87 %, sheet edge tucked at the platen = 24 % of plate width). The sheet is grime95's own green-bar printout — same tokens (`--gpaper/--gbar/--gink`), Courier Prime + Doto (copied from grime95.com/assets/fonts/vga, OFL), tractor holes, dashed tear lines — so the record looks identical to the terminal's. Static HTML ships the booking that was latest at build time; grime.js fetches grime95.com/ledger.json (CORS *) for the newest booking, then /rec/<booking>/ for the first two narrative paragraphs, rebinds the three Polaroids newest-on-top, and re-feeds the sheet. Tapping the stack lifts the top card to the back (`.is-lifting`, 240 ms), the sheet tears off upward (`.is-tearing`, 12 steps) and the printer feeds the booking now on top; the other two records are pre-fetched so the reprint never waits. Status line names what's on top. One authored moment: the sheet feeds out of the slot in 32 steps when the desk enters view (`.is-fed`); MOTION off / reduced motion show it settled.
-Copy is grime95.com/about verbatim (owner request). CTAs: Open the ledger ↗ (yellow), Follow by RSS (ghost).
+### Named Rules
+**The Press Rule.** Anything pressable moves down when pressed — buttons 2px, remote keys via an inset shadow, the knob by rotating. Hover never lifts UI; it only brightens.
+
+## Shapes
+
+Corners follow the material: tape and paper are near-square (1–2px), plastic chips and badges 3px, buttons 6px, knobs and lamps circles. Plates bring their own silhouettes — the CRT is `9% / 12%` rounded-rect, the book's spine edge `2px 5px 5px 2px`. Borders are used as material edges (the ghost button's 3px cream frame, the section tag's 2px outline), never as dividers; dividers on paper are ruled lines (`#bfb298`, `#d7c7a4`).
+
+## Components
+
+Tactile and toy-like: every control is a physical thing you press, and every one has a plain-language twin.
+
+### Buttons
+- **Shape:** softly rounded (6px), 48px min height, Nunito 900 16px.
+- **Primary (`.btn--slime`):** slime fill, black text, `0 5px 0 #1a7a08` base. Book section swaps to orangle on ink with an `#8a4a1a` base.
+- **Hover:** drops 2px, base shortens to 3px. Focus: 4px slime outline, 3px offset (global).
+- **Ghost (`.btn--ghost`):** translucent black, 3px cream border; hover fills cream with black text.
+
+### TV Guide (signature)
+Cream paper card (2px corners) with a pixel head, then one row per channel: a 42px ink badge with the channel number in Press Start 2P 24px, a bold title, a 13px description that names the real destination. Rows are real links (external for 3/4/5, in-page for 6/7/CONTACT); with JS a channel row shows a 700ms TUNING bumper first. Hover underlines the title in pink, 3px.
+
+### Remote (signature)
+Photoreal Space Command plate; each key is a plate-wide 12%-tall row with the button drawn by `::before`. Beside every key, a masking-tape label (`tape-cream`, Press Start 2P 11px, ±1° rotation, hard 1×2px shadow): POWER (red ink), 3 MUSIC, 4 WORK, 5 BLOG, 6 BEDTIME, 7 GRIME95, MUTE (green when playing). At the foot, a slide switch with engraved ON/OFF and a MOTION tape label (`role=switch`); it toggles `html.static`, persisted as `pp-motion`. Status line in cyan VT323 below.
+
+### Channel knob (signature)
+`#knob` button at 80.5/12.8% of the TV plate. Press → rotates to the next detent with a 320ms overshoot and shows a bumper; press again while the bumper shows → tunes in. Arrow keys turn it. Bumper digit rolls in from above (380ms).
+
+### Cartridges
+Grey plate; label recess holds 8-bit box art (assets/carts/label-*.webp) over a black→dark-red band with a cream title (Nunito 900, wraps on words) and a gold subtitle. Below each cart a plain shelf caption in pixel 11px (MUSIC · MAGAZINES · MADBALLS · WORK · THE BOOK). Hover lifts 12px in 3 steps. aria-label names the destination and "on this page".
+
+### Library card + pocket
+Cream ruled card (24px rule, VT323 15px, typewriter voice) tucked into a kraft pocket with a thumb notch; blue date stamps, cursive borrowers, TONIGHT in red. The last stamped row clears the pocket lip by ≥18px.
+
+### Reader dialog
+Native `<dialog>`; a two-page spread on desktop (illustration | chapter), one scrolling cream column on phones. Brygada 1918 prose with a drop-cap, a pixel "Scroll to read ↓" cue on its own line that fades after 24px, a toolbar with a 44px resume note, Close, and reading position kept per paragraph in localStorage.
+
+### Section tag
+Outlined chip (`#c99a63`, 2px, 3px corners) with the PP-00n catalogue code in pixel 11px, baseline-aligned beside the heading.
+
+## Do's and Don'ts
+
+### Do:
+- **Do** set real content into a measured region of a photoreal plate; re-measure after regenerating any plate.
+- **Do** give every toy control a plain twin: a guide row, a shelf caption, an aria-label that names the destination.
+- **Do** use steps, snaps and detents for motion (`steps(n)`, `cubic-bezier(.16,1,.3,1)` for settles); gate every loop with `.js:not(.static)` so MOTION and reduced-motion stop it.
+- **Do** keep 11px Press Start 2P as the floor for functional labels; anything smaller is engraving.
+- **Do** cast hard shadows on wood (`4px 4px 0 #000`) and soft drop-shadows only under objects.
+- **Do** push real `#hash` history for in-page channel navigation so Back and copied links work.
+
+### Don't:
+- **Don't** glow outside the glass — no text-shadow blur on wood, no diffuse box-shadows on UI.
+- **Don't** add a gradient that isn't a material (woodgrain, ridges, green-bar, plastic).
+- **Don't** ease-in-and-rise, parallax, or scroll-reveal sections; the world is mechanical, not cinematic.
+- **Don't** import a photographed room or a stock retro backdrop; the room is built from objects on walnut.
+- **Don't** write internal or process copy into the page (design notes, "made to look like", provenance); provenance lives here and in the footer's one line.
+- **Don't** bounce anything but the knob; its `cubic-bezier(.34,1.56,.64,1)` is a mechanical detent and the single accepted exception.
+
+<!-- Detector exceptions (world, not defects): repeating-gradient stripes = woodgrain / cartridge ridges / green-bar; glow text-shadows inside .tv__glass and .mac__glass = phosphor; .smoke i "marquee" = ashtray smoke; .table clipped container = the magazine fan; low-contrast reads of cassette/cartridge overlay text = static reads against body colour, actual backgrounds are the plate bands; knob bounce-easing = detent; .mag transition:width = magazine lift (pre-existing). -->
