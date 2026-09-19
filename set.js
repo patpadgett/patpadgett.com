@@ -16,13 +16,7 @@
   var rows = [].slice.call(document.querySelectorAll('.guide__row'));
   var cur = 3, timer = null;
 
-  var ctx = null, soundOn = false, sb = document.getElementById('sound');
-  if (sb) sb.addEventListener('click', function () {
-    soundOn = !soundOn;
-    sb.setAttribute('aria-pressed', String(soundOn));
-    sb.querySelector('span').textContent = soundOn ? 'ON' : 'OFF';
-    if (soundOn) click();
-  });
+  var ctx = null, soundOn = false;
   function click() {
     if (!soundOn) return;
     try {
