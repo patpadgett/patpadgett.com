@@ -144,10 +144,16 @@
     audio.addEventListener('pause', paintMute); audio.addEventListener('play', paintMute); audio.addEventListener('ended', paintMute);
     paintMute();
   }
+  var dying;
   function setPower(on) {
     isOn = on;
     clearTimeout(warm);
-    tv.classList.toggle('is-off', !on);
+    clearTimeout(dying);
+    tv.classList.remove('is-dying');
+    if (!on && !reduce && !tv.classList.contains('is-off')) {
+      tv.classList.add('is-dying');
+      dying = setTimeout(function () { tv.classList.remove('is-dying'); tv.classList.add('is-off'); }, 480);
+    } else tv.classList.toggle('is-off', !on);
     if (power) { power.setAttribute('aria-pressed', String(on)); power.setAttribute('aria-label', on ? 'Power. The set is on.' : 'Power. The set is off.'); }
     if (on && !reduce) { tv.classList.remove('was-on'); tv.classList.add('is-warming'); warm = setTimeout(function () { tv.classList.remove('is-warming'); tv.classList.add('was-on'); }, 1600); }
     else if (on) tv.classList.add('was-on');
@@ -155,6 +161,7 @@
     if (!on && audio && !audio.paused) { audio.pause(); }
   }
   if (power) power.addEventListener('click', function () { press(power); setPower(!isOn); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { tv.classList.toggle('offscreen', !es[0].isIntersecting); }).observe(tv);
   /* the knob and guide are dead while the set is off */
   knob.addEventListener('click', function (e) { if (!isOn) { e.stopImmediatePropagation(); setPower(true); } }, true);
 })();

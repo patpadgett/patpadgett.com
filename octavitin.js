@@ -2,6 +2,8 @@
 (function () {
   var book = document.getElementById('book'), reader = document.getElementById('reader');
   if (!book || !reader || typeof reader.showModal !== 'function') return;
+  var sec = document.getElementById('octavitin');
+  if (sec && 'IntersectionObserver' in window) { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { sec.classList.add('is-lit'); io.disconnect(); } }, { threshold: .35 }); io.observe(sec); } else if (sec) sec.classList.add('is-lit');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var close = reader.querySelector('.reader__close'), page = document.getElementById('reader-page');
   var spread = reader.querySelector('.reader__spread'), agains = [].slice.call(reader.querySelectorAll('.page__again'));

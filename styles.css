@@ -62,7 +62,8 @@ h1,h2{margin:0}
              radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.6) 100%);mix-blend-mode:multiply}
 .tv__glass::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.10) 0 18%,transparent 30%,transparent 70%,rgba(255,255,255,.05) 100%);pointer-events:none}
 .bumper{position:absolute;inset:0;display:none;place-content:center;text-align:center;padding:6%;color:#fff}
-.bumper.on{display:grid}
+.bumper.on{display:grid;animation:lockon .22s steps(3) both}
+@keyframes lockon{0%{transform:translateY(-7%);filter:brightness(1.8) contrast(1.4)}66%{transform:translateY(2%)}100%{transform:none;filter:none}}
 .bumper b{display:block;font:400 clamp(60px,12vw,200px)/.9 var(--disp)}
 .bumper span{display:block;font:400 clamp(16px,2.4vw,34px)/1 var(--pix)}
 .bumper small{display:block;margin-top:1em;font:400 clamp(9px,1vw,13px)/1.4 var(--pix);opacity:.85}
@@ -71,11 +72,18 @@ h1,h2{margin:0}
 
 /* pilot lamp: measured on the plate at (91.2%, 39.8%), ⌀1% */
 .tv__lamp{position:absolute;left:89.9%;top:38.5%;width:1.3%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff0e8,#ff3a2a 35%,#c01008 75%);box-shadow:0 0 5px 2px rgba(255,42,26,.9),0 0 16px 5px rgba(255,42,26,.5);transition:box-shadow .2s,background .2s;pointer-events:none}
+.tv__lamp{transition:background .35s,box-shadow .9s cubic-bezier(.16,1,.3,1)}
 .tv.is-off .tv__lamp{background:radial-gradient(circle at 40% 35%,#4a1612,#220806 60%,#120403);box-shadow:0 0 0 1px #0a0a0a,inset 0 1px 1px rgba(255,255,255,.12)}
 /* dead air */
 .fuzz{position:absolute;inset:0;display:none;background:#111 url(assets/plates/fuzz.svg) 0 0/128px 128px repeat;filter:contrast(1.2)}
 .tv.is-off .fuzz{display:block;animation:fuzz .2s steps(4) infinite}
 .tv.is-off .title,.tv.is-off .bars,.tv.is-off .bumper{visibility:hidden}
+/* the tube dying: picture squeezes to a line, then a dot, then dark — snow follows */
+.tv.is-dying .bars,.tv.is-dying .bumper{visibility:hidden}
+.tv.is-dying .title{animation:collapse .48s steps(10) forwards!important;opacity:1;transform-origin:50% 50%}
+@keyframes collapse{0%{transform:scaleY(1);filter:brightness(1)}45%{transform:scaleY(.012) scaleX(1.06);filter:brightness(2.6)}70%{transform:scale(.012,.012);filter:brightness(4)}100%{transform:scale(.004,.004);filter:brightness(0);opacity:0}}
+.tv.is-dying .tv__glass::after{content:"";position:absolute;inset:0;background:#000;z-index:-1}
+.tv.offscreen .fuzz{animation-play-state:paused}
 @keyframes fuzz{0%{background-position:0 0}25%{background-position:37px 61px}50%{background-position:-29px 13px}75%{background-position:71px -47px}100%{background-position:-53px 89px}}
 .static .tv.is-off .fuzz{animation:none}
 /* power-on replay */
