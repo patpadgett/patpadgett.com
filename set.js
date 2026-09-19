@@ -31,7 +31,7 @@
     cur = n;
     knob.style.setProperty('--rot', CH[n].rot + 'deg');
     knob.dataset.ch = n;
-    knob.setAttribute('aria-label', 'Channel knob. Channel ' + n + ', ' + CH[n].name + '. Press to turn; press again to tune in.');
+    knob.setAttribute('aria-label', 'Channel knob. Channel ' + n + ', ' + CH[n].name + '. Press to turn; press again to tune in. Arrow keys also turn it.');
     rows.forEach(function (r) { r.classList.toggle('on', r.dataset.ch == n); });
     click();
     if (announce) showBumper(n);
@@ -75,7 +75,7 @@
     var screens = [].slice.call(mac.querySelectorAll('.scr'));
     var idx = 0, macTimer = null, running = false, manual = false;
     function show(i) {
-      screens.forEach(function (s, k) { s.classList.toggle('on', k === i); if (k === i && s.classList.contains('scr--acid')) { var r = s.querySelector('.acid__art'); if (r) { r.style.animation = 'none'; void r.offsetWidth; r.style.animation = ''; } } });
+      screens.forEach(function (s, k) { s.classList.toggle('on', k === i); s.setAttribute('aria-hidden', k === i ? 'false' : 'true'); if (k === i && s.classList.contains('scr--acid')) { var r = s.querySelector('.acid__art'); if (r) { r.style.animation = 'none'; void r.offsetWidth; r.style.animation = ''; } } });
       mac.dataset.scr = screens[i].dataset.name;
       var tabs = document.querySelectorAll('.mac__tabs button');
       tabs.forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
