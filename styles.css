@@ -175,6 +175,10 @@ h1,h2{margin:0}
 .cart__band i{font:800 clamp(7px,.6vw,9px)/1.2 var(--body);font-style:normal;color:#ffd0a0;margin-top:3%;text-transform:uppercase;letter-spacing:.04em}
 .cart::before{content:"";position:absolute;right:13%;bottom:15%;width:13%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#eee,#999 60%,#666);z-index:2;box-shadow:0 1px 0 #fff8 inset}
 .cart:hover,.cart:focus-visible{transform:translateY(-12px)}
+/* plain caption on the shelf edge under each cart — the label art stays tiny and authentic */
+.cart__cap{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:14px;font:400 11px/1 var(--pix);letter-spacing:.04em;color:#e9d3ad;text-shadow:1px 1px 0 #000;white-space:nowrap}
+.cart:hover .cart__cap,.cart:focus-visible .cart__cap{color:var(--yellow)}
+.shelf{padding-bottom:34px}
 
 /* ===================== WHO — VHS ===================== */
 .who{padding:clamp(48px,7vw,90px) 0 0;display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:center}
@@ -386,4 +390,4 @@ h1,h2{margin:0}
   .balls{grid-template-columns:1fr}
 }
 
-@media(max-width:340px){.title__name{font-size:clamp(26px,8vw,96px)}}
+@media(max-width:340px){.title__name{font-size:clamp(24px,7.4vw,96px)}.title{padding-top:7%}}

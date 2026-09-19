@@ -10,7 +10,7 @@
     3: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -78 },
     4: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -26 },
     5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 26 },
-    6: { name: 'BEDTIME', href: '#octavitin', line: 'Octavitin · Chapter One', rot: 78 }
+    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · Chapter One', rot: 78 }
   };
   var knob = document.getElementById('knob'), bumper = document.getElementById('bumper');
   var rows = [].slice.call(document.querySelectorAll('.guide__row[data-ch]'));
@@ -46,7 +46,7 @@
     bumper.className = 'bumper on bumper--' + n;
     bumper.innerHTML = '<span class="bumper__tune">TUNING…</span><small>' + CH[n].line + '</small>';
     setTimeout(function () {
-      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; } if (t) t.focus({ preventScroll: true }); return; }
+      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; if (location.hash !== CH[n].href) history.pushState(null, '', CH[n].href); } if (t) t.focus({ preventScroll: true }); return; }
       location.href = CH[n].href;
     }, reduce ? 0 : (delay == null ? 350 : delay));
   }
