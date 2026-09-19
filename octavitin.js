@@ -4,12 +4,15 @@
   if (!book || !reader || typeof reader.showModal !== 'function') return;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var close = reader.querySelector('.reader__close'), page = document.getElementById('reader-page');
-  var spread = reader.querySelector('.reader__spread'), again = reader.querySelector('.page__again');
+  var spread = reader.querySelector('.reader__spread'), agains = [].slice.call(reader.querySelectorAll('.page__again'));
+  var resume = reader.querySelector('.page__resume'), KEY = 'octavitin-chapter-one';
+  function savePos() { if (!reader.open) return; try { localStorage.setItem(KEY, String(scroller().scrollTop | 0)); } catch (e) {} }
+  function loadPos() { try { return +localStorage.getItem(KEY) || 0; } catch (e) { return 0; } }
   var prevOverflow = '', opening = null, opener = book;
 
   /* whichever container actually scrolls at this width */
   function scroller() { return getComputedStyle(spread).overflowY === 'auto' ? spread : page; }
-  function toTop() { spread.scrollTop = 0; page.scrollTop = 0; }
+  function toTop() { spread.scrollTop = 0; page.scrollTop = 0; if (resume) resume.hidden = true; try { localStorage.setItem(KEY, '0'); } catch (e) {} }
   /* the focusable, keyboard-scrollable region is whichever one scrolls */
   function syncTab() { var s = scroller(); page.tabIndex = s === page ? 0 : -1; spread.tabIndex = s === spread ? 0 : -1; if (s === spread) spread.setAttribute('aria-label', page.getAttribute('aria-label')); else spread.removeAttribute('aria-label'); }
   addEventListener('resize', syncTab);
@@ -21,7 +24,9 @@
     reader.classList.toggle('is-opening', animate);
     reader.showModal();
     syncTab();
-    /* reading position is kept for the session; Start again resets it */
+    /* reading position persists on this device; Start again resets it */
+    var pos = loadPos(), s = scroller();
+    if (pos > 80) { s.scrollTop = pos; if (resume) resume.hidden = false; } else if (resume) resume.hidden = true;
     document.body.style.overflow = 'hidden';
     close.focus({ preventScroll: true });
   }
@@ -39,7 +44,9 @@
       e.preventDefault(); open(!reduce && e.detail > 0, btn);
     });
   });
-  if (again) again.addEventListener('click', function () { toTop(); scroller().focus({ preventScroll: true }); });
+  agains.forEach(function (a) { a.addEventListener('click', function () { toTop(); scroller().focus({ preventScroll: true }); }); });
+  function onScroll() { savePos(); }
+  spread.addEventListener('scroll', onScroll); page.addEventListener('scroll', onScroll);
   close.addEventListener('click', function () { reader.close(); });
   reader.addEventListener('click', function (e) { /* click the dark room to put the book down */
     var r = spread.getBoundingClientRect();
