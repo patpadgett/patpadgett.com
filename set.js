@@ -122,21 +122,45 @@
     table.addEventListener('click', function (e) { if (e.target === table || e.target.classList.contains('table__top')) putDown(); });
   }
 
-  /* ---------- Tape deck: background music, opt-in ---------- */
-  var audio = document.getElementById('bgm'), deck = document.getElementById('deck');
-  if (audio && deck) {
-    var btn = deck.querySelector('.deck__play'), state = deck.querySelector('.deck__state');
-    function paint() {
-      var on = !audio.paused;
-      deck.classList.toggle('playing', on);
-      btn.setAttribute('aria-pressed', String(on));
-      btn.querySelector('span').textContent = on ? 'STOP' : 'PLAY';
-      state.textContent = on ? 'PLAYING · "Bedroom 1988" · synthwave loop' : 'STOPPED · press PLAY for the soundtrack';
-    }
-    btn.addEventListener('click', function () {
-      if (audio.paused) { audio.volume = .55; audio.play().then(paint, paint); } else { audio.pause(); paint(); }
+  /* ---------- Remote: channels, mute, power ---------- */
+  var tv = document.querySelector('.tv'), audio = document.getElementById('bgm');
+  var power = document.getElementById('power'), mute = document.getElementById('mute'), rstate = document.getElementById('remote-state');
+  var isOn = true, warm = null;
+  function press(b) { b.classList.add('is-pressed'); setTimeout(function () { b.classList.remove('is-pressed'); }, 140); click(); }
+  [].slice.call(document.querySelectorAll('.remote__key[data-ch]')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      press(b);
+      if (!isOn) setPower(true);
+      var n = +b.dataset.ch; setCh(n, false); tune(n, 700);
     });
-    audio.addEventListener('ended', paint); audio.addEventListener('pause', paint); audio.addEventListener('play', paint);
-    paint();
+  });
+  function say(t) { if (rstate) rstate.textContent = t; }
+  function paintMute() {
+    if (!mute) return;
+    var muted = !audio || audio.paused;
+    mute.setAttribute('aria-pressed', String(muted));
+    mute.setAttribute('aria-label', muted ? 'Sound. Muted. Press to play the soundtrack.' : 'Sound. Playing Bedroom 1988. Press to mute.');
+    say(muted ? 'MUTED · press MUTE for the soundtrack' : 'PLAYING · "Bedroom 1988" · synthwave loop');
   }
+  if (mute && audio) {
+    mute.addEventListener('click', function () {
+      press(mute);
+      if (audio.paused) { audio.volume = .55; audio.play().then(paintMute, paintMute); } else { audio.pause(); paintMute(); }
+    });
+    audio.addEventListener('pause', paintMute); audio.addEventListener('play', paintMute); audio.addEventListener('ended', paintMute);
+    paintMute();
+  }
+  function setPower(on) {
+    isOn = on;
+    clearTimeout(warm);
+    tv.classList.toggle('is-off', !on);
+    if (power) { power.setAttribute('aria-pressed', String(on)); power.setAttribute('aria-label', on ? 'Power. The set is on.' : 'Power. The set is off.'); }
+    if (on && !reduce) { tv.classList.remove('was-on'); tv.classList.add('is-warming'); warm = setTimeout(function () { tv.classList.remove('is-warming'); tv.classList.add('was-on'); }, 1600); }
+    else if (on) tv.classList.add('was-on');
+    if (!on) { bumper.className = 'bumper'; clearTimeout(timer); }
+    if (!on && audio && !audio.paused) { audio.pause(); }
+  }
+  if (power) power.addEventListener('click', function () { press(power); setPower(!isOn); });
+  /* the knob and guide are dead while the set is off */
+  knob.addEventListener('click', function (e) { if (!isOn) { e.stopImmediatePropagation(); setPower(true); } }, true);
 })();
