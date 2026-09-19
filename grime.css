@@ -68,7 +68,7 @@
 .printer__tag{position:absolute;left:11%;bottom:12%;z-index:3;margin:0;padding:7px 10px 6px;background:#efe4c6;color:#1a1210;font:400 9px/1 var(--pix);letter-spacing:.02em;transform:rotate(-1.5deg);box-shadow:1px 2px 0 rgba(0,0,0,.55);background-image:repeating-linear-gradient(90deg,transparent 0 3px,rgba(0,0,0,.03) 3px 4px)}
 
 /* the one authored moment: the sheet feeds out of the slot when the desk scrolls into view */
-.js:not(.static) .paper{transform:translateY(102%)}
+.js:not(.static):not(.grime-nojs) .paper{transform:translateY(102%)}
 .js .sec--grime.is-fed .paper{animation:gfeed 1.6s steps(32,end) forwards}
 .js.static .paper,.js .sec--grime.is-fed.static .paper{transform:none;animation:none}
 @keyframes gfeed{from{transform:translateY(102%)}to{transform:none}}

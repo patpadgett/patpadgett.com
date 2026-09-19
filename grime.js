@@ -60,9 +60,12 @@
   }
   /* the sheet comes out when the desk is in view; if the data arrives after that, re-feed once so the new sheet prints */
   var seen = false;
+  var desk = document.getElementById('desk') || sec;
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { seen = true; feed(); io.disconnect(); } }, { threshold: .3 });
-    io.observe(sec);
+    var io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { seen = true; feed(); io.disconnect(); } }, { threshold: .05, rootMargin: '0px 0px -10% 0px' });
+    io.observe(desk);
+    /* belt and braces: never leave the slot empty */
+    setTimeout(function () { var r = desk.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) { seen = true; feed(); } }, 1200);
   } else { seen = true; feed(); }
 
   fetch(BASE + '/ledger.json', { headers: { Accept: 'application/json' } }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (data) {
