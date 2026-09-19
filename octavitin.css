@@ -196,5 +196,5 @@
 
 @keyframes slidein{from{transform:translateX(-14px);opacity:0}to{transform:none;opacity:1}}
 
-.page__cue{position:sticky;top:0;float:right;margin:0 0 0 12px;font:400 11px/1 var(--pix);color:#8a7a5a;letter-spacing:.04em;opacity:1;transition:opacity .3s}
+.page__cue{display:block;text-align:right;margin:-6px 0 10px;font:400 11px/1 var(--pix);color:#8a7a5a;letter-spacing:.04em;opacity:1;transition:opacity .3s}
 .reader.is-scrolled .page__cue{opacity:0}
