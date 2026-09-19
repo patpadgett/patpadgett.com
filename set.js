@@ -139,7 +139,7 @@
   if (mute && audio) {
     mute.addEventListener('click', function () {
       press(mute);
-      if (audio.paused) { audio.volume = .55; audio.play().then(paintMute, paintMute); } else { audio.pause(); paintMute(); }
+      if (audio.paused) { audio.volume = .55; audio.play().then(paintMute, function () { paintMute(); say('THE SET WON’T PLAY YET · press MUTE once more'); }); } else { audio.pause(); paintMute(); }
     });
     audio.addEventListener('pause', paintMute); audio.addEventListener('play', paintMute); audio.addEventListener('ended', paintMute);
     paintMute();
