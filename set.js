@@ -7,9 +7,10 @@
 
   /* ---------- TV: channel knob ---------- */
   var CH = {
-    3: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -38 },
-    4: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: 0 },
-    5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 38 }
+    3: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -78 },
+    4: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -26 },
+    5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 26 },
+    6: { name: 'BEDTIME', href: '#octavitin', line: 'Octavitin · Chapter One', rot: 78 }
   };
   var knob = document.getElementById('knob'), bumper = document.getElementById('bumper');
   var rows = [].slice.call(document.querySelectorAll('.guide__row'));
@@ -50,9 +51,12 @@
   function tune(n, delay) {
     bumper.className = 'bumper on bumper--' + n;
     bumper.innerHTML = '<span class="bumper__tune">TUNING…</span><small>' + CH[n].line + '</small>';
-    setTimeout(function () { location.href = CH[n].href; }, delay == null ? 350 : delay);
+    setTimeout(function () {
+      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); if (t) t.focus({ preventScroll: true }); return; }
+      location.href = CH[n].href;
+    }, delay == null ? 350 : delay);
   }
-  var next = function (d) { var n = cur + d; return n > 5 ? 3 : n < 3 ? 5 : n; };
+  var next = function (d) { var n = cur + d; return n > 6 ? 3 : n < 3 ? 6 : n; };
   knob.addEventListener('click', function () {
     if (bumper.classList.contains('on')) { tune(cur); return; }
     setCh(next(1), true);

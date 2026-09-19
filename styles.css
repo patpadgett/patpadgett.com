@@ -67,7 +67,7 @@ h1,h2{margin:0}
 .bumper span{display:block;font:400 clamp(16px,2.4vw,34px)/1 var(--pix)}
 .bumper small{display:block;margin-top:1em;font:400 clamp(9px,1vw,13px)/1.4 var(--pix);opacity:.85}
 .bumper__tune{font-family:var(--term)!important;font-size:clamp(30px,5vw,70px)!important}
-.bumper--3{background:var(--red)}.bumper--4{background:#000;color:var(--slime)}.bumper--5{background:var(--cyan);color:#001}
+.bumper--3{background:var(--red)}.bumper--4{background:#000;color:var(--slime)}.bumper--5{background:var(--cyan);color:#001}.bumper--6{background:#171d32;color:#ffb16b}
 
 /* right column: guide, deck, sound */
 .panel{grid-column:2;display:grid;gap:18px;align-content:start}

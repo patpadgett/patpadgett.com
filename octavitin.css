@@ -35,36 +35,46 @@
 /* mobile pitch: title, age line and the reading action before the props */
 .pitch{display:none}
 
-/* DATE DUE card: the pocket slip inside every library book */
-.due{position:relative;margin-top:20px;background:var(--card);color:#1a1210;border-radius:3px;box-shadow:0 30px 40px -18px #000,inset 0 0 0 1px rgba(0,0,0,.08);padding:0;max-width:520px;justify-self:start;width:100%}
-.due::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(0,0,0,.018) 3px 4px)}
-.due__head{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:16px 22px 12px;border-bottom:3px double #1a1210}
-.due__head b{font:400 clamp(24px,3vw,34px)/1 var(--disp);letter-spacing:.06em;color:#1a1210}
-.due__head small{font:400 11px/1.4 var(--pix);color:#5a4a3a;text-align:right}
-.due__body{padding:18px 22px 8px}
-.due__title{margin:0 0 6px;font:700 clamp(28px,3.4vw,40px)/1 var(--book);letter-spacing:-.03em;color:#1a1210}
-.due__title span{display:block;font:400 .55em/1.15 var(--book);letter-spacing:-.01em;color:#3a2a1a;margin-top:6px}
-.due__by{margin:0 0 14px;font:800 12px/1.4 var(--body);letter-spacing:.12em;text-transform:uppercase;color:#5a4a3a}
-.due__blurb{margin:0 0 6px;font:400 clamp(17px,1.6vw,19px)/1.5 var(--body);color:#1a1210;max-width:40ch}
-.due__blurb b{font-weight:900}
-.due__note{margin:0 0 16px;font:400 15px/1.5 var(--body);color:#4a3a2a;max-width:40ch}
-.due__stamps{list-style:none;margin:0;padding:0 22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #a89777;border-bottom:1px solid #a89777}
-.due__stamps li{padding:12px 2px 10px;border-right:1px solid #a89777;font:400 clamp(16px,1.5vw,20px)/1 var(--term);color:var(--stamp);text-align:center;opacity:.8;text-transform:uppercase;white-space:nowrap}
-.due__stamps li:last-child{border-right:0;color:var(--due);opacity:1}
-.due__ctas{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:stretch;padding:18px 22px 22px}
-.due__ctas .btn{display:inline-flex;align-items:center;min-height:52px;box-sizing:border-box}
-.due__ctas .btn--slime{background:var(--navy);color:var(--card);box-shadow:0 5px 0 #0a0e1c}
-.due__ctas .btn--slime:hover{background:var(--due);color:#fff;box-shadow:0 3px 0 #5a0e0a}
-.due__ctas .btn--ghost{background:transparent;color:#1a1210;border-color:#1a1210}
-.due__ctas .btn--ghost:hover{background:#1a1210;color:var(--card)}
-.due__ctas .btn{font-size:15px}
 
-/* TV Guide: the late slot */
-.guide__late{display:grid;grid-template-columns:42px 1fr;column-gap:12px;align-items:center;text-decoration:none;padding:8px 4px;min-height:56px;border-top:1px solid #d7c7a4;color:inherit}
-.guide__late b{font:400 11px/1.2 var(--pix);color:#fff;background:var(--navy);text-align:center;padding:9px 0;border-radius:3px}
-.guide__late .guide__t{font:800 15px/1.1 var(--body);letter-spacing:.06em;color:#1a1210}
-.guide__late .guide__d{display:block;font-size:13px;color:#5a4a3a;margin-top:2px}
-.guide__late:hover .guide__t,.guide__late:focus-visible .guide__t{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--orangle)}
+
+/* the pocket glued inside the cover, with the date-due card slid in */
+.shelfside{max-width:520px;width:100%;justify-self:start;margin-top:20px}
+.pocket{position:relative;isolation:isolate;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+/* ONE card, ruled top to bottom (28px rhythm), typewriter voice */
+.pocket__card{--rule:28px;position:relative;z-index:1;margin:0 26px;padding:14px 18px 0;background:#f4ecd6;color:#1a1210;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+  background-image:repeating-linear-gradient(180deg,transparent 0 calc(var(--rule) - 1px),#bfb298 calc(var(--rule) - 1px) var(--rule));background-origin:content-box;background-clip:content-box}
+.pocket__card>p{margin:0;font:400 16px/var(--rule) var(--term);letter-spacing:.01em;color:#1a1210;padding-top:3px;margin-bottom:-3px!important}
+.card__call{position:absolute;right:34px;top:17px;font:400 13px/var(--rule) var(--term);color:#5a4a3a;letter-spacing:.08em}
+.card__line--title b{font-weight:400;text-transform:uppercase}
+.card__line--blurb{margin-top:var(--rule)!important;color:#2a1a10;font-family:var(--body);font-size:16px;max-width:44ch}
+.card__grid{width:100%;margin:var(--rule) 0 0;border-collapse:collapse;border-top:2px solid #1a1210;background:#f4ecd6;table-layout:fixed}
+.card__grid th{font:400 12px/var(--rule) var(--term);letter-spacing:.14em;text-align:left;padding:0 12px;border-bottom:2px solid #1a1210;color:#1a1210}
+.card__grid th:first-child{width:44%}
+.card__grid th+th,.card__grid td+td{border-left:2px solid #1a1210}
+.card__grid td{height:var(--rule);padding:0 12px;border-bottom:1px solid #bfb298;font:400 15px/1 var(--term);color:#3a2a1a;white-space:nowrap}
+.card__grid td i{font-style:normal;color:var(--stamp);opacity:.85;display:inline-block;transform:rotate(-1.5deg)}
+.card__grid tr:nth-child(2) td i{transform:rotate(1deg);opacity:.7}
+.card__grid td i.card__tonight{color:var(--due);opacity:1;transform:rotate(-3deg)}
+.card__grid td span{font:italic 400 16px/1 var(--book);color:#2a3a6a}
+.card__grid tr:last-child td{border-bottom:0}
+/* the pocket: kraft paper, die-cut mouth, inner shadow where the card slides in */
+.pocket__front{position:relative;z-index:2;margin-top:-56px;padding:70px 22px 22px;background:#c7a066;color:#1a1210;border-radius:0 0 4px 4px;
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.18)}
+.pocket__front::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 3px,rgba(0,0,0,.03) 3px 4px),repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.03) 5px 6px)}
+/* die-cut thumb notch: a card-coloured ellipse over the pocket's top edge (shows the card through) */
+.pocket__front .pocket__notch{position:absolute;left:50%;top:-1px;width:min(58%,300px);height:56px;transform:translateX(-50%);border-radius:0 0 150px 150px / 0 0 56px 56px;background:#f4ecd6;background-image:repeating-linear-gradient(180deg,transparent 0 27px,#bfb298 27px 28px);box-shadow:inset 0 -6px 10px -6px rgba(0,0,0,.35);pointer-events:none}
+/* shadow the pocket casts on the card, along the mouth */
+.pocket::after{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(100% - 0px);pointer-events:none;z-index:1;
+  background:linear-gradient(180deg,transparent calc(100% - 152px),rgba(0,0,0,.3) calc(100% - 122px),transparent calc(100% - 120px))}
+.pocket__label{margin:0;position:relative;z-index:1;text-align:center}
+.pocket__label b{display:block;font:400 clamp(22px,2.6vw,28px)/1 var(--disp);letter-spacing:.08em;color:#1a1210;margin-bottom:6px}
+.pocket__label small{display:block;font:400 12px/1.5 var(--term);letter-spacing:.06em;color:#4a3a2a}
+.due__ctas{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:stretch;margin:22px 0 0}
+.due__ctas .btn{display:inline-flex;align-items:center;min-height:52px;box-sizing:border-box;font-size:15px;padding:0 20px}
+.due__ctas .btn--slime{background:var(--orangle);color:#1a1210;box-shadow:0 5px 0 #8a4a1a}
+.due__ctas .btn--slime:hover{background:#ffc28c;box-shadow:0 3px 0 #8a4a1a}
+.due__ctas .btn--ghost{background:#00000055;color:#fff;border:3px solid var(--cream)}
+.due__ctas .btn--ghost:hover{background:var(--cream);color:#000}
 
 /* the open book */
 .reader{border:0;padding:0;background:transparent;width:min(1120px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:visible;overscroll-behavior:contain;color:#1a1210}
@@ -127,8 +137,7 @@
   .bedtime__floor::after{bottom:96px}
   .book{width:min(64%,300px)}
   .flashlight{width:min(52%,240px);left:8%}
-  .due{max-width:none;justify-self:stretch;margin-top:0}
-  .due__by{display:none}
+  .shelfside{max-width:none;justify-self:stretch;margin-top:0}
 }
 @media(max-width:640px){
   .bedtime__floor{padding-bottom:96px}
@@ -136,9 +145,10 @@
   .flashlight{width:56%;left:4%}
   .bedtime__floor::before{left:50%;height:130px}
   .due__head small{font-size:11px}
-  .due__head{padding:14px 16px 10px}.due__body{padding:16px 16px 6px}.due__stamps{padding:0 16px}.due__ctas{padding:16px}
-  .due__stamps li{font-size:14px}
-  .guide__late .guide__d{display:none}
+  .pocket__card{margin:0 14px;padding:12px 14px 0}
+  .card__call{right:22px}
+  .card__grid th{font-size:11px;letter-spacing:.08em}.card__grid td{font-size:13px;padding:0 8px}.card__grid td span{font-size:14px}
+  .card__line--blurb{font-size:15px}
   .reader{width:calc(100% - 16px);max-height:calc(100dvh - 16px)}
   .reader__spread{display:block;height:auto;-webkit-overflow-scrolling:touch;max-height:calc(100dvh - 100px);margin:10px;box-shadow:0 0 0 1px #d8ccaa,0 0 0 8px var(--navy),0 0 0 9px #0b0f1c;overflow:auto;border-radius:6px;padding-bottom:env(safe-area-inset-bottom)}
   .reader__spread::after{display:none}
@@ -160,3 +170,4 @@
   .book.is-opening .book__face{transform:none}
   .leaves{display:none}
 }
+.sec--octavitin:focus{outline:none}

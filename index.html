@@ -37,11 +37,11 @@
 
   <div class="panel" id="channels">
     <nav class="guide" aria-label="Channels">
-      <p class="guide__head"><b>TV GUIDE</b> Saturday morning</p>
+      <p class="guide__head"><b>TV GUIDE</b> Saturday morning · late night</p>
       <a class="guide__row" href="https://music.patpadgett.com" data-ch="3"><b>3</b><span class="guide__t">MUSIC</span><span class="guide__d">Records, songs &amp; other noise — music.patpadgett.com</span></a>
       <a class="guide__row" href="https://work.patpadgett.com" data-ch="4"><b>4</b><span class="guide__t">WORK</span><span class="guide__d">Résumé — billing mediation &amp; automation — work.patpadgett.com</span></a>
       <a class="guide__row" href="https://blog.patpadgett.com" data-ch="5"><b>5</b><span class="guide__t">BLOG</span><span class="guide__d">Thoughts, notes &amp; rabbit holes — blog.patpadgett.com</span></a>
-      <a class="guide__late" href="#octavitin"><b>LATE</b><span class="guide__t">BEDTIME READING</span><span class="guide__d">Octavitin: The Rules of Under — a children’s book, Chapter One right here</span></a>
+      <a class="guide__row" href="#octavitin" data-ch="6"><b>6</b><span class="guide__t">BEDTIME</span><span class="guide__d">Octavitin: The Rules of Under — read Chapter One right here</span></a>
       <p class="guide__foot">Or turn the dial on the set — press once to pick, again to tune in.</p>
     </nav>
     <div class="deck" id="deck">
@@ -234,7 +234,7 @@ databank% <span class="cur">▌</span></pre></div></div></div>
 </section>
 
 <!-- ===== OCTAVITIN ===== -->
-<section class="sec sec--octavitin" id="octavitin" aria-labelledby="octavitin-h">
+<section class="sec sec--octavitin" id="octavitin" aria-labelledby="octavitin-h" tabindex="-1">
   <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-005</span><h2 id="octavitin-h">Bedtime reading</h2></div>
   <p class="sec__lede">The library book that never went back. Open it — Chapter One is right there.</p>
   <div class="bedtime">
@@ -257,17 +257,31 @@ databank% <span class="cur">▌</span></pre></div></div></div>
       </a>
       <figure class="flashlight" aria-hidden="true"><img src="assets/octavitin/flashlight.webp" width="760" height="489" alt="" loading="lazy"></figure>
     </div>
-    <div class="due">
-      <div class="due__head"><b>DATE DUE</b><small>PADGETT PUBLIC LIBRARY<br>JUVENILE · PAD</small></div>
-      <div class="due__body">
-        <p class="due__title">Octavitin<span>The Rules of Under</span></p>
-        <p class="due__by">A bedtime book by Patrick Padgett · read-aloud, ages 6–9</p>
-        <p class="due__blurb">There are three rules to being under a bed, and Octavitin has never broken one. He is an eight&#8209;armed under&#8209;bed sock tidier with hair like a small quiet fire. Tonight, for the first time in a hundred years, somebody rings the bell.</p>
-        <p class="due__note">Parker Pebble is seven and not entirely convinced the space under her bed is empty. She’s right.</p>
+    <div class="shelfside">
+      <div class="pocket">
+        <div class="pocket__card">
+          <p class="card__call">JUV PAD</p>
+          <p class="card__line card__line--title">Padgett, Patrick</p>
+          <p class="card__line card__line--title"><b>Octavitin: The Rules of Under</b></p>
+          <p class="card__line card__line--blurb">There are three rules to being under a bed, and Octavitin has never broken one. He is an eight&#8209;armed under&#8209;bed sock tidier with hair like a small quiet fire. Tonight, for the first time in a hundred years, somebody rings the bell.</p>
+          <p class="card__line">Read-aloud &middot; ages 6&ndash;9</p>
+          <table class="card__grid" aria-hidden="true">
+            <thead><tr><th>DATE DUE</th><th>BORROWER’S NAME</th></tr></thead>
+            <tbody>
+              <tr><td><i>OCT 31 1988</i></td><td><span>Parker P.</span></td></tr>
+              <tr><td><i>DEC 24 1988</i></td><td><span>Colin</span></td></tr>
+              <tr><td><i>MAR&nbsp;&nbsp;3 1989</i></td><td><span>Parker P.</span></td></tr>
+              <tr><td><i class="card__tonight">TONIGHT</i></td><td><span>you</span></td></tr>
+              <tr><td></td><td></td></tr>
+              <tr><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pocket__front">
+          <span class="pocket__notch" aria-hidden="true"></span>
+          <p class="pocket__label"><b>PADGETT PUBLIC LIBRARY</b><small>Please return this card with the book</small></p>
+        </div>
       </div>
-      <ul class="due__stamps" aria-hidden="true">
-        <li>OCT 31 1988</li><li>DEC 24 1988</li><li>MAR 3 1989</li><li>TONIGHT</li>
-      </ul>
       <p class="due__ctas"><a class="btn btn--slime" href="https://octavitin.patpadgett.com/#chapter-one" id="read-btn" data-open-reader aria-haspopup="dialog" aria-controls="reader">Read Chapter One</a><a class="btn btn--ghost" href="https://octavitin.patpadgett.com/">The book’s own site ↗</a></p>
     </div>
   </div>
