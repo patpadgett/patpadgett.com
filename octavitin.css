@@ -1,0 +1,146 @@
+/* PP-005 · Bedtime reading — a library hardcover on the bedroom carpet.
+   Plate: assets/octavitin/book.webp (blank navy buckram, straight on). Measured cover face: 6%→96% x, 2.5%→97.5% y.
+   Cover art is the book's real illustration; title/author are set live in the book's own face (Brygada 1918). */
+@font-face{font-family:'Brygada 1918';font-weight:400;src:url(assets/fonts/brygada1918-400.ttf) format('truetype');font-display:swap}
+@font-face{font-family:'Brygada 1918';font-weight:700;src:url(assets/fonts/brygada1918-700.ttf) format('truetype');font-display:swap}
+:root{--navy:#171d32;--orangle:#ffb16b}
+.sec--octavitin,.reader{--book:'Brygada 1918',Georgia,serif;--navy:#171d32;--orangle:#ffb16b;--card:#f2e6c4;--stamp:#2b3a8a;--due:#c2261f}
+
+/* the scene: book left, date-due card right, flashlight at the book's foot */
+.bedtime{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,4vw,64px);align-items:start;padding:clamp(8px,2vw,24px) 0 clamp(28px,4vw,56px);position:relative}
+.bedtime__floor{position:relative;padding:20px 0 150px;perspective:1600px;perspective-origin:50% 40%}
+/* the flashlight's pool of light — a lit object, like phosphor inside the glass */
+.bedtime__floor::before{content:"";position:absolute;left:58%;bottom:-30px;width:70%;height:190px;clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);background:linear-gradient(90deg,rgba(255,224,150,.34),rgba(255,190,110,.14) 55%,transparent);filter:blur(6px);pointer-events:none}
+.book{position:relative;display:block;width:min(100%,340px);margin:0 auto;box-shadow:none;padding:0;border:0;background:transparent;cursor:pointer;color:inherit;text-align:left;transform:rotate(-3deg);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1);perspective:1100px;perspective-origin:120% 50%;container-type:inline-size}
+.book:hover,.book:focus-visible{transform:rotate(-1deg) translateY(-10px)}
+.bedtime__floor::after{content:"";position:absolute;left:12%;right:12%;bottom:calc(150px - 14px);height:28px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.75),transparent 70%);z-index:-1}
+.book:focus-visible{outline:4px solid var(--slime);outline-offset:10px;border-radius:6px}
+.book__plate{width:100%;display:block;filter:drop-shadow(-14px 30px 26px rgba(0,0,0,.75))}
+.book__face{position:absolute;left:6%;top:2.5%;width:90%;height:95%;overflow:hidden;border-radius:2px 5px 5px 2px;transform-origin:0 50%;transform-style:preserve-3d;backface-visibility:hidden;isolation:isolate}
+.book__art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.book__face::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0,rgba(0,0,0,.18) 3%,rgba(255,255,255,.08) 4.5%,transparent 8%),linear-gradient(180deg,rgba(23,29,50,.82) 0,rgba(23,29,50,.55) 16%,rgba(23,29,50,0) 30%);pointer-events:none}
+.book__title{position:absolute;left:8%;right:8%;top:5.5%;margin:0;z-index:1;text-align:center;font:700 clamp(30px,9.5cqw,44px)/.9 var(--book);letter-spacing:-.035em;color:var(--orangle);text-shadow:0 2px 0 #0b0f1c,0 0 18px rgba(0,0,0,.6)}
+.book__title small{display:block;margin-top:.28em;font:400 .40em/1.1 var(--book);letter-spacing:-.01em;color:#f7efd9}
+.book__author{position:absolute;left:0;right:0;bottom:4%;z-index:1;margin:0;text-align:center;font:700 clamp(10px,3cqw,13px)/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#f7efd9;text-shadow:0 1px 2px #000}
+/* library call-number sticker, over the ghost where the old one peeled off */
+.book__call{position:absolute;left:9%;bottom:6.5%;z-index:2;width:17%;padding:5% 0 4%;background:#f5eed6;color:#1a1210;text-align:center;font:400 clamp(7px,2cqw,9px)/1.35 var(--pix);box-shadow:0 1px 2px rgba(0,0,0,.6)}
+.book__call b{display:block;font-weight:400}
+/* inside board seen while the cover swings */
+.book__inside{position:absolute;left:6%;top:2.5%;width:90%;height:95%;background:#efe4c6 linear-gradient(90deg,rgba(0,0,0,.25),transparent 12%);border-radius:2px 5px 5px 2px;display:grid;place-items:center;padding:8%}
+.book__inside span{margin:0;font:400 clamp(14px,4.6cqw,22px)/1.3 var(--book);color:#3a2a1a;text-align:center;font-style:italic}
+.book.is-opening .book__face{transition:transform .7s cubic-bezier(.4,.2,.3,1);transform:rotateY(-150deg)}
+.flashlight{position:absolute;left:6%;bottom:0;width:min(60%,290px);margin:0;pointer-events:none;filter:drop-shadow(0 14px 12px rgba(0,0,0,.75));transform:rotate(-3deg)}
+.flashlight img{width:100%;display:block}
+
+/* mobile pitch: title, age line and the reading action before the props */
+.pitch{display:none}
+
+/* DATE DUE card: the pocket slip inside every library book */
+.due{position:relative;margin-top:20px;background:var(--card);color:#1a1210;border-radius:3px;box-shadow:0 30px 40px -18px #000,inset 0 0 0 1px rgba(0,0,0,.08);padding:0;max-width:520px;justify-self:start;width:100%}
+.due::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(0,0,0,.018) 3px 4px)}
+.due__head{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:16px 22px 12px;border-bottom:3px double #1a1210}
+.due__head b{font:400 clamp(24px,3vw,34px)/1 var(--disp);letter-spacing:.06em;color:#1a1210}
+.due__head small{font:400 11px/1.4 var(--pix);color:#5a4a3a;text-align:right}
+.due__body{padding:18px 22px 8px}
+.due__title{margin:0 0 6px;font:700 clamp(28px,3.4vw,40px)/1 var(--book);letter-spacing:-.03em;color:#1a1210}
+.due__title span{display:block;font:400 .55em/1.15 var(--book);letter-spacing:-.01em;color:#3a2a1a;margin-top:6px}
+.due__by{margin:0 0 14px;font:800 12px/1.4 var(--body);letter-spacing:.12em;text-transform:uppercase;color:#5a4a3a}
+.due__blurb{margin:0 0 6px;font:400 clamp(17px,1.6vw,19px)/1.5 var(--body);color:#1a1210;max-width:40ch}
+.due__blurb b{font-weight:900}
+.due__note{margin:0 0 16px;font:400 15px/1.5 var(--body);color:#4a3a2a;max-width:40ch}
+.due__stamps{list-style:none;margin:0;padding:0 22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #a89777;border-bottom:1px solid #a89777}
+.due__stamps li{padding:12px 2px 10px;border-right:1px solid #a89777;font:400 clamp(16px,1.5vw,20px)/1 var(--term);color:var(--stamp);text-align:center;opacity:.8;text-transform:uppercase;white-space:nowrap}
+.due__stamps li:last-child{border-right:0;color:var(--due);opacity:1}
+.due__ctas{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:stretch;padding:18px 22px 22px}
+.due__ctas .btn{display:inline-flex;align-items:center;min-height:52px;box-sizing:border-box}
+.due__ctas .btn--slime{background:var(--navy);color:var(--card);box-shadow:0 5px 0 #0a0e1c}
+.due__ctas .btn--slime:hover{background:var(--due);color:#fff;box-shadow:0 3px 0 #5a0e0a}
+.due__ctas .btn--ghost{background:transparent;color:#1a1210;border-color:#1a1210}
+.due__ctas .btn--ghost:hover{background:#1a1210;color:var(--card)}
+.due__ctas .btn{font-size:15px}
+
+/* TV Guide: the late slot */
+.guide__late{display:grid;grid-template-columns:42px 1fr;column-gap:12px;align-items:center;text-decoration:none;padding:8px 4px;min-height:56px;border-top:1px solid #d7c7a4;color:inherit}
+.guide__late b{font:400 11px/1.2 var(--pix);color:#fff;background:var(--navy);text-align:center;padding:9px 0;border-radius:3px}
+.guide__late .guide__t{font:800 15px/1.1 var(--body);letter-spacing:.06em;color:#1a1210}
+.guide__late .guide__d{display:block;font-size:13px;color:#5a4a3a;margin-top:2px}
+.guide__late:hover .guide__t,.guide__late:focus-visible .guide__t{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--orangle)}
+
+/* the open book */
+.reader{border:0;padding:0;background:transparent;width:min(1120px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:visible;overscroll-behavior:contain;color:#1a1210}
+.reader::backdrop{background:rgba(9,6,12,.985)}
+.reader__bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 10px;color:var(--cream)}
+.reader__bar span{font:400 12px/1.4 var(--pix);color:#c99a63;min-width:0}
+.reader__bar span i{font-style:normal}
+.reader__close{white-space:nowrap;border:2px solid var(--cream);background:#0000;color:#fff;padding:10px 14px;min-height:44px;cursor:pointer;font:900 14px/1 var(--body);border-radius:6px}
+.reader__close:hover{background:var(--cream);color:#000}
+.reader__spread{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);position:relative;height:calc(100dvh - 120px);max-height:800px;border-radius:2px;margin:12px;box-shadow:0 0 0 1px #d8ccaa,0 0 0 10px var(--navy),0 0 0 11px #0b0f1c,0 50px 90px -10px #000;perspective:1500px;background:#efe4c6}
+.reader__spread::before{content:"";position:absolute;inset:0;left:calc(41.17% - 70px);width:140px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(58,36,17,.08) 30%,rgba(58,36,17,.28) 48%,rgba(20,12,6,.45) 50%,rgba(58,36,17,.3) 52%,rgba(58,36,17,.08) 70%,transparent)}
+/* page-block thickness on the outer edges */
+.reader__spread::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;box-shadow:inset 0 0 0 1px #d8ccaa,inset 0 0 0 2px #efe4c6,inset 0 0 0 3px #d8ccaa,inset 0 0 0 4px #efe4c6,inset 0 0 0 5px #d8ccaa}
+.page{background:#efe4c6;min-width:0}
+.page--left{border-radius:3px 0 0 3px;padding:clamp(24px,3.4vw,52px) clamp(22px,3vw,44px);display:grid;grid-template-rows:minmax(0,1fr) auto auto;align-content:center;gap:18px;color:#3a2a1a;border-right:1px solid #cbbd9d;min-height:0}
+.page--left img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:50% 30%;border-radius:6px;box-shadow:0 12px 24px rgba(0,0,0,.25)}
+.page--left p{margin:0;text-align:center;font:400 clamp(20px,2vw,26px)/1.3 var(--book);font-style:italic}
+.page--left small{display:block;text-align:center;font:400 13px/1.5 var(--book);font-style:italic;color:#6a5a3a;margin-top:2px}
+.page--right{overflow:auto;min-height:0;border-radius:0 6px 6px 0;padding:clamp(24px,3.4vw,52px) clamp(22px,4vw,60px) 40px clamp(28px,4.5vw,68px)}
+.page--right h2{margin:0 0 22px;font:700 clamp(34px,3.6vw,50px)/1 var(--book);letter-spacing:-.03em;color:#1a1210;text-shadow:none}
+.page--right h2 span{display:block;font:800 12px/1.5 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#925021;margin-bottom:10px}
+.chapter-text{font:400 clamp(18px,1.35vw,20px)/1.8 var(--book);color:#292d3e;max-width:62ch}
+.chapter-text p{margin:0 0 1.05em}
+.chapter-text>p:first-child::first-letter{float:left;font-size:3.3em;line-height:.8;margin:.06em .1em 0 0;color:#925021;font-weight:700}
+.chapter-text .chapter-end{text-align:center;margin-top:34px;font-size:.95em}
+.chapter-text .chapter-end span{font-size:1.7em;color:#925021}
+.chapter-text .chapter-end p{margin:8px 0 0;font:800 15px/1.5 var(--body)}
+.page__after{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:26px;padding-top:20px;border-top:1px solid #bcb5a6;font:400 14px/1.5 var(--body);color:#5a4a3a}
+.page__after a{color:#1a1210;font-weight:800;padding:10px 0;display:inline-block}
+/* leaves fanning across as the book opens */
+.leaves{position:absolute;inset:0;left:41.17%;z-index:3;pointer-events:none;perspective:1200px;overflow:hidden;border-radius:0 10px 10px 0}
+.leaves i{position:absolute;inset:0;background:#e6d9b9;transform-origin:0 50%;box-shadow:-4px 0 12px rgba(58,36,17,.3);transform:rotateY(-110deg);opacity:0}
+.reader[open].is-opening .leaves i{animation:leaf .7s cubic-bezier(.3,.7,.2,1) both}
+.reader[open].is-opening .leaves i:nth-child(2){animation-delay:70ms;background:#ecdfc0}
+.reader[open].is-opening .leaves i:nth-child(3){animation-delay:140ms;background:#efe4c6}
+@keyframes leaf{0%{transform:rotateY(0);opacity:1}75%{opacity:1}100%{transform:rotateY(-110deg);opacity:0}}
+.reader :focus-visible{outline:4px solid var(--slime);outline-offset:4px}
+.page--right:focus-visible,.reader__spread:focus-visible{outline-offset:-6px}
+.page__again{background:none;border:0;padding:10px 0;color:#5a4a3a;font:800 14px/1.5 var(--body);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.reader__close:focus-visible{outline-color:var(--orangle)}
+
+@media(max-width:960px){
+  .bedtime{grid-template-columns:1fr;gap:24px;padding-top:0}
+  .pitch{display:grid;gap:10px;justify-items:start;margin:0 0 4px}
+  .pitch__by{margin:0;font:800 13px/1.45 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#e9d3ad;text-shadow:0 1px 0 #000;max-width:30ch}
+  .pitch .btn--slime{background:var(--navy);color:var(--card);box-shadow:0 5px 0 #0a0e1c;display:inline-flex;align-items:center;min-height:52px;font-size:15px}
+  .bedtime__floor{max-width:520px;margin:0 auto;width:100%;padding-top:8px;padding-bottom:110px;overflow:hidden}
+  .bedtime__floor::after{bottom:96px}
+  .book{width:min(64%,300px)}
+  .flashlight{width:min(52%,240px);left:8%}
+  .due{max-width:none;justify-self:stretch;margin-top:0}
+  .due__by{display:none}
+}
+@media(max-width:640px){
+  .bedtime__floor{padding-bottom:96px}
+  .bedtime__floor::after{bottom:82px}
+  .flashlight{width:56%;left:4%}
+  .bedtime__floor::before{left:50%;height:130px}
+  .due__head small{font-size:11px}
+  .due__head{padding:14px 16px 10px}.due__body{padding:16px 16px 6px}.due__stamps{padding:0 16px}.due__ctas{padding:16px}
+  .due__stamps li{font-size:14px}
+  .guide__late .guide__d{display:none}
+  .reader{width:calc(100% - 16px);max-height:calc(100dvh - 16px)}
+  .reader__spread{display:block;height:auto;-webkit-overflow-scrolling:touch;max-height:calc(100dvh - 100px);margin:10px;box-shadow:0 0 0 1px #d8ccaa,0 0 0 8px var(--navy),0 0 0 9px #0b0f1c;overflow:auto;border-radius:6px;padding-bottom:env(safe-area-inset-bottom)}
+  .reader__spread::after{display:none}
+  .reader__bar span{font-size:11px}
+  .reader__bar span i{display:none}
+  .reader__close span{display:none}
+  .reader__spread::before{display:none}
+  .page--left{display:none}
+  .page--right{overflow:visible;border-radius:6px;padding:24px 20px 48px}
+  .leaves{left:0;border-radius:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  .book,.book__face{transition:none}
+  .book:hover,.book:focus-visible{transform:rotate(-3deg)}
+  .book.is-opening .book__face{transform:none}
+  .leaves{display:none}
+}
