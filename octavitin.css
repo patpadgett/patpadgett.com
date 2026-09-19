@@ -10,15 +10,15 @@
 .bedtime{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.2fr) minmax(0,.7fr);gap:clamp(20px,3vw,44px);align-items:start;padding:clamp(8px,2vw,24px) 0 clamp(28px,4vw,56px);position:relative}
 .bedtime__floor{position:relative;padding:10px 0 170px;perspective:1600px;perspective-origin:50% 40%}
 /* the flashlight's pool of light — a lit object, like phosphor inside the glass */
-.bedtime__floor::before{content:"";position:absolute;left:58%;bottom:-30px;width:70%;height:190px;clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);background:linear-gradient(90deg,rgba(255,224,150,.34),rgba(255,190,110,.14) 55%,transparent);filter:blur(6px);pointer-events:none}
+.bedtime__floor::before{content:"";position:absolute;left:52%;bottom:20px;width:min(60%,340px);height:150px;pointer-events:none;z-index:0;background:radial-gradient(farthest-side at 12% 60%,rgba(255,232,170,.42),rgba(255,205,130,.16) 45%,transparent 100%);filter:blur(10px)}
 .book{position:relative;display:block;width:min(100%,540px);margin:0 auto;box-shadow:none;padding:0;border:0;background:transparent;cursor:pointer;color:inherit;text-align:left;transform:rotate(-3deg);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1);perspective:1100px;perspective-origin:120% 50%;container-type:inline-size}
 .book{transition:transform .28s cubic-bezier(.16,1,.3,1)}
 .book:hover,.book:focus-visible{transform:rotate(-1deg) translateY(-10px)}
 .book:active{transform:rotate(-1deg) translateY(-4px);transition-duration:.1s}
 /* the flashlight finds the book once, when the section first comes into view */
-.js:not(.static) .bedtime__floor::before{transform-origin:0 50%;opacity:0}
+.js:not(.static) .bedtime__floor::before{opacity:0;transform-origin:12% 60%}
 .js .sec--octavitin.is-lit .bedtime__floor::before{animation:beam 1.1s cubic-bezier(.16,1,.3,1) .15s forwards}
-@keyframes beam{0%{opacity:0;transform:rotate(9deg) scaleX(.6)}35%{opacity:1}60%{transform:rotate(-2deg) scaleX(1.02)}100%{opacity:1;transform:none}}
+@keyframes beam{0%{opacity:0;transform:scale(.7)}100%{opacity:1;transform:none}}
 .bedtime__floor::after{content:"";position:absolute;left:12%;right:12%;bottom:calc(150px - 14px);height:28px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.75),transparent 70%);z-index:-1}
 .book:focus-visible{outline:4px solid var(--slime);outline-offset:10px;border-radius:6px}
 .book__plate{width:100%;display:block;filter:drop-shadow(-14px 30px 26px rgba(0,0,0,.75))}
@@ -71,7 +71,7 @@
 .card__grid td span{font:italic 400 16px/1 var(--book);color:#2a3a6a}
 .card__grid tr:last-child td{border-bottom:0}
 /* the pocket: kraft paper, die-cut mouth, inner shadow where the card slides in */
-.pocket__front{position:relative;z-index:2;margin-top:-56px;padding:70px 22px 22px;background:#c7a066;color:#1a1210;border-radius:0 0 4px 4px;
+.pocket__front{position:relative;z-index:2;margin-top:-30px;padding:44px 22px 22px;background:#c7a066;color:#1a1210;border-radius:0 0 4px 4px;
   box-shadow:inset 0 -2px 0 rgba(0,0,0,.18)}
 .pocket__front::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 3px,rgba(0,0,0,.03) 3px 4px),repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.03) 5px 6px)}
 /* die-cut thumb notch: a card-coloured ellipse over the pocket's top edge (shows the card through) */
@@ -195,3 +195,6 @@
 .sec--octavitin{scroll-margin-top:0}
 
 @keyframes slidein{from{transform:translateX(-14px);opacity:0}to{transform:none;opacity:1}}
+
+.page__cue{position:sticky;top:0;float:right;margin:0 0 0 12px;font:400 11px/1 var(--pix);color:#8a7a5a;letter-spacing:.04em;opacity:1;transition:opacity .3s}
+.reader.is-scrolled .page__cue{opacity:0}

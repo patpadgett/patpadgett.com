@@ -2,8 +2,13 @@
 (function () {
   var root = document.documentElement;
   root.classList.add('js');
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stored = null; try { stored = localStorage.getItem('pp-motion'); } catch (e) {}
+  var reduce = stored === 'off' || (stored !== 'on' && matchMedia('(prefers-reduced-motion: reduce)').matches);
   if (reduce) root.classList.add('static');
+  /* the MOTION switch on the remote: stops every ambient loop, remembered on this device */
+  var motion = document.getElementById('motion');
+  function paintMotion() { var on = !root.classList.contains('static'); if (!motion) return; motion.setAttribute('aria-checked', String(on)); motion.setAttribute('aria-label', on ? 'Motion. On. Press to stop the ambient animation.' : 'Motion. Off. Press to let the room move again.'); }
+  if (motion) { paintMotion(); motion.addEventListener('click', function () { root.classList.toggle('static'); reduce = root.classList.contains('static'); try { localStorage.setItem('pp-motion', reduce ? 'off' : 'on'); } catch (e) {} paintMotion(); }); }
 
   /* ---------- TV: channel knob ---------- */
   var CH = {
