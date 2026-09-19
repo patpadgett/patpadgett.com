@@ -13,7 +13,7 @@
     6: { name: 'BEDTIME', href: '#octavitin', line: 'Octavitin · Chapter One', rot: 78 }
   };
   var knob = document.getElementById('knob'), bumper = document.getElementById('bumper');
-  var rows = [].slice.call(document.querySelectorAll('.guide__row'));
+  var rows = [].slice.call(document.querySelectorAll('.guide__row[data-ch]'));
   var cur = 3, timer = null;
 
   var ctx = null, soundOn = false;
@@ -48,7 +48,7 @@
     setTimeout(function () {
       if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; } if (t) t.focus({ preventScroll: true }); return; }
       location.href = CH[n].href;
-    }, delay == null ? 350 : delay);
+    }, reduce ? 0 : (delay == null ? 350 : delay));
   }
   var next = function (d) { var n = cur + d; return n > 6 ? 3 : n < 3 ? 6 : n; };
   knob.addEventListener('click', function () {
