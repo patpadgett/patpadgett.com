@@ -52,7 +52,7 @@
     bumper.className = 'bumper on bumper--' + n;
     bumper.innerHTML = '<span class="bumper__tune">TUNING…</span><small>' + CH[n].line + '</small>';
     setTimeout(function () {
-      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); if (t) t.focus({ preventScroll: true }); return; }
+      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; } if (t) t.focus({ preventScroll: true }); return; }
       location.href = CH[n].href;
     }, delay == null ? 350 : delay);
   }

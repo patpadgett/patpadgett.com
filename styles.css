@@ -28,7 +28,7 @@ h1,h2{margin:0}
 
 /* ===================== THE SET ===================== */
 @media(max-width:960px){.set{grid-template-columns:1fr!important}}
-.set{padding-top:clamp(12px,2vw,24px);display:grid;grid-template-columns:minmax(0,1.7fr) minmax(140px,.22fr) minmax(280px,.9fr);gap:clamp(14px,2.5vw,28px) clamp(14px,2.5vw,32px);align-items:start}
+.set{padding-top:clamp(12px,2vw,24px);display:grid;grid-template-columns:minmax(0,1.7fr) minmax(150px,.24fr) minmax(280px,.9fr);gap:clamp(14px,2.5vw,28px) clamp(14px,2.5vw,32px);align-items:start}
 .tv{position:relative;grid-column:1;filter:drop-shadow(0 40px 50px rgba(0,0,0,.7))}
 .tv__plate{width:100%}
 /* measured on the plate: glass 11.5%→73.5% x, 14%→79% y; knob centre (86%,21%), ⌀11% */
@@ -88,26 +88,29 @@ h1,h2{margin:0}
 @keyframes poweron2{0%{opacity:0;transform:scaleY(.02)}40%{opacity:1;transform:scaleY(.06)}70%{transform:scaleY(1.02) scaleX(.9)}100%{opacity:1;transform:none}}
 
 /* remote: the plate stands between the set and the guide */
-.remote{grid-column:2;position:relative;align-self:start;justify-self:center;width:min(100%,190px);margin-top:clamp(8px,1.5vw,20px);filter:drop-shadow(0 26px 22px rgba(0,0,0,.7))}
+.remote{grid-column:2;position:relative;align-self:start;justify-self:center;width:min(100%,200px);margin-top:clamp(8px,1.5vw,20px);filter:drop-shadow(0 26px 22px rgba(0,0,0,.7))}
 .remote__plate{width:100%;display:block}
 /* measured on the cropped plate: buttons at x 51.6%, y 17 / 29.1 / 41.2 / 53.2 / 65.3 (+77.4 for the sixth), ⌀13.6% */
 .remote__keys{position:absolute;inset:0}
-.remote__key{position:absolute;left:51.6%;width:15%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:0;padding:0;background:transparent;cursor:pointer;color:transparent;-webkit-tap-highlight-color:transparent}
+.remote__key{position:absolute;left:30%;width:66%;height:12%;transform:translateY(-50%);border-radius:6px;border:0;padding:0;background:transparent;cursor:pointer;color:transparent;-webkit-tap-highlight-color:transparent}
 .remote__key:nth-child(1){top:17%}.remote__key:nth-child(2){top:29.1%}.remote__key:nth-child(3){top:41.2%}.remote__key:nth-child(4){top:53.2%}.remote__key:nth-child(5){top:65.3%}.remote__key:nth-child(6){top:77.4%}
-.remote__key::before{content:"";position:absolute;inset:8%;border-radius:50%;box-shadow:inset 0 0 0 0 transparent;transition:box-shadow .08s,background .1s}
+/* the visible button: a circle over the plate's own button (plate x 51.6% = 32.7% of this row) */
+.remote__key::before{content:"";position:absolute;left:32.7%;top:50%;width:19%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:inset 0 0 0 0 transparent;transition:box-shadow .08s,background .1s}
 .remote__key:active::before,.remote__key.is-pressed::before{box-shadow:inset 0 3px 6px rgba(0,0,0,.7)}
 .remote__key--power[aria-pressed="false"]::before{background:rgba(0,0,0,.45)}
-.remote__key:focus-visible{outline:3px solid var(--slime);outline-offset:3px}
+.remote__key:focus-visible{outline:3px solid var(--slime);outline-offset:-3px}
 /* engraved legend, right of each button on the aluminum */
-.remote__key span{position:absolute;right:130%;top:50%;transform:translateY(-50%);background:var(--paper);color:var(--ink);font:400 9px/1 var(--pix);letter-spacing:.04em;white-space:nowrap;padding:7px 8px;border-radius:2px;box-shadow:2px 2px 0 #0009;opacity:0;pointer-events:none;transition:opacity .1s}
-.remote__key:hover span,.remote__key:focus-visible span{opacity:1}
-.remote__key--power span{color:#fff;background:var(--red)}
-.remote__key--mute span{background:var(--ink);color:var(--slime)}
-.remote__key--mute[aria-pressed="true"] span{color:var(--yellow)}
+/* engraved legend on the aluminum, right of each button, always visible */
+.remote__key span{position:absolute;left:48%;top:50%;transform:translateY(-50%);color:#151210;font:400 clamp(8px,.7vw,10px)/1 var(--pix);letter-spacing:0;white-space:nowrap;text-shadow:0 1px 0 rgba(255,255,255,.55);pointer-events:none}
+.remote__key span b{display:inline;font-weight:400;margin-right:.45em}
+.remote__key--power span{color:#7a1410}
+.remote__key--mute span{color:#151210}
+.remote__key--mute[aria-pressed="false"] span{color:#155a0a}
+.remote__key:hover span,.remote__key:focus-visible span{color:#000}
 /* the sixth key: a CSS button on the plate's aluminum, matching the plate's rendering */
-.remote__key--mute::after{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 40% 32%,#8a8a8a,#4a4a4a 55%,#2a2a2a 100%);box-shadow:0 0 0 2px #1a1a1a,0 0 0 3px #6a6a6a,0 2px 3px rgba(0,0,0,.6);transition:transform .08s}
+.remote__key--mute::after{content:"";position:absolute;left:32.7%;top:50%;width:21%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 40% 32%,#8a8a8a,#4a4a4a 55%,#2a2a2a 100%);box-shadow:0 0 0 2px #1a1a1a,0 0 0 3px #6a6a6a,0 2px 3px rgba(0,0,0,.6);transition:transform .08s}
 .remote__key--mute[aria-pressed="false"]::after{background:radial-gradient(circle at 40% 32%,#7ae06a,#2a9a1a 55%,#155a0a 100%)}
-.remote__key--mute:active::after,.remote__key--mute.is-pressed::after{transform:scale(.94)}
+.remote__key--mute:active::after,.remote__key--mute.is-pressed::after{transform:translate(-50%,-50%) scale(.94)}
 .remote__brand{position:absolute;left:0;right:0;top:90%;margin:0;text-align:center;font:400 clamp(6px,.6vw,8px)/1 var(--pix);color:#d8c8a8;letter-spacing:.08em;text-shadow:0 -1px 0 #000;pointer-events:none}
 .remote__state{position:absolute;top:100%;left:-10%;right:-10%;margin:12px 0 0;text-align:center;font:400 14px/1.3 var(--term);color:var(--cyan)}
 
@@ -115,7 +118,8 @@ h1,h2{margin:0}
 .panel{grid-column:3;display:grid;gap:18px;align-content:start}
 .guide{background:var(--paper);color:var(--ink);padding:14px 16px 8px;border-radius:2px;
   transform:rotate(-.8deg);box-shadow:3px 4px 0 #0009,0 20px 30px -10px #000}
-.guide__head{margin:0 0 6px;font:700 13px/1.4 var(--body);color:#5a3a1a;text-transform:uppercase;letter-spacing:.04em}
+.guide__head{margin:0 0 6px;font:700 13px/1.4 var(--body);color:#5a3a1a;text-transform:uppercase;letter-spacing:.04em;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}
+.guide__head .nb{margin-left:.3em}
 .guide__head b{font:400 11px/1 var(--pix);color:#b71212;margin-right:8px}
 .guide__row{display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;text-decoration:none;padding:8px 4px;min-height:56px;border-top:1px solid #d7c7a4}
 .guide__row b{grid-row:1/3;font:400 24px/1 var(--pix);color:#fff;background:var(--ink);text-align:center;padding:10px 0;border-radius:3px}
@@ -305,10 +309,10 @@ h1,h2{margin:0}
 @media(max-width:960px){
   .pack__cards{grid-template-columns:repeat(3,minmax(0,1fr))}
   .set{grid-template-columns:1fr}
-  .set>.tv{order:1}.set>.remote{order:2}.set>.panel{order:4}.set>.shelf{order:3;margin-bottom:24px}
+  .set>.tv{order:1}.set>.panel{order:2}.set>.remote{order:3}.set>.shelf{order:4;margin-bottom:24px}
   .tv,.panel,.remote{grid-column:1}
-  .remote{width:min(150px,36vw);margin:0 auto 44px}
-  .remote__state{left:-60%;right:-60%}
+  .remote{width:min(190px,50vw);margin:8px auto 48px}
+  .remote__state{left:-40%;right:-40%;font-size:13px}
   .panel{grid-template-columns:1fr 1fr;align-items:start}
   .panel .guide{grid-column:1/-1}
   .who,.tape,.mac,.pack{grid-template-columns:1fr}
