@@ -6,7 +6,7 @@
 web
 
 ## Stack
-Flat static HTML/CSS/JS, no build step, no runtime frameworks or CDNs; self-hosted fonts. Same convention as every patpadgett.com build.
+Flat static HTML/CSS/JS, no build step, no runtime frameworks; self-hosted fonts. Third-party at runtime: Hotjar analytics (async), and grime95.com fetches for the booking-records section. Same convention as every patpadgett.com build.
 
 ## Users
 People looking for Patrick's music, résumé, writing or contact — arriving from search, LinkedIn, GitHub, cold emails. Mobile first.

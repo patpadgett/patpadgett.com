@@ -4,6 +4,7 @@
    sheet out of the slot when the printer scrolls into view. Clicking the stack sends the top Polaroid to the back and the
    printer tears off the old sheet and prints the booking now on top. */
 (function () {
+  [].forEach.call(document.querySelectorAll('.polaroid__img'), function (img) { img.addEventListener('error', function () { img.classList.add('is-missing'); }); if (img.complete && img.naturalWidth === 0 && img.src) img.classList.add('is-missing'); });
   var sec = document.getElementById('grime95'), paper = document.getElementById('paper'), stack = document.getElementById('stack');
   if (!sec || !paper) return;
   var root = document.documentElement;
@@ -126,6 +127,7 @@
       if (fig) {
         var img = fig.querySelector('img'), cap = fig.querySelector('.polaroid__cap');
         var src = mugUrl(b.a.mugshot || '');
+        img.onerror = function () { img.classList.add('is-missing'); }; img.onload = function () { img.classList.remove('is-missing'); };
         if (img.getAttribute('src') !== src) { img.src = src; img.removeAttribute('width'); img.removeAttribute('height'); }
         img.alt = 'Booking photograph: ' + b.c.name + '. Fiction.';
         cap.querySelector('b').textContent = b.a.booking; cap.querySelector('span').textContent = surname(b.c);
