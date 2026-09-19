@@ -7,11 +7,11 @@
 .sec--octavitin,.reader{--book:'Brygada 1918',Georgia,serif;--navy:#171d32;--orangle:#ffb16b;--card:#f2e6c4;--stamp:#2b3a8a;--due:#c2261f}
 
 /* the scene: book left, date-due card right, flashlight at the book's foot */
-.bedtime{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,4vw,64px);align-items:start;padding:clamp(8px,2vw,24px) 0 clamp(28px,4vw,56px);position:relative}
-.bedtime__floor{position:relative;padding:20px 0 150px;perspective:1600px;perspective-origin:50% 40%}
+.bedtime{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.2fr) minmax(0,.7fr);gap:clamp(20px,3vw,44px);align-items:start;padding:clamp(8px,2vw,24px) 0 clamp(28px,4vw,56px);position:relative}
+.bedtime__floor{position:relative;padding:10px 0 170px;perspective:1600px;perspective-origin:50% 40%}
 /* the flashlight's pool of light — a lit object, like phosphor inside the glass */
 .bedtime__floor::before{content:"";position:absolute;left:58%;bottom:-30px;width:70%;height:190px;clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);background:linear-gradient(90deg,rgba(255,224,150,.34),rgba(255,190,110,.14) 55%,transparent);filter:blur(6px);pointer-events:none}
-.book{position:relative;display:block;width:min(100%,340px);margin:0 auto;box-shadow:none;padding:0;border:0;background:transparent;cursor:pointer;color:inherit;text-align:left;transform:rotate(-3deg);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1);perspective:1100px;perspective-origin:120% 50%;container-type:inline-size}
+.book{position:relative;display:block;width:min(100%,540px);margin:0 auto;box-shadow:none;padding:0;border:0;background:transparent;cursor:pointer;color:inherit;text-align:left;transform:rotate(-3deg);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1);perspective:1100px;perspective-origin:120% 50%;container-type:inline-size}
 .book{transition:transform .28s cubic-bezier(.16,1,.3,1)}
 .book:hover,.book:focus-visible{transform:rotate(-1deg) translateY(-10px)}
 .book:active{transform:rotate(-1deg) translateY(-4px);transition-duration:.1s}
@@ -39,11 +39,12 @@
 .flashlight img{width:100%;display:block}
 
 /* mobile pitch: title, age line and the reading action before the props */
-.pitch{display:grid;gap:10px;justify-items:start;grid-column:1/-1;margin:0 0 6px}
+.pitch{display:grid;gap:12px;justify-items:start;align-content:start;margin:0;padding-top:12px}
 .pitch__title{margin:0;font:700 clamp(36px,4vw,54px)/.95 var(--book);letter-spacing:-.03em;color:var(--orangle);text-shadow:0 2px 0 #000}
 .pitch__title span{display:block;font:400 .5em/1.15 var(--book);letter-spacing:-.01em;color:var(--cream);margin-top:6px}
 .pitch__by{margin:0;font:800 13px/1.45 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#e9d3ad;text-shadow:0 1px 0 #000}
-.pitch__line{margin:0 0 4px;font:400 17px/1.5 var(--body);color:var(--cream);max-width:44ch;text-shadow:0 1px 0 #000}
+.pitch__line{margin:0 0 4px;font:400 16px/1.55 var(--body);color:var(--cream);max-width:40ch;text-shadow:0 1px 0 #000}
+.pitch__cta{display:none!important}
 .pitch .btn--slime{background:var(--orangle);color:#1a1210;box-shadow:0 5px 0 #8a4a1a;display:inline-flex;align-items:center;min-height:52px;font-size:15px}
 .pitch .btn--slime:hover{background:#ffc28c;box-shadow:0 3px 0 #8a4a1a}
 
@@ -53,17 +54,17 @@
 .shelfside{max-width:520px;width:100%;justify-self:start;margin-top:20px}
 .pocket{position:relative;isolation:isolate;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
 /* ONE card, ruled top to bottom (28px rhythm), typewriter voice */
-.pocket__card{--rule:28px;position:relative;z-index:1;margin:0 26px;padding:14px 18px 0;background:#f4ecd6;color:#1a1210;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+.pocket__card{--rule:24px;position:relative;z-index:1;margin:0 18px;padding:12px 14px 0;background:#f4ecd6;color:#1a1210;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
   background-image:repeating-linear-gradient(180deg,transparent 0 calc(var(--rule) - 1px),#bfb298 calc(var(--rule) - 1px) var(--rule));background-origin:content-box;background-clip:content-box}
-.pocket__card>p{margin:0;font:400 16px/var(--rule) var(--term);letter-spacing:.01em;color:#1a1210;padding-top:3px;margin-bottom:-3px!important}
-.card__call{position:absolute;right:34px;top:17px;font:400 13px/var(--rule) var(--term);color:#5a4a3a;letter-spacing:.08em}
+.pocket__card>p{margin:0;font:400 15px/var(--rule) var(--term);letter-spacing:.01em;color:#1a1210;padding-top:3px;margin-bottom:-3px!important}
+.card__call{position:absolute;right:24px;top:15px;font:400 12px/var(--rule) var(--term);color:#5a4a3a;letter-spacing:.08em}
 .card__line--title b{font-weight:400;text-transform:uppercase}
 .pocket__card>p.card__line--blurb{margin-top:var(--rule)!important;color:#2a1a10;font:400 16px/var(--rule) var(--body);max-width:44ch}
 .card__grid{width:100%;margin:var(--rule) 0 0;border-collapse:collapse;border-top:2px solid #1a1210;background:#f4ecd6;table-layout:fixed}
-.card__grid th{font:400 12px/var(--rule) var(--term);letter-spacing:.14em;text-align:left;padding:0 12px;border-bottom:2px solid #1a1210;color:#1a1210}
+.card__grid th{font:400 11px/var(--rule) var(--term);letter-spacing:.12em;text-align:left;padding:0 8px;border-bottom:2px solid #1a1210;color:#1a1210}
 .card__grid th:first-child{width:44%}
 .card__grid th+th,.card__grid td+td{border-left:2px solid #1a1210}
-.card__grid td{height:var(--rule);padding:0 12px;border-bottom:1px solid #bfb298;font:400 15px/1 var(--term);color:#3a2a1a;white-space:nowrap}
+.card__grid td{height:var(--rule);padding:0 8px;border-bottom:1px solid #bfb298;font:400 13px/1 var(--term);color:#3a2a1a;white-space:nowrap}
 .card__grid td i{font-style:normal;color:var(--stamp);opacity:.85;display:inline-block;transform:rotate(-1.5deg)}
 .card__grid tr:nth-child(2) td i{transform:rotate(1deg);opacity:.7}
 .card__grid td i.card__tonight{color:var(--due);opacity:1;transform:rotate(-3deg)}
@@ -145,6 +146,9 @@
 
 @media(max-width:960px){
   .bedtime{grid-template-columns:1fr;gap:24px;padding-top:0}
+  .pitch{padding-top:0}
+  .pitch__cta{display:inline-flex!important}
+  .pocket__card{--rule:28px;margin:0 26px;padding:14px 18px 0}.pocket__card>p{font-size:16px}
   .pitch__title{font-size:clamp(36px,10vw,48px)}
   .pitch__line{max-width:34ch}
   .bedtime__floor{max-width:520px;margin:0 auto;width:100%;padding-top:8px;padding-bottom:110px;overflow:hidden}
