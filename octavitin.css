@@ -92,7 +92,7 @@
 .reader{border:0;padding:0;background:transparent;width:min(1120px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:visible;overscroll-behavior:contain;color:#1a1210}
 .reader::backdrop{background:rgba(9,6,12,.985)}
 .reader__bar{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;margin:0 0 10px;color:var(--cream)}
-.reader__resume{display:inline-flex;align-items:center;gap:6px;margin:0 auto 0 0;padding:0 12px;min-height:44px;background:#e6d9b9;color:#3a2a1a;border-radius:4px;font:400 13px/1.4 var(--body);white-space:nowrap;transition:opacity .25s}
+.reader__resume{animation:slidein .32s cubic-bezier(.16,1,.3,1) both;display:inline-flex;align-items:center;gap:6px;margin:0 auto 0 0;padding:0 12px;min-height:44px;background:#e6d9b9;color:#3a2a1a;border-radius:4px;font:400 13px/1.4 var(--body);white-space:nowrap;transition:opacity .25s}
 /* on desktop the note can leave the row without moving anything; on mobile it fades but keeps its row */
 .reader__resume[hidden]{display:none!important}
 .reader__resume .page__again{padding:12px 0;min-height:44px;color:#1a1210;font:800 13px/1.4 var(--body)}
@@ -126,12 +126,18 @@
 .page__aside{display:flex;flex-wrap:wrap;align-items:center;gap:0 10px}
 .page__aside i{font-style:normal}
 /* leaves fanning across as the book opens */
-.leaves{position:absolute;inset:0;left:41.17%;z-index:3;pointer-events:none;perspective:1200px;overflow:hidden;border-radius:0 10px 10px 0}
-.leaves i{position:absolute;inset:0;background:#e6d9b9;transform-origin:0 50%;box-shadow:-4px 0 12px rgba(58,36,17,.3);transform:rotateY(-110deg);opacity:0}
-.reader[open].is-opening .leaves i{animation:leaf .7s cubic-bezier(.3,.7,.2,1) both}
-.reader[open].is-opening .leaves i:nth-child(2){animation-delay:70ms;background:#ecdfc0}
-.reader[open].is-opening .leaves i:nth-child(3){animation-delay:140ms;background:#efe4c6}
-@keyframes leaf{0%{transform:rotateY(0);opacity:1}75%{opacity:1}100%{transform:rotateY(-110deg);opacity:0}}
+.leaves{position:absolute;inset:0;left:41.17%;z-index:3;pointer-events:none;perspective:900px;perspective-origin:20% 50%;overflow:hidden;border-radius:0 10px 10px 0}
+.leaves i{position:absolute;inset:0;background:#e6d9b9 linear-gradient(90deg,rgba(58,36,17,.28),transparent 9%,transparent 70%,rgba(255,255,255,.35));border-radius:0 10px 10px 0;box-shadow:6px 0 18px rgba(58,36,17,.35);transform-origin:0 50%;box-shadow:-4px 0 12px rgba(58,36,17,.3);transform:rotateY(-110deg);opacity:0;backface-visibility:hidden}
+.leaves::after{content:"";position:absolute;inset:0;left:-2%;width:14%;background:linear-gradient(90deg,rgba(58,36,17,.45),transparent);opacity:0}
+.reader[open].is-opening .leaves::after{animation:gutter .8s ease-out both}
+@keyframes gutter{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+.reader[open].is-opening .leaves i{animation:leaf .62s cubic-bezier(.3,.7,.2,1) both}
+/* Start from the top: one leaf flips back the other way over the text */
+.reader.is-flipping .leaves i:nth-child(3){animation:leafback .55s cubic-bezier(.2,.6,.3,1) both}
+@keyframes leafback{0%{transform:rotateY(-110deg);opacity:0}25%{opacity:1}100%{transform:rotateY(0);opacity:0}}
+.reader[open].is-opening .leaves i:nth-child(2){animation-delay:120ms;background-color:#ecdfc0}
+.reader[open].is-opening .leaves i:nth-child(3){animation-delay:240ms;background-color:#efe4c6}
+@keyframes leaf{0%{transform:rotateY(0);opacity:1;filter:brightness(1)}45%{filter:brightness(.86)}80%{opacity:1}100%{transform:rotateY(-112deg);opacity:0;filter:brightness(.72)}}
 .reader :focus-visible{outline:4px solid var(--slime);outline-offset:4px}
 .page--right:focus-visible,.reader__spread:focus-visible{outline-offset:-6px}
 .page__again{background:none;border:0;padding:10px 0;color:#5a4a3a;font:800 14px/1.5 var(--body);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
@@ -174,6 +180,8 @@
 }
 @media(prefers-reduced-motion:reduce){
   .book,.book__face{transition:none}
+  .reader__resume{animation:none}
+  .reader.is-flipping .leaves i:nth-child(3),.reader[open].is-opening .leaves::after{animation:none}
   .bedtime__floor::before{opacity:1;animation:none!important}
   .book:hover,.book:focus-visible{transform:rotate(-3deg)}
   .book.is-opening .book__face{transform:none}
@@ -181,3 +189,5 @@
 }
 .sec--octavitin:focus{outline:none}
 .sec--octavitin{scroll-margin-top:0}
+
+@keyframes slidein{from{transform:translateX(-14px);opacity:0}to{transform:none;opacity:1}}

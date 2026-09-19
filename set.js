@@ -38,7 +38,7 @@
   }
   function showBumper(n) {
     bumper.className = 'bumper on bumper--' + n;
-    bumper.innerHTML = '<b>' + n + '</b><span>' + CH[n].name + '</span><small>' + CH[n].line + ' · press again to tune in</small>';
+    bumper.innerHTML = '<b><i>' + n + '</i></b><span>' + CH[n].name + '</span><small>' + CH[n].line + ' · press again to tune in</small>';
     clearTimeout(timer);
     timer = setTimeout(function () { bumper.className = 'bumper'; }, 2800);
   }

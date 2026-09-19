@@ -29,7 +29,9 @@
   /* mobile: keep the note's row and fade it, so the reading surface never jumps; desktop: the row can drop out */
   function hideResume() { if (!resume) return; if (mobile.matches && scroller() === spread) { resume.classList.add('is-fading'); resume.setAttribute('aria-hidden', 'true'); } else { resume.hidden = true; } }
   function showResume() { if (!resume) return; resume.hidden = false; resume.classList.remove('is-fading'); resume.removeAttribute('aria-hidden'); }
-  function toTop() { spread.scrollTop = 0; page.scrollTop = 0; hideResume(); try { localStorage.setItem(KEY, '0'); } catch (e) {} }
+  var flipT;
+  function toTop() { if (!reduce) { reader.classList.remove('is-flipping'); void reader.offsetWidth; reader.classList.add('is-flipping'); clearTimeout(flipT); flipT = setTimeout(function () { reader.classList.remove('is-flipping'); }, 600); }
+    spread.scrollTop = 0; page.scrollTop = 0; hideResume(); try { localStorage.setItem(KEY, '0'); } catch (e) {} }
   /* the focusable, keyboard-scrollable region is whichever one scrolls */
   function syncTab() { var s = scroller(); page.tabIndex = s === page ? 0 : -1; spread.tabIndex = s === spread ? 0 : -1; if (s === spread) spread.setAttribute('aria-label', page.getAttribute('aria-label')); else spread.removeAttribute('aria-label'); }
   addEventListener('resize', syncTab);

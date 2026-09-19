@@ -35,6 +35,7 @@ h1,h2{margin:0}
   box-shadow:inset 0 0 40px #000,inset 0 0 4px #ffffff22}
 .knob{position:absolute;left:80.5%;top:12.8%;width:11%;aspect-ratio:1;border-radius:50%;border:0;padding:0;cursor:pointer;background:radial-gradient(circle at 40% 35%,#f0f0f0,#8a8a8a 55%,#3a3a3a 70%,transparent 71%);
   transform:rotate(var(--rot,-38deg));transition:transform .09s steps(2)}
+.js:not(.static) .knob{transition:transform .32s cubic-bezier(.34,1.56,.64,1)}
 .knob__ptr{position:absolute;left:50%;top:14%;width:8%;height:36%;margin-left:-4%;background:#c8261e;border-radius:2px;box-shadow:0 0 0 1px #0008}
 .knob:hover .knob__ptr{background:#ff3b2e}
 
@@ -61,10 +62,19 @@ h1,h2{margin:0}
   background:repeating-linear-gradient(180deg,rgba(0,0,0,.30) 0 2px,transparent 2px 4px),
              radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.6) 100%);mix-blend-mode:multiply}
 .tv__glass::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.10) 0 18%,transparent 30%,transparent 70%,rgba(255,255,255,.05) 100%);pointer-events:none}
+/* live phosphor: a slow retrace bar rolling down the tube, and the faintest mains flicker */
+.tv__roll{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 0,rgba(255,255,255,.055) 45%,rgba(255,255,255,.02) 55%,transparent 100%) 0 0/100% 22% no-repeat;opacity:0}
+.js:not(.static) .tv:not(.is-off):not(.is-dying):not(.offscreen) .tv__roll{opacity:1;animation:roll 7s linear infinite}
+@keyframes roll{0%{background-position:0 -25%}100%{background-position:0 125%}}
+.js:not(.static) .tv:not(.is-off):not(.is-dying):not(.offscreen) .title{animation-name:poweron,flicker;animation-duration:.5s,4s;animation-timing-function:steps(6),steps(1);animation-delay:1.1s,1.6s;animation-iteration-count:1,infinite;animation-fill-mode:forwards,none}
+@keyframes flicker{0%,92%{filter:brightness(1)}93%{filter:brightness(1.06)}94%{filter:brightness(.97)}96%{filter:brightness(1)}}
 .bumper{position:absolute;inset:0;display:none;place-content:center;text-align:center;padding:6%;color:#fff}
 .bumper.on{display:grid;animation:lockon .22s steps(3) both}
 @keyframes lockon{0%{transform:translateY(-7%);filter:brightness(1.8) contrast(1.4)}66%{transform:translateY(2%)}100%{transform:none;filter:none}}
-.bumper b{display:block;font:400 clamp(60px,12vw,200px)/.9 var(--disp)}
+.bumper b{display:block;font:400 clamp(60px,12vw,200px)/.9 var(--disp);overflow:hidden}
+.bumper b i{display:block;font-style:normal;animation:rollin .38s cubic-bezier(.16,1,.3,1) both}
+@keyframes rollin{0%{transform:translateY(-105%)}100%{transform:none}}
+.static .bumper b i{animation:none}
 .bumper span{display:block;font:400 clamp(16px,2.4vw,34px)/1 var(--pix)}
 .bumper small{display:block;margin-top:1em;font:400 clamp(9px,1vw,13px)/1.4 var(--pix);opacity:.85}
 .bumper__tune{font-family:var(--term)!important;font-size:clamp(30px,5vw,70px)!important}
@@ -88,9 +98,10 @@ h1,h2{margin:0}
 .static .tv.is-off .fuzz{animation:none}
 /* power-on replay */
 .js .tv.is-warming .bars{display:grid;opacity:1;animation:barsout2 .01s 1.1s forwards}
-.js .tv.is-warming .title{opacity:0;transform:scaleY(.02);animation:poweron2 .5s steps(6) .8s forwards}
+.js .tv.is-warming .title,.js:not(.static) .tv.is-warming:not(.offscreen) .title{opacity:0;transform:scaleY(.02);animation:poweron2 .5s steps(6) .8s forwards}
 .js .tv.was-on .bars{display:none}
-.js .tv.was-on .title{opacity:1;transform:none;animation:none}
+.js .tv.was-on .title,.js:not(.static) .tv.was-on:not(.offscreen) .title{opacity:1;transform:none;animation:none}
+.js:not(.static) .tv.was-on:not(.offscreen):not(.is-warming) .title{animation:flicker 4s steps(1) infinite}
 @keyframes barsout2{0%{opacity:1}99%{opacity:1}100%{opacity:0}}
 @keyframes poweron2{0%{opacity:0;transform:scaleY(.02)}40%{opacity:1;transform:scaleY(.06)}70%{transform:scaleY(1.02) scaleX(.9)}100%{opacity:1;transform:none}}
 
