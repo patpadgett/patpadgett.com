@@ -12,10 +12,11 @@
 
   /* ---------- TV: channel knob ---------- */
   var CH = {
-    3: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -78 },
-    4: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -26 },
-    5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 26 },
-    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · Chapter One', rot: 78 }
+    3: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -104 },
+    4: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -52 },
+    5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 0 },
+    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · Chapter One', rot: 52 },
+    7: { name: 'GRIME95!', href: '#grime95', line: 'Ponder County booking records', rot: 104 }
   };
   var knob = document.getElementById('knob'), bumper = document.getElementById('bumper');
   var rows = [].slice.call(document.querySelectorAll('.guide__row[data-ch]'));
@@ -55,7 +56,7 @@
       location.href = CH[n].href;
     }, reduce ? 0 : (delay == null ? 350 : delay));
   }
-  var next = function (d) { var n = cur + d; return n > 6 ? 3 : n < 3 ? 6 : n; };
+  var next = function (d) { var n = cur + d; return n > 7 ? 3 : n < 3 ? 7 : n; };
   knob.addEventListener('click', function () {
     if (bumper.classList.contains('on')) { tune(cur); return; }
     setCh(next(1), true);

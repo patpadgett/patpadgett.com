@@ -78,7 +78,7 @@ h1,h2{margin:0}
 .bumper span{display:block;font:400 clamp(16px,2.4vw,34px)/1 var(--pix)}
 .bumper small{display:block;margin-top:1em;font:400 clamp(9px,1vw,13px)/1.4 var(--pix);opacity:.85}
 .bumper__tune{font-family:var(--term)!important;font-size:clamp(30px,5vw,70px)!important}
-.bumper--3{background:var(--red)}.bumper--4{background:#000;color:var(--slime)}.bumper--5{background:var(--cyan);color:#001}.bumper--6{background:#171d32;color:#ffb16b}
+.bumper--3{background:var(--red)}.bumper--4{background:#000;color:var(--slime)}.bumper--5{background:var(--cyan);color:#001}.bumper--6{background:#171d32;color:#ffb16b}.bumper--7{background:#0000aa;color:#ffff55}
 
 /* pilot lamp: measured on the plate at (91.2%, 39.8%), ⌀1% */
 .tv__lamp{position:absolute;left:89.9%;top:38.5%;width:1.3%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff0e8,#ff3a2a 35%,#c01008 75%);box-shadow:0 0 5px 2px rgba(255,42,26,.9),0 0 16px 5px rgba(255,42,26,.5);transition:box-shadow .2s,background .2s;pointer-events:none}
@@ -117,7 +117,8 @@ h1,h2{margin:0}
 /* measured on the cropped plate: buttons at x 51.6%, y 17 / 29.1 / 41.2 / 53.2 / 65.3 (+77.4 for the sixth), ⌀13.6% */
 .remote__keys{position:absolute;inset:0}
 .remote__key{position:absolute;left:30%;width:150%;height:12%;transform:translateY(-50%);border-radius:6px;border:0;padding:0;background:transparent;cursor:pointer;color:transparent;-webkit-tap-highlight-color:transparent}
-.remote__key:nth-child(1){top:17%}.remote__key:nth-child(2){top:29.1%}.remote__key:nth-child(3){top:41.2%}.remote__key:nth-child(4){top:53.2%}.remote__key:nth-child(5){top:65.3%}.remote__key:nth-child(6){top:77.4%}
+/* remote7 plate: 7 buttons, centres measured at 18/29/40/51/62/73/84 % of the plate height */
+.remote__key:nth-child(1){top:18%}.remote__key:nth-child(2){top:29%}.remote__key:nth-child(3){top:40%}.remote__key:nth-child(4){top:51%}.remote__key:nth-child(5){top:62%}.remote__key:nth-child(6){top:73%}.remote__key:nth-child(7){top:84%}
 /* the visible button: a circle over the plate's own button (plate x 51.6% = 32.7% of this row) */
 .remote__key::before{content:"";position:absolute;left:14.4%;top:50%;width:9.4%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:inset 0 0 0 0 transparent;transition:box-shadow .08s,background .1s}
 .remote__key:active::before,.remote__key.is-pressed::before{box-shadow:inset 0 3px 6px rgba(0,0,0,.7)}
@@ -137,7 +138,7 @@ h1,h2{margin:0}
 .remote__key--mute[aria-pressed="false"]::after{background:radial-gradient(circle at 40% 32%,#7ae06a,#2a9a1a 55%,#155a0a 100%)}
 .remote__key--mute:active::after,.remote__key--mute.is-pressed::after{transform:translate(-50%,-50%) scale(.94)}
 /* motion switch: slide switch set into the plate foot, tape label beside it like the keys */
-.remote__motion{position:absolute;left:30%;top:87%;width:150%;height:9%;transform:translateY(-50%);border:0;padding:0;background:transparent;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
+.remote__motion{position:absolute;left:30%;top:95.5%;width:150%;height:9%;transform:translateY(-50%);border:0;padding:0;background:transparent;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
 .remote__motion i{position:absolute;left:14.4%;top:50%;width:11%;aspect-ratio:2/1;transform:translate(-50%,-50%);border-radius:3px;background:linear-gradient(180deg,#0e0e0e,#2a2a2a);box-shadow:inset 0 1px 2px #000,0 1px 0 rgba(255,255,255,.12)}
 .remote__motion i::after{content:"";position:absolute;top:10%;bottom:10%;left:8%;width:40%;border-radius:2px;background:linear-gradient(180deg,#e8e8e8,#8a8a8a);box-shadow:0 1px 1px #000;transition:transform .16s cubic-bezier(.16,1,.3,1)}
 .remote__motion[aria-checked="false"] i::after{transform:translateX(105%)}
@@ -145,8 +146,8 @@ h1,h2{margin:0}
 .remote__motion[aria-checked="false"] span{color:#7a1410}
 .remote__motion:hover span,.remote__motion:focus-visible span{background:#fff8e6}
 .remote__motion:focus-visible{outline:3px solid var(--slime);outline-offset:2px;border-radius:4px}
-.remote__brand{position:absolute;left:0;right:0;top:94%;margin:0;text-align:center;font:400 clamp(6px,.6vw,8px)/1 var(--pix);color:#d8c8a8;letter-spacing:.08em;text-shadow:0 -1px 0 #000;pointer-events:none}
-.remote__state{position:absolute;top:100%;left:0;right:-70%;margin:12px 0 0;text-align:left;font:400 14px/1.3 var(--term);color:var(--cyan)}
+.remote__brand{position:absolute;left:0;right:0;top:101.5%;margin:0;text-align:center;font:400 clamp(6px,.6vw,8px)/1 var(--pix);color:#d8c8a8;letter-spacing:.08em;text-shadow:0 -1px 0 #000;pointer-events:none}
+.remote__state{position:absolute;top:104%;left:0;right:-70%;margin:12px 0 0;text-align:left;font:400 14px/1.3 var(--term);color:var(--cyan)}
 
 @media(max-width:1100px){.set{grid-template-columns:1fr!important;grid-template-areas:"tv" "panel" "remote" "shelf"}.set>.shelf{margin-bottom:24px}.tv{max-width:560px;margin:0 auto;width:100%}.panel{max-width:520px;margin:0 auto;width:100%}.remote{width:min(170px,42vw);margin:8px auto 48px 14%}.remote__key{width:150%}.remote__state{left:0;right:-70%}}
 

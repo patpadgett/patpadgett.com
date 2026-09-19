@@ -1,0 +1,102 @@
+/* PP-006 · Booking records — the dot-matrix under the desk still prints Ponder County.
+   Plate: assets/plates/printer.webp (1536×1024, beige 9-pin, lid open, empty slot). Measured slot: x 10%→87%, y 28%→51%;
+   the sheet's lower edge is tucked at the platen top, y≈36% of the plate = 24% of the plate WIDTH (3:2 plate); slot 13%→87% so the pin holes sit on the sprockets.
+   Paper = grime95's own green-bar printout (Courier Prime + Doto, --bar/--paper/--ink from grime95.com/styles.css), so the
+   record looks identical to the one on the terminal. Polaroid stands to the left of the printer. */
+@font-face{font-family:'Courier Prime';font-weight:400;src:url(assets/fonts/CourierPrime-400.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Courier Prime';font-weight:700;src:url(assets/fonts/CourierPrime-700.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Courier Prime';font-weight:400;font-style:italic;src:url(assets/fonts/CourierPrime-Italic.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Doto';font-weight:400 900;src:url(assets/fonts/Doto-var.woff2) format('woff2');font-display:swap}
+
+.sec--grime{--gpaper:#f3f0e6;--gbar:#d5e6d3;--gink:#1c1a17;--gink-soft:#55504a;--grule:#9a958a;--gblue:#0000aa;--gyellow:#ffff55;--type:'Courier Prime','Courier New',monospace;--dot:'Doto',var(--type)}
+.sec--grime:focus{outline:none}
+.grime{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.35fr);gap:clamp(24px,4vw,64px);align-items:start;padding:clamp(8px,2vw,24px) 0 clamp(28px,4vw,56px)}
+
+/* pitch: the about copy, set in the room's voice */
+.grime__pitch{display:grid;gap:14px;align-content:start;padding-top:12px}
+.grime__title{margin:0 0 4px;font:400 clamp(44px,5vw,72px)/.9 var(--disp);letter-spacing:.02em;color:var(--gyellow);text-shadow:4px 4px 0 #000}
+.grime__title a{color:inherit;text-decoration:none}
+.grime__title a:hover,.grime__title a:focus-visible{text-decoration:underline;text-decoration-thickness:4px;text-decoration-color:var(--gblue);text-underline-offset:6px}
+.grime__title span{display:block;margin-top:10px;font:800 12px/1.45 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#e9d3ad;text-shadow:0 1px 0 #000}
+.grime__line{margin:0;font:400 16px/1.55 var(--body);color:var(--cream);max-width:44ch;text-shadow:0 1px 0 #000}
+.grime__line a{color:var(--gyellow);text-decoration-thickness:2px;text-underline-offset:3px}
+.grime__line--fine{font-size:14px;color:#e9d3ad}
+.grime__ctas{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 0}
+.btn--grime{background:var(--gyellow);color:#000;box-shadow:0 5px 0 #7a7a00}
+.btn--grime:hover{box-shadow:0 3px 0 #7a7a00}
+
+/* the desk: polaroid left, printer right, paper up out of the slot */
+.desk{position:relative;display:grid;grid-template-columns:minmax(0,.55fr) minmax(0,1.6fr);gap:clamp(12px,2vw,28px);align-items:end}
+.desk__status{grid-column:1/-1;margin:6px 0 0;font:400 17px/1.35 var(--term);color:var(--cyan)}
+.desk__status b{font-weight:400;color:#fff}
+
+.polaroid{position:relative;margin:0 0 6%;justify-self:center;width:min(100%,250px);background:#f6f2ea;padding:6% 6% 22%;border-radius:2px;box-shadow:0 18px 28px -12px rgba(0,0,0,.85),inset 0 0 0 1px rgba(0,0,0,.08);transform:rotate(-4deg);z-index:2}
+.polaroid__frame{display:block;aspect-ratio:4/5;overflow:hidden;background:#0d0b0a;box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
+.polaroid__img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:saturate(.86) contrast(1.06) sepia(.12)}
+.polaroid__cap{position:absolute;left:8%;right:8%;bottom:6%;display:grid;gap:5px;color:#1a1210;transform:rotate(-1.4deg)}
+.polaroid__cap b{font:400 10px/1 var(--pix);letter-spacing:.02em;color:#1f2a66}
+.polaroid__cap span{font:700 13px/1.15 var(--body);letter-spacing:.02em;text-transform:uppercase}
+
+.printer{position:relative;min-width:0}
+.printer__plate{position:relative;display:block;width:100%;margin-top:-24%;filter:drop-shadow(0 26px 24px rgba(0,0,0,.75));z-index:1;pointer-events:none}
+/* the slot: clip window whose bottom edge is the paper lip; the sheet feeds up inside it */
+.printer__slot{position:relative;z-index:2;width:74%;margin:0 0 0 13%;overflow:hidden;padding-top:6px}
+.paper{position:relative;display:block;color:var(--gink);text-decoration:none;font:400 15px/22px var(--type);padding:22px 52px 30px;
+  background:repeating-linear-gradient(to bottom,var(--gbar) 0 44px,var(--gpaper) 44px 88px);
+  box-shadow:-8px 14px 18px -10px rgba(0,0,0,.6);
+  transform-origin:50% 100%}
+.paper::before,.paper::after{content:"";position:absolute;top:0;bottom:0;width:26px;background:radial-gradient(circle at 50% 11px,#1a1210 0 4.5px,transparent 5px) 0 0/26px 22px repeat-y;opacity:.85}
+.paper::before{left:8px}.paper::after{right:8px}
+/* perforation across the top: the tear line of the previous sheet */
+.paper{border-top:1px dashed var(--grule)}
+.paper__hd{margin:0 0 22px;padding-bottom:22px;border-bottom:1px dashed var(--grule);font:900 17px/22px var(--dot);font-variation-settings:'ROND' 0;letter-spacing:.02em;text-transform:uppercase}
+.paper__hd small{display:block;font:400 15px/22px var(--type);letter-spacing:0;text-transform:none;color:var(--gink-soft)}
+.paper__hd small i{font-style:normal;color:var(--gink)}
+.paper__grid{display:grid;grid-template-columns:9ch 1fr;column-gap:1.5ch;margin:0 0 22px}
+.paper__grid dt{color:var(--gink-soft);text-transform:uppercase}
+.paper__grid dd{margin:0;font-weight:700}
+.paper h3{margin:0;font:700 15px/22px var(--type);text-transform:uppercase;letter-spacing:.06em}
+.paper__narr p{margin:0 0 22px;max-width:60ch}
+.paper__narr p:last-child{margin-bottom:0}
+.paper__more{margin:22px 0 0;padding-top:22px;border-top:1px dashed var(--grule);color:var(--gink-soft)}
+.paper__more span{color:var(--gink);text-decoration:underline;text-decoration-color:#aa0000;text-underline-offset:3px;text-transform:uppercase}
+.paper:hover .paper__more span,.paper:focus-visible .paper__more span{color:#aa0000}
+.paper:focus-visible{outline:4px solid var(--slime);outline-offset:-4px}
+/* the bail's shadow across the sheet where it leaves the platen */
+.printer__slot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));pointer-events:none;z-index:3}
+/* the label taped to the printer's face */
+.printer__tag{position:absolute;left:11%;bottom:12%;z-index:3;margin:0;padding:7px 10px 6px;background:#efe4c6;color:#1a1210;font:400 9px/1 var(--pix);letter-spacing:.02em;transform:rotate(-1.5deg);box-shadow:1px 2px 0 rgba(0,0,0,.55);background-image:repeating-linear-gradient(90deg,transparent 0 3px,rgba(0,0,0,.03) 3px 4px)}
+
+/* the one authored moment: the sheet feeds out of the slot when the desk scrolls into view */
+.js:not(.static) .paper{transform:translateY(102%)}
+.js .sec--grime.is-fed .paper{animation:gfeed 1.6s steps(32,end) forwards}
+.js.static .paper,.js .sec--grime.is-fed.static .paper{transform:none;animation:none}
+@keyframes gfeed{from{transform:translateY(102%)}to{transform:none}}
+.paper.is-refed{animation:gfeed 1.6s steps(32,end) forwards}
+
+@media(max-width:960px){
+  .grime{grid-template-columns:1fr;gap:28px;padding-top:0}
+  .grime__pitch{padding-top:0}
+  .grime__line{max-width:none}
+  .desk{grid-template-columns:minmax(0,.7fr) minmax(0,1.5fr);gap:14px}
+  .polaroid{width:min(100%,200px);padding-bottom:20%}
+  .paper{font-size:13px;line-height:20px;padding:20px 40px 24px;background-size:auto 80px;background:repeating-linear-gradient(to bottom,var(--gbar) 0 40px,var(--gpaper) 40px 80px)}
+  .paper::before,.paper::after{width:22px;background-size:22px 20px;background-position:0 0}.paper::before{left:5px}.paper::after{right:5px}
+  .paper__hd{font-size:16px;line-height:20px;margin-bottom:20px;padding-bottom:20px}
+  .paper__hd small,.paper h3{font-size:13px;line-height:20px}
+  .paper__grid{grid-template-columns:9ch 1fr;margin-bottom:20px}
+  .paper__narr p,.paper__more{margin-bottom:20px}
+  .paper__more{margin:20px 0 0;padding-top:20px}
+}
+@media(max-width:640px){
+  .desk{grid-template-columns:1fr;justify-items:center}
+  .polaroid{margin:0 0 12px;transform:rotate(-3deg);width:min(64%,220px)}
+  .printer{width:100%}
+  .printer__slot{width:74%;margin-left:13%}
+  .paper{padding:16px 30px 20px;font-size:12px;line-height:20px}
+  .paper::before,.paper::after{display:none}
+  .paper__grid{grid-template-columns:1fr}.paper__grid dt{margin-top:6px}.paper__grid dt:first-child{margin-top:0}
+  .printer__tag{font-size:8px}
+  .desk__status{justify-self:start;font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){.paper,.paper.is-refed{animation:none!important;transform:none!important}}
