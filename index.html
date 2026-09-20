@@ -43,10 +43,10 @@
 <body>
 <a class="skip" href="#channels">Skip to the channels</a>
 
-<main class="room">
+<div class="room">
 
 <!-- ===== THE SET ===== -->
-<header class="set" id="top" role="banner">
+<header class="set" id="top">
   <div class="tv">
     <img class="tv__plate" src="assets/plates/tv-s.webp" srcset="assets/plates/tv-s.webp 900w, assets/plates/tv.webp 1536w" sizes="(max-width:960px) 100vw, 60vw" width="1536" height="1024" alt="" fetchpriority="high">
     <div class="tv__glass" id="glass">
@@ -72,9 +72,9 @@
       <a class="guide__row" href="https://music.patpadgett.com" data-ch="3"><b>3</b><span class="guide__t">MUSIC</span><span class="guide__d">Records, songs &amp; other noise — music.patpadgett.com</span></a>
       <a class="guide__row" href="https://work.patpadgett.com" data-ch="4"><b>4</b><span class="guide__t">WORK</span><span class="guide__d">Résumé — billing mediation &amp; automation — work.patpadgett.com</span></a>
       <a class="guide__row" href="https://blog.patpadgett.com" data-ch="5"><b>5</b><span class="guide__t">BLOG</span><span class="guide__d">Thoughts, notes &amp; rabbit holes — blog.patpadgett.com</span></a>
-      <a class="guide__row" href="#octavitin" data-ch="6"><b>6</b><span class="guide__t">BEDTIME BOOK</span><span class="guide__d">Octavitin: The Rules of Under — read Chapter One right here</span></a>
+      <a class="guide__row" href="#octavitin" data-ch="6"><b>6</b><span class="guide__t">BEDTIME BOOK</span><span class="guide__d">Octavitin: The Rules of Under — read the opening pages right here</span></a>
       <a class="guide__row" href="#grime95" data-ch="7"><b>7</b><span class="guide__t">GRIME95!</span><span class="guide__d">Ponder County booking records, one a day — grime95.com</span></a>
-      <a class="guide__row guide__row--contact" href="#contact"><b>✉</b><span class="guide__t">CONTACT</span><span class="guide__d">pat@patpadgett.com, GitHub, LinkedIn — the trading cards at the bottom</span></a>
+      <a class="guide__row guide__row--contact" href="#contact" data-jump><b>✉</b><span class="guide__t">CONTACT</span><span class="guide__d">pat@patpadgett.com, GitHub, LinkedIn — the trading cards at the bottom</span></a>
       <p class="guide__foot">Or turn the dial on the set — press once to pick, again to tune in.</p>
     </nav>
     <audio id="bgm" src="assets/audio/bedroom-1988.mp3" loop preload="none"></audio>
@@ -98,13 +98,14 @@
 
   <!-- shelf under the set: cartridges = table of contents -->
   <nav class="shelf" aria-label="Sections on this page">
-    <a class="cart" href="#music" aria-label="Music — the record, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-music.webp" width="400" height="600" alt=""><span class="cart__band"><small>PP-001</small><b>SUPER BASS BROS.</b><i>The record</i></span></span><span class="cart__cap" aria-hidden="true">MUSIC</span></a>
-    <a class="cart" href="#table" aria-label="Magazines — the coffee table, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-table.webp" width="400" height="600" alt=""><span class="cart__band"><small>PP-002</small><b>MAG HUNT</b><i>The coffee table</i></span></span><span class="cart__cap" aria-hidden="true">MAGAZINES</span></a>
-    <a class="cart" href="#interests" aria-label="Madballs, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-balls.webp" width="400" height="600" alt=""><span class="cart__band"><small>PP-003</small><b>MADBALL PUNCH-OUT!!</b><i>Madballs</i></span></span><span class="cart__cap" aria-hidden="true">MADBALLS</span></a>
-    <a class="cart" href="#work" aria-label="Work — the work log, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-work.webp" width="400" height="600" alt=""><span class="cart__band"><small>PP-004</small><b>SYSOP'S QUEST</b><i>The work log</i></span></span><span class="cart__cap" aria-hidden="true">WORK</span></a>
-    <a class="cart" href="#octavitin" aria-label="The book — Octavitin, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-octavitin.webp" width="400" height="600" alt=""><span class="cart__band"><small>PP-005</small><b>UNDER THE BED</b><i>The bedtime book</i></span></span><span class="cart__cap" aria-hidden="true">THE BOOK</span></a>
+    <a class="cart" href="#music" aria-label="Music — the record, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-music.webp" width="400" height="600" alt="" srcset="assets/carts/label-music-200.webp 200w, assets/carts/label-music.webp 400w" sizes="80px"><span class="cart__band"><small>PP-001</small><b>SUPER BASS BROS.</b><i>The record</i></span></span><span class="cart__cap" aria-hidden="true">MUSIC</span></a>
+    <a class="cart" href="#table" aria-label="Magazines — the coffee table, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-table.webp" width="400" height="600" alt="" srcset="assets/carts/label-table-200.webp 200w, assets/carts/label-table.webp 400w" sizes="80px"><span class="cart__band"><small>PP-002</small><b>MAG HUNT</b><i>The coffee table</i></span></span><span class="cart__cap" aria-hidden="true">MAGAZINES</span></a>
+    <a class="cart" href="#interests" aria-label="Madballs, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-balls.webp" width="400" height="600" alt="" srcset="assets/carts/label-balls-200.webp 200w, assets/carts/label-balls.webp 400w" sizes="80px"><span class="cart__band"><small>PP-003</small><b>MADBALL PUNCH-OUT!!</b><i>Madballs</i></span></span><span class="cart__cap" aria-hidden="true">MADBALLS</span></a>
+    <a class="cart" href="#work" aria-label="Work — the work log, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-work.webp" width="400" height="600" alt="" srcset="assets/carts/label-work-200.webp 200w, assets/carts/label-work.webp 400w" sizes="80px"><span class="cart__band"><small>PP-004</small><b>SYSOP'S QUEST</b><i>The work log</i></span></span><span class="cart__cap" aria-hidden="true">WORK</span></a>
+    <a class="cart" href="#octavitin" aria-label="The book — Octavitin, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-octavitin.webp" width="400" height="600" alt="" srcset="assets/carts/label-octavitin-200.webp 200w, assets/carts/label-octavitin.webp 400w" sizes="80px"><span class="cart__band"><small>PP-005</small><b>UNDER THE BED</b><i>The bedtime book</i></span></span><span class="cart__cap" aria-hidden="true">THE BOOK</span></a>
   </nav>
 </header>
+<main id="main">
 
 <!-- ===== WHO ===== -->
 <section class="who" id="who" aria-labelledby="who-h">
@@ -150,21 +151,21 @@
   <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-002</span><h2 id="table-h">The coffee table</h2></div>
   <p class="sec__lede">Every cover I was ever on, if you believe the coffee table. (You shouldn't — the covers are made up; the Linux Magazine and 2600 write-ups in the work log are real.) Pick one up.</p>
   <div class="table" id="coffee-table">
-    <img class="table__top" src="assets/mags/table.webp" width="1536" height="1024" alt="">
+    <img class="table__top" src="assets/mags/table.webp" width="1536" height="1024" alt="" srcset="assets/mags/table-768.webp 768w, assets/mags/table-1100.webp 1100w, assets/mags/table.webp 1536w" sizes="(max-width:960px) 100vw, 1100px">
     <img class="beercan" src="assets/mags/beercan.webp" width="512" height="512" alt="" aria-hidden="true">
     <div class="ashtray" aria-hidden="true">
-      <img src="assets/mags/ashtray.webp" width="512" height="512" alt="">
+      <img src="assets/mags/ashtray.webp" width="512" height="512" alt="" srcset="assets/mags/ashtray-256.webp 256w, assets/mags/ashtray-512.webp 512w, assets/mags/ashtray.webp 1024w" sizes="(max-width:640px) 100px, 220px">
       <span class="smoke"><i></i><i></i><i></i><i></i><i></i></span>
     </div>
     <ul class="mags" role="list">
-      <li class="mag" style="--x:2%;--y:6%;--r:-13deg;--z:1"><button type="button" aria-pressed="false"><img src="assets/mags/mag0.webp" width="300" height="445" alt="Kerrang! cover — Dec 1985 · Born to shred" loading="lazy"><span class="mag__cap"><b>Kerrang!</b> · Dec 1985 · Born to shred</span></button></li>
-      <li class="mag" style="--x:19%;--y:0%;--r:6deg;--z:2"><button type="button" aria-pressed="false"><img src="assets/mags/mag1.webp" width="300" height="445" alt="SPIN cover — Oct 1988 · Behind the curtain" loading="lazy"><span class="mag__cap"><b>SPIN</b> · Oct 1988 · Behind the curtain</span></button></li>
-      <li class="mag" style="--x:37%;--y:9%;--r:-4deg;--z:3"><button type="button" aria-pressed="false"><img src="assets/mags/mag2.webp" width="300" height="445" alt="Thrasher cover — 1987 · Padgett does it again" loading="lazy"><span class="mag__cap"><b>Thrasher</b> · 1987 · Padgett does it again</span></button></li>
-      <li class="mag" style="--x:55%;--y:1%;--r:8deg;--z:4"><button type="button" aria-pressed="false"><img src="assets/mags/mag3.webp" width="300" height="445" alt="Hit Parader cover — Aug 1986 · Crazy rock legend" loading="lazy"><span class="mag__cap"><b>Hit Parader</b> · Aug 1986 · Crazy rock legend</span></button></li>
-      <li class="mag" style="--x:72%;--y:12%;--r:-7deg;--z:5"><button type="button" aria-pressed="false"><img src="assets/mags/mag4.webp" width="300" height="445" alt="RIP cover — The bedroom rocker revolution" loading="lazy"><span class="mag__cap"><b>RIP</b> · The bedroom rocker revolution</span></button></li>
-      <li class="mag" style="--x:8%;--y:50%;--r:5deg;--z:6"><button type="button" aria-pressed="false"><img src="assets/mags/mag5.webp" width="300" height="445" alt="Rolling Stone cover — Jul 1988 · Voice of the pit" loading="lazy"><span class="mag__cap"><b>Rolling Stone</b> · Jul 1988 · Voice of the pit</span></button></li>
-      <li class="mag" style="--x:27%;--y:54%;--r:-10deg;--z:7"><button type="button" aria-pressed="false"><img src="assets/mags/mag6.webp" width="300" height="445" alt="CREEM cover — Garage sessions exposed" loading="lazy"><span class="mag__cap"><b>CREEM</b> · Garage sessions exposed</span></button></li>
-      <li class="mag" style="--x:47%;--y:50%;--r:9deg;--z:8"><button type="button" aria-pressed="false"><img src="assets/mags/mag7.webp" width="300" height="445" alt="Circus cover — May 1986 · Rock in the raw" loading="lazy"><span class="mag__cap"><b>Circus</b> · May 1986 · Rock in the raw</span></button></li>
+      <li class="mag" style="--x:2%;--y:6%;--r:-13deg;--z:1"><button type="button" aria-pressed="false"><img src="assets/mags/mag0.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Kerrang!</b> · Dec 1985 · Born to shred</span></button></li>
+      <li class="mag" style="--x:19%;--y:0%;--r:6deg;--z:2"><button type="button" aria-pressed="false"><img src="assets/mags/mag1.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>SPIN</b> · Oct 1988 · Behind the curtain</span></button></li>
+      <li class="mag" style="--x:37%;--y:9%;--r:-4deg;--z:3"><button type="button" aria-pressed="false"><img src="assets/mags/mag2.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Thrasher</b> · 1987 · Padgett does it again</span></button></li>
+      <li class="mag" style="--x:55%;--y:1%;--r:8deg;--z:4"><button type="button" aria-pressed="false"><img src="assets/mags/mag3.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Hit Parader</b> · Aug 1986 · Crazy rock legend</span></button></li>
+      <li class="mag" style="--x:72%;--y:12%;--r:-7deg;--z:5"><button type="button" aria-pressed="false"><img src="assets/mags/mag4.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>RIP</b> · The bedroom rocker revolution</span></button></li>
+      <li class="mag" style="--x:8%;--y:50%;--r:5deg;--z:6"><button type="button" aria-pressed="false"><img src="assets/mags/mag5.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Rolling Stone</b> · Jul 1988 · Voice of the pit</span></button></li>
+      <li class="mag" style="--x:27%;--y:54%;--r:-10deg;--z:7"><button type="button" aria-pressed="false"><img src="assets/mags/mag6.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>CREEM</b> · Garage sessions exposed</span></button></li>
+      <li class="mag" style="--x:47%;--y:50%;--r:9deg;--z:8"><button type="button" aria-pressed="false"><img src="assets/mags/mag7.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Circus</b> · May 1986 · Rock in the raw</span></button></li>
     </ul>
     <p class="table__hint" aria-live="polite">Tap a cover to pick it up · tap again to put it down</p>
   </div>
@@ -175,37 +176,37 @@
   <p class="sec__lede">Nine gross-out rubber balls, one per obsession. Everything that was under the bed in 1988 and, honestly, still is.</p>
   <ul class="balls">
     <li class="ball">
-      <img src="assets/toys/ball-nintendo.webp" width="512" height="512" alt="Blow-Hard Bart — a gross-out rubber ball for Nintendo" loading="lazy">
+      <img src="assets/toys/ball-nintendo.webp" width="512" height="512" alt="Blow-Hard Bart — a gross-out rubber ball for Nintendo" loading="lazy" srcset="assets/toys/ball-nintendo-256.webp 256w, assets/toys/ball-nintendo.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Blow-Hard Bart</b><span>Nintendo</span></p>
       <p class="ball__line">NES → SNES. Blowing in the cartridge worked. Don't argue.</p>
     </li>
     <li class="ball">
-      <img src="assets/toys/ball-thrasher.webp" width="512" height="512" alt="Road-Rash Rudy — a gross-out rubber ball for Thrasher" loading="lazy">
+      <img src="assets/toys/ball-thrasher.webp" width="512" height="512" alt="Road-Rash Rudy — a gross-out rubber ball for Thrasher" loading="lazy" srcset="assets/toys/ball-thrasher-256.webp 256w, assets/toys/ball-thrasher.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Road-Rash Rudy</b><span>Thrasher</span></p>
       <p class="ball__line">Skate mag, skate rock, Vision Street Wear high-tops.</p>
     </li>
     <li class="ball">
-      <img src="assets/toys/ball-fnm.webp" width="512" height="512" alt="Epic Eddie — a gross-out rubber ball for Faith No More" loading="lazy">
+      <img src="assets/toys/ball-fnm.webp" width="512" height="512" alt="Epic Eddie — a gross-out rubber ball for Faith No More" loading="lazy" srcset="assets/toys/ball-fnm-256.webp 256w, assets/toys/ball-fnm.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Epic Eddie</b><span>Faith No More</span></p>
       <p class="ball__line">The Real Thing. Mike Patton doing whatever that was.</p>
     </li>
     <li class="ball">
-      <img src="assets/toys/ball-gnr.webp" width="512" height="512" alt="Jungle Jimmy — a gross-out rubber ball for Guns N' Roses" loading="lazy">
+      <img src="assets/toys/ball-gnr.webp" width="512" height="512" alt="Jungle Jimmy — a gross-out rubber ball for Guns N' Roses" loading="lazy" srcset="assets/toys/ball-gnr-256.webp 256w, assets/toys/ball-gnr.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Jungle Jimmy</b><span>Guns N' Roses</span></p>
       <p class="ball__line">Appetite. RIP Magazine on the floor next to it.</p>
     </li>
     <li class="ball">
-      <img src="assets/toys/ball-synth.webp" width="512" height="512" alt="Neon Nate — a gross-out rubber ball for Synthwave" loading="lazy">
+      <img src="assets/toys/ball-synth.webp" width="512" height="512" alt="Neon Nate — a gross-out rubber ball for Synthwave" loading="lazy" srcset="assets/toys/ball-synth-256.webp 256w, assets/toys/ball-synth.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Neon Nate</b><span>Synthwave</span></p>
       <p class="ball__line">Countach, Testarossa, neon grid to the horizon.</p>
     </li>
     <li class="ball">
-      <img src="assets/toys/ball-gpk.webp" width="512" height="512" alt="Wax-Pack Wally — a gross-out rubber ball for Garbage Pail Kids" loading="lazy">
+      <img src="assets/toys/ball-gpk.webp" width="512" height="512" alt="Wax-Pack Wally — a gross-out rubber ball for Garbage Pail Kids" loading="lazy" srcset="assets/toys/ball-gpk-256.webp 256w, assets/toys/ball-gpk.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Wax-Pack Wally</b><span>Garbage Pail Kids</span></p>
       <p class="ball__line">In the shoebox under the bed, sorted by grossness.</p>
     </li>
     <li class="ball">
-      <img src="assets/toys/ball-nick.webp" width="512" height="512" alt="Slime-Time Sam — a gross-out rubber ball for Nickelodeon" loading="lazy">
+      <img src="assets/toys/ball-nick.webp" width="512" height="512" alt="Slime-Time Sam — a gross-out rubber ball for Nickelodeon" loading="lazy" srcset="assets/toys/ball-nick-256.webp 256w, assets/toys/ball-nick.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Slime-Time Sam</b><span>Nickelodeon</span></p>
       <p class="ball__line">You Can't Do That on Television. "I don't know" — slime.</p>
     </li>
@@ -215,7 +216,7 @@
       <p class="ball__line">Falkor. The Nothing. We don't talk about the horse.</p>
     </li>
     <li class="ball">
-      <img src="assets/toys/ball-bride.webp" width="512" height="512" alt="Inconceivable Ike — a gross-out rubber ball for Princess Bride" loading="lazy">
+      <img src="assets/toys/ball-bride.webp" width="512" height="512" alt="Inconceivable Ike — a gross-out rubber ball for Princess Bride" loading="lazy" srcset="assets/toys/ball-bride-256.webp 256w, assets/toys/ball-bride.webp 512w" sizes="(max-width:640px) 45vw, 260px">
       <p class="ball__tag"><b>Inconceivable Ike</b><span>Princess Bride</span></p>
       <p class="ball__line">As you wish. Have fun storming the castle.</p>
     </li>
@@ -269,8 +270,8 @@ databank% <span class="cur">▌</span></pre></div></div></div>
         <li><b>1995</b><span><strong>Advertisnet</strong> — System Administrator at a rural ISP selling dial-up to Lake of the Ozarks residents, and supporting its Macintosh clients.</span></li>
         <li><b>2000</b><span><strong>corkscrew</strong> — SSH over HTTP proxies, in C. Linux Magazine, 2600 (Vol. 19 No. 2), Wikipedia, still in the distros.</span></li>
         <li><b>2001–2015</b><span><strong>Sprint</strong> — Tier-3 SME, wireless &amp; wireline billing mediation. Nortel, Ericsson, Lucent AMA/CDR. $2M saved, +250% throughput, −50% alarm time-to-resolution.</span></li>
-        <li><b>2015–2019</b><span><strong>Jabil · Raymond James</strong> — infrastructure automation: Kubernetes, Jenkins, Ansible, Terraform, ELK.</span></li>
-        <li><b>now</b><span><strong>Looking.</strong> Tampa Bay FL · remote, hybrid or contract. <a href="https://work.patpadgett.com">Full résumé on channel 4 →</a></span></li>
+        <li><b>2015–2019</b><span><strong>Jabil, then Raymond James</strong> — infrastructure automation: Kubernetes, Jenkins, Ansible, Terraform, ELK.</span></li>
+        <li><b>now</b><span><strong>Looking</strong> for billing-mediation, telecom data or infrastructure-automation work — senior engineer or SME. Tampa Bay FL · remote, hybrid or contract. <a href="https://work.patpadgett.com">Full résumé on channel 4 →</a></span></li>
       </ol>
     </div>
   </div>
@@ -279,20 +280,20 @@ databank% <span class="cur">▌</span></pre></div></div></div>
 <!-- ===== OCTAVITIN ===== -->
 <section class="sec sec--octavitin" id="octavitin" aria-labelledby="octavitin-h" tabindex="-1">
   <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-005</span><h2 id="octavitin-h">Bedtime reading</h2></div>
-  <p class="sec__lede">The library book that never went back. Open it — Chapter One is right there.</p>
+  <p class="sec__lede">The library book that never went back. Open it — the first pages are right there.</p>
   <div class="bedtime">
     <div class="pitch">
       <p class="pitch__title">Octavitin<span>The Rules of Under</span></p>
       <p class="pitch__by">A bedtime book by <span>Patrick&nbsp;Padgett</span><br>Read-aloud · ages 6–9</p>
       <p class="pitch__line">There are three rules to being under a bed, and Octavitin has never broken one. He is an eight&#8209;armed under&#8209;bed sock tidier with hair like a small quiet fire. Tonight, for the first time in a hundred years, somebody rings the bell.</p>
-      <a class="btn btn--slime pitch__cta" href="https://octavitin.patpadgett.com/#chapter-one" data-open-reader aria-haspopup="dialog" aria-controls="reader">Read Chapter One</a>
+      <a class="btn btn--slime pitch__cta" href="https://octavitin.patpadgett.com/#chapter-one" data-open-reader aria-haspopup="dialog" aria-controls="reader">Read the opening</a>
     </div>
     <div class="bedtime__floor">
-      <a class="book" id="book" href="https://octavitin.patpadgett.com/#chapter-one" aria-haspopup="dialog" aria-controls="reader" aria-label="Octavitin: The Rules of Under, by Patrick Padgett. Open the book and read Chapter One.">
+      <a class="book" id="book" href="https://octavitin.patpadgett.com/#chapter-one" aria-haspopup="dialog" aria-controls="reader" aria-label="Octavitin: The Rules of Under, by Patrick Padgett. Open the book and read the opening pages.">
         <img class="book__plate" src="assets/octavitin/book-s.webp" srcset="assets/octavitin/book-s.webp 512w, assets/octavitin/book.webp 1023w" sizes="(max-width:960px) 320px, 540px" width="1023" height="1536" alt="" loading="lazy">
         <span class="book__inside" aria-hidden="true"><span>Get comfortable.<br>Read it out loud.</span></span>
         <span class="book__face">
-          <img class="book__art" src="assets/octavitin/cover.webp" width="1024" height="1536" alt="Parker Pebble hangs off the edge of her bed with a flashlight; under it, green eight-armed Octavitin waves back beneath a puff of orange hair." loading="lazy">
+          <img class="book__art" src="assets/octavitin/cover.webp" width="1024" height="1536" alt="Parker Pebble hangs off the edge of her bed with a flashlight; under it, green eight-armed Octavitin waves back beneath a puff of orange hair." loading="lazy" srcset="assets/octavitin/cover-480.webp 480w, assets/octavitin/cover-720.webp 720w, assets/octavitin/cover.webp 1024w" sizes="(max-width:960px) 300px, 520px">
           <span class="book__title" aria-hidden="true">Octavitin<small>The Rules of Under</small></span>
           <span class="book__author" aria-hidden="true">Patrick Padgett</span>
           <span class="book__call" aria-hidden="true"><b>JUV</b><b>PAD</b></span>
@@ -324,7 +325,7 @@ databank% <span class="cur">▌</span></pre></div></div></div>
           <p class="pocket__label"><b>PADGETT PUBLIC LIBRARY</b><small>Please return this card with the book</small></p>
         </div>
       </div>
-      <p class="due__ctas"><a class="btn btn--slime" href="https://octavitin.patpadgett.com/#chapter-one" id="read-btn" data-open-reader aria-haspopup="dialog" aria-controls="reader">Read Chapter One</a><a class="btn btn--ghost" href="https://octavitin.patpadgett.com/">The book’s own site ↗</a></p>
+      <p class="due__ctas"><a class="btn btn--slime" href="https://octavitin.patpadgett.com/#chapter-one" id="read-btn" data-open-reader aria-haspopup="dialog" aria-controls="reader">Read the opening</a><a class="btn btn--ghost" href="https://octavitin.patpadgett.com/">The book’s own site ↗</a></p>
     </div>
   </div>
 </section>
@@ -419,23 +420,24 @@ databank% <span class="cur">▌</span></pre></div></div></div>
 </dialog>
 
 <!-- ===== CONTACT ===== -->
-<footer class="pack" id="contact" role="contentinfo" aria-labelledby="contact-h">
+</main>
+<footer class="pack" id="contact" aria-labelledby="contact-h">
   <h2 class="pack__h" id="contact-h">Get in touch</h2>
   <div class="pack__obj">
     <img class="pack__plate" src="assets/plates/waxpack-s.webp" srcset="assets/plates/waxpack-s.webp 700w, assets/plates/waxpack.webp 1536w" sizes="(max-width:960px) 420px, 30vw" width="1536" height="1024" alt="">
     <p class="pack__brand"><b>GARBAGE PAIL PAT</b><small>5 STICKERS · 1 STICK OF GUM</small></p>
   </div>
   <ul class="pack__cards">
-    <li><a class="gpk" href="mailto:pat@patpadgett.com"><span class="gpk__num" aria-hidden="true">1a</span><img src="assets/toys/card-emil.webp" width="512" height="768" alt="" loading="lazy"><span class="gpk__name"><b>E-MAIL EMIL</b></span><span class="gpk__sub">pat@<wbr>patpadgett.com</span></a></li>
-    <li><a class="gpk" href="https://github.com/patpadgett" rel="me noopener"><span class="gpk__num" aria-hidden="true">2a</span><img src="assets/toys/card-herb.webp" width="512" height="768" alt="" loading="lazy"><span class="gpk__name"><b>GIT HUB HERB</b></span><span class="gpk__sub">github.com/<wbr>patpadgett</span></a></li>
-    <li><a class="gpk" href="https://www.linkedin.com/in/patpadgett" rel="me noopener"><span class="gpk__num" aria-hidden="true">3a</span><img src="assets/toys/card-lenny.webp" width="512" height="768" alt="" loading="lazy"><span class="gpk__name"><b>LINKED LENNY</b></span><span class="gpk__sub">linkedin.com/<wbr>in/<wbr>patpadgett</span></a></li>
-    <li><a class="gpk" href="/classic/"><span class="gpk__num" aria-hidden="true">4a</span><img src="assets/toys/card-cal.webp" width="512" height="768" alt="" loading="lazy"><span class="gpk__name"><b>CLASSIC CAL</b></span><span class="gpk__sub">the old homepage</span></a></li>
-    <li><span class="gpk gpk--gum"><span class="gpk__num" aria-hidden="true">5a</span><img src="assets/toys/card-gum.webp" width="512" height="768" alt="" loading="lazy"><span class="gpk__name"><b>GUM</b></span><span class="gpk__sub">Tampa Bay, Florida</span></span></li>
+    <li><a class="gpk" href="mailto:pat@patpadgett.com"><span class="gpk__num" aria-hidden="true">1a</span><img src="assets/toys/card-emil.webp" width="512" height="768" alt="" loading="lazy" srcset="assets/toys/card-emil-256.webp 256w, assets/toys/card-emil-384.webp 384w, assets/toys/card-emil.webp 512w" sizes="(max-width:640px) 45vw, 220px"><span class="gpk__name"><b>E-MAIL EMIL</b></span><span class="gpk__sub">pat@<wbr>patpadgett.com</span></a></li>
+    <li><a class="gpk" href="https://github.com/patpadgett" rel="me noopener"><span class="gpk__num" aria-hidden="true">2a</span><img src="assets/toys/card-herb.webp" width="512" height="768" alt="" loading="lazy" srcset="assets/toys/card-herb-256.webp 256w, assets/toys/card-herb-384.webp 384w, assets/toys/card-herb.webp 512w" sizes="(max-width:640px) 45vw, 220px"><span class="gpk__name"><b>GIT HUB HERB</b></span><span class="gpk__sub">github.com/<wbr>patpadgett</span></a></li>
+    <li><a class="gpk" href="https://www.linkedin.com/in/patpadgett" rel="me noopener"><span class="gpk__num" aria-hidden="true">3a</span><img src="assets/toys/card-lenny.webp" width="512" height="768" alt="" loading="lazy" srcset="assets/toys/card-lenny-256.webp 256w, assets/toys/card-lenny-384.webp 384w, assets/toys/card-lenny.webp 512w" sizes="(max-width:640px) 45vw, 220px"><span class="gpk__name"><b>LINKED LENNY</b></span><span class="gpk__sub">linkedin.com/<wbr>in/<wbr>patpadgett</span></a></li>
+    <li><a class="gpk" href="/classic/"><span class="gpk__num" aria-hidden="true">4a</span><img src="assets/toys/card-cal.webp" width="512" height="768" alt="" loading="lazy" srcset="assets/toys/card-cal-256.webp 256w, assets/toys/card-cal-384.webp 384w, assets/toys/card-cal.webp 512w" sizes="(max-width:640px) 45vw, 220px"><span class="gpk__name"><b>CLASSIC CAL</b></span><span class="gpk__sub">the old homepage</span></a></li>
+    <li><span class="gpk gpk--gum"><span class="gpk__num" aria-hidden="true">5a</span><img src="assets/toys/card-gum.webp" width="512" height="768" alt="" loading="lazy" srcset="assets/toys/card-gum-256.webp 256w, assets/toys/card-gum-384.webp 384w, assets/toys/card-gum.webp 512w" sizes="(max-width:640px) 45vw, 220px"><span class="gpk__name"><b>GUM</b></span><span class="gpk__sub">Tampa Bay, Florida</span></span></li>
   </ul>
   <p class="pack__fine">© 2026 Patrick Padgett · Tampa Bay, Florida · Made from a bedroom in 1988.</p>
 </footer>
 
-</main>
+</div>
 <script src="set.js" defer></script>
 <script src="octavitin.js" defer></script>
 <script src="grime.js" defer></script>

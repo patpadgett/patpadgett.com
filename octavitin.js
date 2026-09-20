@@ -88,6 +88,15 @@
     e.preventDefault(); s.scrollBy({ top: step, behavior: reduce ? 'auto' : 'smooth' });
   });
   [page, spread].forEach(function (s) { s.addEventListener('scroll', function () { reader.classList.toggle('is-scrolled', s.scrollTop > 24); }, { passive: true }); });
+  /* keep Tab inside the open book */
+  reader.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var f = [].filter.call(reader.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])'), function (el) { return el.offsetParent !== null && !el.disabled; });
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   reader.addEventListener('close', function () {
     reader.classList.remove('is-opening');
     document.body.style.overflow = prevOverflow;

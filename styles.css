@@ -112,11 +112,11 @@ h1,h2{margin:0}
 @keyframes poweron2{0%{opacity:0;transform:scaleY(.02)}40%{opacity:1;transform:scaleY(.06)}70%{transform:scaleY(1.02) scaleX(.9)}100%{opacity:1;transform:none}}
 
 /* remote: the plate stands between the set and the guide */
-.remote{grid-area:remote;position:relative;align-self:start;justify-self:start;width:min(60%,150px);margin-top:clamp(8px,1.5vw,20px);filter:drop-shadow(0 26px 22px rgba(0,0,0,.7))}
+.remote{grid-area:remote;position:relative;align-self:start;justify-self:start;width:min(66%,166px);margin-top:clamp(8px,1.5vw,20px);filter:drop-shadow(0 26px 22px rgba(0,0,0,.7))}
 .remote__plate{width:100%;display:block}
 /* measured on the cropped plate: buttons at x 51.6%, y 17 / 29.1 / 41.2 / 53.2 / 65.3 (+77.4 for the sixth), ⌀13.6% */
 .remote__keys{position:absolute;inset:0}
-.remote__key{position:absolute;left:30%;width:150%;height:12%;transform:translateY(-50%);border-radius:6px;border:0;padding:0;background:transparent;cursor:pointer;color:transparent;-webkit-tap-highlight-color:transparent}
+.remote__key{position:absolute;left:30%;width:150%;height:10.8%;transform:translateY(-50%);border-radius:6px;border:0;padding:0;background:transparent;cursor:pointer;color:transparent;-webkit-tap-highlight-color:transparent}
 /* remote7 plate: 7 buttons, centres measured at 18/29/40/51/62/73/84 % of the plate height */
 .remote__key:nth-child(1){top:18%}.remote__key:nth-child(2){top:29%}.remote__key:nth-child(3){top:40%}.remote__key:nth-child(4){top:51%}.remote__key:nth-child(5){top:62%}.remote__key:nth-child(6){top:73%}.remote__key:nth-child(7){top:84%}
 /* the visible button: a circle over the plate's own button (plate x 51.6% = 32.7% of this row) */
@@ -407,3 +407,14 @@ h1,h2{margin:0}
 }
 
 @media(max-width:340px){.title__name{font-size:clamp(24px,7.4vw,96px)}.title{padding-top:7%}}
+
+@media print{
+  body,body::before{background:#fff!important;color:#000!important}
+  .set,.shelf,.remote,.tv,.table,.smoke,.mac,.pack__art,.flashlight,.bedtime__floor::before,.bedtime__floor::after,.fuzz,.tv__roll,.tv__dot,.bumper,.leaves,.polaroid,.printer{display:none!important}
+  .sec{padding:12pt 0!important;break-inside:avoid}
+  .sec__head h2,.pack__h{color:#000!important;text-shadow:none!important;font-size:24pt!important}
+  .sec__lede,.sec p,.log li,.grime__pitch,.pitch{color:#000!important;text-shadow:none!important}
+  a{color:#000!important;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt}
+  .guide{border:1px solid #000}
+}

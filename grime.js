@@ -87,7 +87,7 @@
     setTimeout(function () { var r = printer.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) feed(); }, 1200);
   } else feed();
 
-  var printing = false;
+  var pending = false, printing = false;
   function reprint(b) {
     if (isStatic() || !sec.classList.contains('is-fed')) { return story(b).then(function () { fill(b); status(b); }); }
     printing = true;
@@ -95,7 +95,7 @@
     return Promise.all([story(b), new Promise(function (r) { setTimeout(r, 520); })]).then(function () {
       fill(b); status(b);
       paper.classList.remove('is-tearing'); void paper.offsetWidth; paper.classList.add('is-refed');
-      setTimeout(function () { printing = false; }, 1600);
+      setTimeout(function () { printing = false; if (pending) { pending = false; stack.click(); } }, 1600);
     });
   }
 
@@ -103,7 +103,8 @@
   function layout() { BOOK.forEach(function (b, i) { if (b.fig) b.fig.dataset.i = i; }); }
   if (stack) {
     stack.addEventListener('click', function () {
-      if (printing || BOOK.length < 2) return;
+      if (BOOK.length < 2) return;
+      if (printing) { pending = true; return; }
       var top = BOOK.shift(); BOOK.push(top);
       if (top.fig && !isStatic()) { top.fig.classList.add('is-lifting'); setTimeout(function () { top.fig.classList.remove('is-lifting'); layout(); }, 240); }
       else layout();

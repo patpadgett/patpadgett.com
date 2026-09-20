@@ -15,7 +15,7 @@
     3: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -104 },
     4: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -52 },
     5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 0 },
-    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · Chapter One', rot: 52 },
+    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · the opening pages', rot: 52 },
     7: { name: 'GRIME95!', href: '#grime95', line: 'Ponder County booking records', rot: 104 }
   };
   var knob = document.getElementById('knob'), bumper = document.getElementById('bumper');
@@ -166,6 +166,18 @@
     if (!on) { bumper.className = 'bumper'; clearTimeout(timer); }
     if (!on && audio && !audio.paused) { audio.pause(); }
   }
+  /* in-page guide rows that aren't channels (CONTACT): jump, then hand focus to the destination */
+  [].forEach.call(document.querySelectorAll('.guide__row[data-jump]'), function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      var t = document.querySelector(a.getAttribute('href')); if (!t) return;
+      e.preventDefault();
+      if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
+      t.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+      if (location.hash !== a.getAttribute('href')) history.pushState(null, '', a.getAttribute('href'));
+      t.focus({ preventScroll: true });
+    });
+  });
   if (power) power.addEventListener('click', function () { press(power); setPower(!isOn); });
   if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { tv.classList.toggle('offscreen', !es[0].isIntersecting); }).observe(tv);
   /* the knob and guide are dead while the set is off */
