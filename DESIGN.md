@@ -162,7 +162,7 @@ A dark walnut room lit by a cream TV Guide, with 1980s pastel-and-neon accents u
 - Grey plastic for cartridges and knob comes from the plates, not tokens.
 
 ### Named Rules
-**The Phosphor Rule.** Glow (text-shadow, box-shadow blur) is allowed only inside `.tv__glass`, on the pilot lamp and the Mac screen. Everywhere else, shadows are hard offsets (`4px 4px 0 #000`, `0 5px 0 <darker>`).
+**The Phosphor Rule.** Glow (text-shadow, box-shadow blur) is allowed only inside `.tv__glass`, on the pilot lamp and the Mac screen. The book cover's title and author use stacked hard offsets, not blur. Everywhere else, shadows are hard offsets (`4px 4px 0 #000`, `0 5px 0 <darker>`).
 **The Flat Field Rule.** Accents are solid fills. No gradients except material ones — woodgrain, cartridge ridges, green-bar paper, the knob's radial plastic.
 
 ## Typography
@@ -171,7 +171,7 @@ A dark walnut room lit by a cream TV Guide, with 1980s pastel-and-neon accents u
 **Label/Pixel Font:** Press Start 2P (monospace)
 **Terminal Font:** VT323 (monospace)
 **Body Font:** Nunito variable 300–900 (system-ui, sans-serif)
-**Section guests:** Brygada 1918 (the book, its card, the reader), Courier Prime + Doto (the printout)
+**Section guests:** Brygada 1918 (the book, its card, the reader; woff2 latin subset ~12KB each with TTF fallback), Courier Prime + Doto (the printout)
 
 All self-hosted in assets/fonts, latin subset only.
 
@@ -191,11 +191,11 @@ All self-hosted in assets/fonts, latin subset only.
 
 ## Layout
 
-`.room` is a 1320px column with `clamp(12px,3vw,40px)` gutters. The hero (`.set`) is a three-column grid, `1.9fr / 240px / 0.7fr` — TV | remote | guide — with the cartridge shelf spanning below (five carts, `repeat(5, minmax(0,170px))`). DOM order is TV → guide → remote → shelf so keyboard order follows the mobile reading order.
+`.room` is a 1320px column with `clamp(12px,3vw,40px)` gutters. The hero (`.set`) is a three-column grid, `1.75fr / minmax(200px,.3fr) / minmax(300px,.9fr)` — TV | remote | guide — with the cartridge shelf spanning below (five carts, `repeat(5, minmax(0,170px))`). DOM order is TV → guide → remote → shelf so keyboard order follows the mobile reading order.
 
 Sections stack with `clamp(48px,7vw,90px)` top padding and open with a section tag (PP-001…PP-006) beside the display heading and one lede line. Each section is its own still life: Music (cassette), the coffee table (magazine fan), Madballs (3×3), Work (Mac + log), Octavitin (pitch | book | card, `0.75fr / 1.2fr / 0.7fr`), Booking records (Polaroid stack | printer), Contact (five GPK cards under the wax pack).
 
-Breakpoints: ≤1100px the hero goes single-column (TV capped at 560px, then guide, then remote, then shelf) so the whole guide fits the first screen; ≤960px sections collapse to one column and the book section becomes pitch → CTA → book → card; ≤640px the shelf is 2×2 + 1 centered, pack 2-up; ≤380px knob 72px; ≤340px the TV title drops a size. No horizontal overflow at 320/390/1024/1440 (the coffee-table fan is intentionally clipped).
+Breakpoints: ≤1100px the hero goes single-column (TV capped at 560px, then guide, then shelf, then the remote at 180px) so the whole guide fits the first screen and the bio follows the remote; ≤960px sections collapse to one column and the book section becomes pitch → CTA → book → card; ≤640px the shelf is 2×2 + 1 centered, pack 2-up; ≤380px knob 72px; ≤340px the TV title drops a size. No horizontal overflow at 320/390/1024/1440 (the coffee-table fan is intentionally clipped).
 
 Measured plate boxes (percent of plate): TV glass 11.5/14/62/65, knob 80.5/12.8 ⌀11, pilot lamp 89.9/38.5 ⌀1.3; cartridge label recess 40.5/13.5/44.5/53.5; remote keys at 17/29.1/41.2/53.2/65.3/77.4% height (seven-button plate: 18/29/40/51/62/73/84), MOTION switch at 96.5%; book cover face 6/2.5/90/95; printer slot x 13→87%.
 
@@ -228,16 +228,16 @@ Tactile and toy-like: every control is a physical thing you press, and every one
 - **Ghost (`.btn--ghost`):** translucent black, 3px cream border; hover fills cream with black text.
 
 ### TV Guide (signature)
-Cream paper card (2px corners) with a pixel head, then one row per channel: a 42px ink badge with the channel number in Press Start 2P 24px, a bold title, a 13px description that names the real destination. Rows are real links (external for 3/4/5, in-page for 6/7/CONTACT); with JS a channel row shows a 700ms TUNING bumper first. Hover underlines the title in pink, 3px.
+Cream paper card (2px corners) with a pixel head, then two tiers. Tier one, one row per door: a 42px ink badge with the channel number in Press Start 2P 24px, a bold title, a 13px description that names the real destination — 3 WORK, 6 MUSIC, 7 BLOG, ✉ CONTACT. Then a 2px ink rule and an ALSO IN THIS ROOM sub-head (pixel 11px + "fiction, further down the page"), under which the two fiction channels sit as minor rows: smaller 18px badge in `#5a3a1a`, 15px title, 12px description that says "kids' book" / "serialized fiction". Rows are real links (external for 3/6/7, in-page for 4/5/CONTACT); with JS a channel row shows a 650ms TUNING bumper first. Hover underlines the title in pink, 3px. Hovering a row no longer turns the knob.
 
 ### Remote (signature)
-Photoreal Space Command plate; each key is a plate-wide 12%-tall row with the button drawn by `::before`. Beside every key, a masking-tape label (`tape-cream`, Press Start 2P 11px, ±1° rotation, hard 1×2px shadow): POWER (red ink), 3 MUSIC, 4 WORK, 5 BLOG, 6 BEDTIME, 7 GRIME95, MUTE (green when playing). At the foot, a slide switch with engraved ON/OFF and a MOTION tape label (`role=switch`); it toggles `html.static`, persisted as `pp-motion`. Status line in cyan VT323 below.
+Photoreal Space Command plate; each key is a plate-wide 12%-tall row with the button drawn by `::before`. Beside every key, a masking-tape label (`tape-cream`, Press Start 2P 11px, ±1° rotation, hard 1×2px shadow): POWER (red ink), 3 WORK, 4 BEDTIME, 5 GRIME95, 6 MUSIC, 7 BLOG, MUTE (green when playing). Every key row is ≥44px tall (`min-height:44px`). At the foot, a slide switch with engraved ON/OFF and a MOTION tape label (`role=switch`, last in DOM so tab order matches the plate); it toggles `html.static`, persisted as `pp-motion`. Status line in cyan VT323 below.
 
 ### Channel knob (signature)
-`#knob` button at 80.5/12.8% of the TV plate. Press → rotates to the next detent with a 320ms overshoot and shows a bumper; press again while the bumper shows → tunes in. Arrow keys turn it. Bumper digit rolls in from above (380ms).
+`#knob` button at 80.5/12.8% of the TV plate, with a `::after` halo that keeps the hit area ≥44px on phones. Press → rotates to the next detent with a 320ms overshoot and shows a bumper that stays until changed (no timeout); a slime `#tunein` button (44px, hard base) appears low on the glass and tunes in. Escape clears the bumper and returns focus to the knob. Arrow keys turn it. Bumper digit rolls in from above (380ms).
 
 ### Cartridges
-Grey plate; label recess holds 8-bit box art (assets/carts/label-*.webp) over a black→dark-red band with a cream title (Nunito 900, wraps on words) and a gold subtitle. Below each cart a plain shelf caption in pixel 11px (MUSIC · MAGAZINES · MADBALLS · WORK · THE BOOK). Hover lifts 12px in 3 steps. aria-label names the destination and "on this page".
+Grey plate; label recess holds 8-bit box art (assets/carts/label-*.webp) over a black→dark-red band with a cream title (Nunito 900, wraps on words) and a gold subtitle. Above the shelf an ON THIS PAGE hint in pixel 11px (`#c99a63`); below each cart a plain shelf caption in pixel 11px (WORK STORY · THE BOOK · THE RECORD · MAGAZINES · MADBALLS) so on-page routes never share a label with the guide's external doors. Hover lifts 12px in 3 steps. aria-label names the destination and "on this page".
 
 ### Library card + pocket
 Cream ruled card (24px rule, VT323 15px, typewriter voice) tucked into a kraft pocket with a thumb notch; blue date stamps, cursive borrowers, TONIGHT in red. The last stamped row clears the pocket lip by ≥18px.

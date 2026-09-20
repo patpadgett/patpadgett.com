@@ -1,8 +1,8 @@
 /* PP-005 · Bedtime reading — a library hardcover on the bedroom carpet.
    Plate: assets/octavitin/book.webp (blank navy buckram, straight on). Measured cover face: 6%→96% x, 2.5%→97.5% y.
    Cover art is the book's real illustration; title/author are set live in the book's own face (Brygada 1918). */
-@font-face{font-family:'Brygada 1918';font-weight:400;src:url(assets/fonts/brygada1918-400.ttf) format('truetype');font-display:swap}
-@font-face{font-family:'Brygada 1918';font-weight:700;src:url(assets/fonts/brygada1918-700.ttf) format('truetype');font-display:swap}
+@font-face{font-family:'Brygada 1918';font-weight:400;src:url(assets/fonts/brygada1918-400.woff2) format('woff2'),url(assets/fonts/brygada1918-400.ttf) format('truetype');font-display:swap}
+@font-face{font-family:'Brygada 1918';font-weight:700;src:url(assets/fonts/brygada1918-700.woff2) format('woff2'),url(assets/fonts/brygada1918-700.ttf) format('truetype');font-display:swap}
 :root{--navy:#171d32;--orangle:#ffb16b}
 .sec--octavitin,.reader{--book:'Brygada 1918',Georgia,serif;--navy:#171d32;--orangle:#ffb16b;--card:#f2e6c4;--stamp:#2b3a8a;--due:#c2261f}
 
@@ -25,9 +25,9 @@
 .book__face{position:absolute;left:6%;top:2.5%;width:90%;height:95%;overflow:hidden;border-radius:2px 5px 5px 2px;transform-origin:0 50%;transform-style:preserve-3d;backface-visibility:hidden;isolation:isolate}
 .book__art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .book__face::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0,rgba(0,0,0,.18) 3%,rgba(255,255,255,.08) 4.5%,transparent 8%),linear-gradient(180deg,rgba(23,29,50,.82) 0,rgba(23,29,50,.55) 16%,rgba(23,29,50,0) 30%);pointer-events:none}
-.book__title{position:absolute;left:8%;right:8%;top:5.5%;margin:0;z-index:1;text-align:center;font:700 clamp(30px,9.5cqw,44px)/.9 var(--book);letter-spacing:-.035em;color:var(--orangle);text-shadow:0 2px 0 #0b0f1c,0 0 18px rgba(0,0,0,.6)}
+.book__title{position:absolute;left:8%;right:8%;top:5.5%;margin:0;z-index:1;text-align:center;font:700 clamp(30px,9.5cqw,44px)/.9 var(--book);letter-spacing:-.035em;color:var(--orangle);text-shadow:0 2px 0 #0b0f1c,0 3px 0 #0b0f1c}
 .book__title small{display:block;margin-top:.28em;font:400 .40em/1.1 var(--book);letter-spacing:-.01em;color:#f7efd9}
-.book__author{position:absolute;left:0;right:0;bottom:4%;z-index:1;margin:0;text-align:center;font:700 clamp(10px,3cqw,13px)/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#f7efd9;text-shadow:0 1px 2px #000}
+.book__author{position:absolute;left:0;right:0;bottom:4%;z-index:1;margin:0;text-align:center;font:700 clamp(10px,3cqw,13px)/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#f7efd9;text-shadow:0 1px 0 #000,0 2px 0 #000}
 /* library call-number sticker, over the ghost where the old one peeled off */
 .book__call{position:absolute;left:9%;bottom:6.5%;z-index:2;width:17%;padding:5% 0 4%;background:#f5eed6;color:#1a1210;text-align:center;font:400 clamp(7px,2cqw,9px)/1.35 var(--pix);box-shadow:0 1px 2px rgba(0,0,0,.6)}
 .book__call b{display:block;font-weight:400}
@@ -196,5 +196,5 @@
 
 @keyframes slidein{from{transform:translateX(-14px);opacity:0}to{transform:none;opacity:1}}
 
-.page__cue{display:block;text-align:right;margin:-6px 0 10px;font:400 11px/1 var(--pix);color:#8a7a5a;letter-spacing:.04em;opacity:1;transition:opacity .3s}
+.page__cue{display:block;text-align:right;margin:-6px 0 10px;font:400 11px/1 var(--pix);color:#5a4a2e;letter-spacing:.04em;opacity:1;transition:opacity .3s}
 .reader.is-scrolled .page__cue{opacity:0}

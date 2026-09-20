@@ -27,7 +27,7 @@ h1,h2{margin:0}
 .room{max-width:1320px;margin:0 auto;padding:0 clamp(12px,3vw,40px) 40px}
 
 /* ===================== THE SET ===================== */
-.set{padding-top:clamp(12px,2vw,24px);display:grid;grid-template-columns:minmax(0,1.9fr) minmax(240px,.36fr) minmax(240px,.7fr);grid-template-areas:"tv remote panel" "shelf shelf shelf";gap:clamp(14px,2.5vw,28px) clamp(14px,2.5vw,32px);align-items:start}
+.set{padding-top:clamp(12px,2vw,24px);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(200px,.3fr) minmax(300px,.9fr);grid-template-areas:"tv remote panel" "shelf shelf shelf";gap:clamp(14px,2.5vw,28px) clamp(14px,2.5vw,32px);align-items:start}
 .tv{position:relative;grid-area:tv;filter:drop-shadow(0 40px 50px rgba(0,0,0,.7))}
 .tv__plate{width:100%}
 /* measured on the plate: glass 11.5%→73.5% x, 14%→79% y; knob centre (86%,21%), ⌀11% */
@@ -36,6 +36,7 @@ h1,h2{margin:0}
 .knob{position:absolute;left:80.5%;top:12.8%;width:11%;aspect-ratio:1;border-radius:50%;border:0;padding:0;cursor:pointer;background:radial-gradient(circle at 40% 35%,#f0f0f0,#8a8a8a 55%,#3a3a3a 70%,transparent 71%);
   transform:rotate(var(--rot,-38deg));transition:transform .09s steps(2)}
 .js:not(.static) .knob{transition:transform .32s cubic-bezier(.34,1.56,.64,1)}
+.knob::after{content:"";position:absolute;left:50%;top:50%;width:max(100%,44px);height:max(100%,44px);transform:translate(-50%,-50%);border-radius:50%}
 .knob__ptr{position:absolute;left:50%;top:14%;width:8%;height:36%;margin-left:-4%;background:#c8261e;border-radius:2px;box-shadow:0 0 0 1px #0008}
 .knob:hover .knob__ptr{background:#ff3b2e}
 
@@ -76,7 +77,12 @@ h1,h2{margin:0}
 @keyframes rollin{0%{transform:translateY(-105%)}100%{transform:none}}
 .static .bumper b i{animation:none}
 .bumper span{display:block;font:400 clamp(16px,2.4vw,34px)/1 var(--pix)}
-.bumper small{display:block;margin-top:1em;font:400 clamp(9px,1vw,13px)/1.4 var(--pix);opacity:.85}
+.bumper small{display:block;margin:1em 0 clamp(40px,7vw,64px);font:400 clamp(9px,1vw,13px)/1.4 var(--pix);opacity:.85}
+.tunein{position:absolute;left:50%;bottom:6%;white-space:nowrap;transform:translateX(-50%);z-index:3;font:900 15px/1 var(--body);letter-spacing:.06em;color:#000;background:var(--slime);border:0;border-radius:6px;padding:0 18px;height:44px;cursor:pointer;box-shadow:0 4px 0 #1a7a08}
+.tunein:hover{transform:translate(-50%,2px);box-shadow:0 2px 0 #1a7a08}
+.tunein:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.tunein[hidden]{display:none}
+.tv.is-off .tunein{visibility:hidden}
 .bumper__tune{font-family:var(--term)!important;font-size:clamp(30px,5vw,70px)!important}
 .bumper--3{background:#000;color:var(--slime)}.bumper--4{background:#171d32;color:#ffb16b}.bumper--5{background:#0000aa;color:#ffff55}.bumper--6{background:var(--red)}.bumper--7{background:var(--cyan);color:#001}
 
@@ -116,7 +122,7 @@ h1,h2{margin:0}
 .remote__plate{width:100%;display:block}
 /* measured on the cropped plate: buttons at x 51.6%, y 17 / 29.1 / 41.2 / 53.2 / 65.3 (+77.4 for the sixth), ⌀13.6% */
 .remote__keys{position:absolute;inset:0}
-.remote__key{position:absolute;left:30%;width:150%;height:10.8%;transform:translateY(-50%);border-radius:6px;border:0;padding:0;background:transparent;cursor:pointer;color:transparent;-webkit-tap-highlight-color:transparent}
+.remote__key{position:absolute;left:30%;width:150%;height:10.8%;min-height:44px;transform:translateY(-50%);border-radius:6px;border:0;padding:0;background:transparent;cursor:pointer;color:transparent;-webkit-tap-highlight-color:transparent}
 /* remote7 plate: 7 buttons, centres measured at 18/29/40/51/62/73/84 % of the plate height */
 .remote__key:nth-child(1){top:18%}.remote__key:nth-child(2){top:29%}.remote__key:nth-child(3){top:40%}.remote__key:nth-child(4){top:51%}.remote__key:nth-child(5){top:62%}.remote__key:nth-child(6){top:73%}.remote__key:nth-child(7){top:84%}
 /* the visible button: a circle over the plate's own button (plate x 51.6% = 32.7% of this row) */
@@ -140,7 +146,7 @@ h1,h2{margin:0}
 /* motion switch: slide switch set into the plate foot, tape label beside it like the keys */
 .remote__motion{display:none}
 .js .remote__motion{display:block}
-.remote__motion{position:absolute;left:30%;top:96.5%;width:150%;height:9%;min-height:28px;transform:translateY(-50%);border:0;padding:0;background:transparent;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
+.remote__motion{position:absolute;left:30%;top:96.5%;width:150%;height:9%;min-height:44px;transform:translateY(-50%);border:0;padding:0;background:transparent;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
 .remote__motion i{position:absolute;left:14.4%;top:50%;width:11%;aspect-ratio:2/1;transform:translate(-50%,-50%);border-radius:3px;background:linear-gradient(180deg,#0e0e0e,#2a2a2a);box-shadow:inset 0 1px 2px #000,0 1px 0 rgba(255,255,255,.12)}
 .remote__motion i::after{content:"";position:absolute;top:10%;bottom:10%;left:8%;width:40%;border-radius:2px;background:linear-gradient(180deg,#e8e8e8,#8a8a8a);box-shadow:0 1px 1px #000;transition:transform .16s cubic-bezier(.16,1,.3,1)}
 .remote__motion[aria-checked="false"] i::after{transform:translateX(105%)}
@@ -155,7 +161,7 @@ h1,h2{margin:0}
 .remote__brand{position:absolute;left:0;right:0;top:100%;margin:8px 0 0;text-align:center;font:400 clamp(6px,.6vw,8px)/1 var(--pix);color:#d8c8a8;letter-spacing:.08em;text-shadow:0 -1px 0 #000;pointer-events:none}
 .remote__state{position:absolute;top:104%;left:0;right:-70%;margin:12px 0 0;text-align:left;font:400 14px/1.3 var(--term);color:var(--cyan)}
 
-@media(max-width:1100px){.set{grid-template-columns:1fr!important;grid-template-areas:"tv" "panel" "remote" "shelf"}.set>.shelf{margin-bottom:24px}.tv{max-width:560px;margin:0 auto;width:100%}.panel{max-width:520px;margin:0 auto;width:100%}.remote{width:min(170px,42vw);margin:8px auto 48px 14%}.remote__key{width:150%}.remote__state{left:0;right:-70%}}
+@media(max-width:1100px){.set{grid-template-columns:1fr!important;grid-template-areas:"tv" "panel" "shelf" "remote"}.set>.shelf{margin-bottom:24px}.tv{max-width:560px;margin:0 auto;width:100%}.panel{max-width:520px;margin:0 auto;width:100%}.remote{width:min(180px,46vw);margin:8px auto 56px 14%}.remote__key{width:150%}.remote__state{left:0;right:-70%}}
 
 /* right column: the guide */
 .panel{grid-area:panel;display:grid;gap:18px;align-content:start}
@@ -169,6 +175,12 @@ h1,h2{margin:0}
 .guide__t{font:900 18px/1.1 var(--body);letter-spacing:.06em}
 .guide__d{font-size:13px;color:#4a3a2a;line-height:1.3}
 .guide__row:hover .guide__t,.guide__row:focus-visible .guide__t{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--pink)}
+.guide__sub{margin:10px 0 0;padding:8px 4px 4px;border-top:2px solid var(--ink);font:400 11px/1.5 var(--pix);color:#5a3a1a;display:flex;flex-wrap:wrap;gap:0 10px;align-items:baseline}
+.guide__sub span{font:700 12px/1.4 var(--body);text-transform:none;letter-spacing:0;color:#7a5a3a}
+.guide__row--minor{min-height:48px;padding:6px 4px}
+.guide__row--minor b{font-size:18px;background:#5a3a1a;padding:8px 0}
+.guide__row--minor .guide__t{font-size:15px}
+.guide__row--minor .guide__d{font-size:12px}
 .guide__row.on b{background:var(--red)}
 .guide__row--contact b{font-size:20px;background:#3a2a1a}
 .pack__h{grid-column:1/-1;margin:0 0 -8px;font:400 clamp(42px,6vw,84px)/.9 var(--disp);color:var(--cream);text-shadow:4px 4px 0 #000;letter-spacing:.02em}
@@ -192,9 +204,12 @@ h1,h2{margin:0}
 .cart::before{content:"";position:absolute;right:13%;bottom:15%;width:13%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#eee,#999 60%,#666);z-index:2;box-shadow:0 1px 0 #fff8 inset}
 .cart:hover,.cart:focus-visible{transform:translateY(-12px)}
 /* plain caption on the shelf edge under each cart — the label art stays tiny and authentic */
+.shelf__hint{position:absolute;left:50%;top:-22px;transform:translateX(-50%);margin:0;font:400 11px/1 var(--pix);letter-spacing:.06em;color:#c99a63;text-shadow:1px 1px 0 #000;white-space:nowrap}
+.vhs__eyebrow{display:block;font:400 11px/1 var(--pix);letter-spacing:.06em;color:#b71212;margin-bottom:.5em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cart__cap{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:14px;font:400 11px/1 var(--pix);letter-spacing:.04em;color:#e9d3ad;text-shadow:1px 1px 0 #000;white-space:nowrap}
 .cart:hover .cart__cap,.cart:focus-visible .cart__cap{color:var(--yellow)}
-.shelf{padding-bottom:34px}
+.shelf{padding-bottom:34px;margin-top:26px}
 
 /* ===================== WHO — VHS ===================== */
 .who{padding:clamp(48px,7vw,90px) 0 0;display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:center}
@@ -355,9 +370,9 @@ h1,h2{margin:0}
 @media(max-width:960px){
   .pack__cards{grid-template-columns:repeat(3,minmax(0,1fr))}
   .set{grid-template-columns:1fr}
-  .set{grid-template-areas:"tv" "panel" "remote" "shelf"}
+  .set{grid-template-areas:"tv" "panel" "shelf" "remote"}
   .set>.shelf{margin-bottom:24px}
-  .remote{width:min(170px,42vw);margin:8px auto 48px 14%}
+  .remote{width:min(180px,46vw);margin:8px auto 56px 14%}
   .remote__key{width:150%}
   .remote__state{left:0;right:-60%;text-align:left;font-size:13px}
   .panel{grid-template-columns:1fr 1fr;align-items:start}
@@ -410,7 +425,7 @@ h1,h2{margin:0}
 
 @media print{
   body,body::before{background:#fff!important;color:#000!important}
-  .set,.shelf,.remote,.tv,.table,.smoke,.mac,.pack__art,.flashlight,.bedtime__floor::before,.bedtime__floor::after,.fuzz,.tv__roll,.tv__dot,.bumper,.leaves,.polaroid,.printer{display:none!important}
+  .set,.shelf,.shelf__hint,.tunein,.remote,.tv,.table,.smoke,.mac,.pack__art,.flashlight,.bedtime__floor::before,.bedtime__floor::after,.fuzz,.tv__roll,.tv__dot,.bumper,.leaves,.polaroid,.printer{display:none!important}
   .sec{padding:12pt 0!important;break-inside:avoid}
   .sec__head h2,.pack__h{color:#000!important;text-shadow:none!important;font-size:24pt!important}
   .sec__lede,.sec p,.log li,.grime__pitch,.pitch{color:#000!important;text-shadow:none!important}

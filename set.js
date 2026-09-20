@@ -37,19 +37,24 @@
     cur = n;
     knob.style.setProperty('--rot', CH[n].rot + 'deg');
     knob.dataset.ch = n;
-    knob.setAttribute('aria-label', 'Channel knob. Channel ' + n + ', ' + CH[n].name + '. Press to turn; press again to tune in. Arrow keys also turn it.');
+    knob.setAttribute('aria-label', 'Channel knob. Channel ' + n + ', ' + CH[n].name + '. Press to turn to the next channel; the set then shows a TUNE IN button. Arrow keys also turn it.');
     rows.forEach(function (r) { r.classList.toggle('on', r.dataset.ch == n); });
     click();
     if (announce) showBumper(n);
   }
+  var tunein = document.getElementById('tunein');
   function showBumper(n) {
     bumper.className = 'bumper on bumper--' + n;
-    bumper.innerHTML = '<b><i>' + n + '</i></b><span>' + CH[n].name + '</span><small>' + CH[n].line + ' · press again to tune in</small>';
+    bumper.innerHTML = '<b><i>' + n + '</i></b><span>' + CH[n].name + '</span><small>' + CH[n].line + '</small>';
+    if (tunein) { tunein.hidden = false; tunein.textContent = 'TUNE IN'; tunein.setAttribute('aria-label', 'Tune in to channel ' + n + ', ' + CH[n].name + ': ' + CH[n].line); }
     clearTimeout(timer);
-    timer = setTimeout(function () { bumper.className = 'bumper'; }, 2800);
   }
+  function hideBumper() { bumper.className = 'bumper'; if (tunein) tunein.hidden = true; }
+  if (tunein) tunein.addEventListener('click', function () { tune(cur); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && bumper.classList.contains('on')) { hideBumper(); knob.focus(); } });
   function tune(n, delay) {
     bumper.className = 'bumper on bumper--' + n;
+    if (tunein) tunein.hidden = true;
     bumper.innerHTML = '<span class="bumper__tune">TUNING…</span><small>' + CH[n].line + '</small>';
     setTimeout(function () {
       if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; if (location.hash !== CH[n].href) history.pushState(null, '', CH[n].href); } if (t) t.focus({ preventScroll: true }); return; }
@@ -57,10 +62,7 @@
     }, reduce ? 0 : (delay == null ? 350 : delay));
   }
   var next = function (d) { var n = cur + d; return n > 7 ? 3 : n < 3 ? 7 : n; };
-  knob.addEventListener('click', function () {
-    if (bumper.classList.contains('on')) { tune(cur); return; }
-    setCh(next(1), true);
-  });
+  knob.addEventListener('click', function () { setCh(next(1), true); });
   knob.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); setCh(next(1), true); }
     if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); setCh(next(-1), true); }
@@ -71,7 +73,6 @@
       if (reduce || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
       e.preventDefault(); setCh(+r.dataset.ch, false); tune(+r.dataset.ch, 650);
     });
-    r.addEventListener('mouseenter', function () { setCh(+r.dataset.ch, false); });
   });
   setCh(3, false);
 
@@ -163,7 +164,7 @@
     if (power) { power.setAttribute('aria-pressed', String(on)); power.setAttribute('aria-label', on ? 'Power. The set is on.' : 'Power. The set is off.'); }
     if (on && !reduce) { tv.classList.remove('was-on'); tv.classList.add('is-warming'); warm = setTimeout(function () { tv.classList.remove('is-warming'); tv.classList.add('was-on'); }, 1600); }
     else if (on) tv.classList.add('was-on');
-    if (!on) { bumper.className = 'bumper'; clearTimeout(timer); }
+    if (!on) { hideBumper(); clearTimeout(timer); }
     if (!on && audio && !audio.paused) { audio.pause(); }
   }
   /* in-page guide rows that aren't channels (CONTACT): jump, then hand focus to the destination */
