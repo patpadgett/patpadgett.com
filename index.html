@@ -63,8 +63,16 @@
       <div class="scan" aria-hidden="true"></div>
     </div>
     <span class="tv__lamp" aria-hidden="true"></span>
-    <button class="knob" id="knob" type="button" aria-label="Channel knob. Channel 3, Work. Press to turn to the next channel; the set then shows a TUNE IN button. Arrow keys also turn it." data-ch="3"><span class="knob__ptr"></span></button>
-    <button class="tunein" id="tunein" type="button" hidden>TUNE IN</button>
+    <div class="tvkeys" role="group" aria-label="Channel buttons">
+      <button class="tvkey tvkey--power" type="button" id="power" aria-pressed="true" aria-label="Power. The set is on."><i></i><span>POWER</span></button>
+      <button class="tvkey" type="button" data-ch="3" aria-label="Channel 3, Work — work.patpadgett.com"><i></i><span><b>3</b>WORK</span></button>
+      <button class="tvkey" type="button" data-ch="4" aria-label="Channel 4, Music — music.patpadgett.com"><i></i><span><b>4</b>MUSIC</span></button>
+      <button class="tvkey" type="button" data-ch="5" aria-label="Channel 5, Blog — blog.patpadgett.com"><i></i><span><b>5</b>BLOG</span></button>
+      <button class="tvkey" type="button" data-ch="6" aria-label="Channel 6, Bedtime book, on this page"><i></i><span><b>6</b>BEDTIME</span></button>
+      <button class="tvkey" type="button" data-ch="7" aria-label="Channel 7, grime95, on this page"><i></i><span><b>7</b>GRIME95</span></button>
+      <button class="tvkey tvkey--mute" type="button" id="mute" aria-pressed="true" aria-label="Sound. Muted. Press to play the soundtrack."><i></i><span>MUTE</span></button>
+    </div>
+    <p class="tv__state" id="remote-state" aria-live="polite">MUTED · press MUTE for the soundtrack</p>
   </div>
 
   <div class="panel" id="channels">
@@ -73,13 +81,11 @@
       <a class="guide__row" href="https://work.patpadgett.com" data-ch="3"><b>3</b><span class="guide__t">WORK</span><span class="guide__d">Full résumé — billing mediation &amp; automation — work.patpadgett.com</span></a>
       <a class="guide__row" href="https://music.patpadgett.com" data-ch="4"><b>4</b><span class="guide__t">MUSIC</span><span class="guide__d">Records, songs &amp; other noise — music.patpadgett.com</span></a>
       <a class="guide__row" href="https://blog.patpadgett.com" data-ch="5"><b>5</b><span class="guide__t">BLOG</span><span class="guide__d">Thoughts, notes &amp; rabbit holes — blog.patpadgett.com</span></a>
+      <a class="guide__row" href="#octavitin" data-ch="6"><b>6</b><span class="guide__t">BEDTIME BOOK</span><span class="guide__d">Octavitin: The Rules of Under — a kids' book; read the opening pages here</span></a>
+      <a class="guide__row" href="#grime95" data-ch="7"><b>7</b><span class="guide__t">GRIME95</span><span class="guide__d">Ponder County, one mugshot a day — serialized fiction — grime95.com</span></a>
       <a class="guide__row guide__row--contact" href="#contact" data-jump><b>✉</b><span class="guide__t">CONTACT</span><span class="guide__d">GitHub, LinkedIn and more — the trading cards at the bottom</span></a>
       <a class="guide__mail" href="mailto:pat@patpadgett.com">Email Patrick → <b>pat@patpadgett.com</b></a>
-      <p class="guide__sub" id="guide-also">ALSO IN THIS ROOM <span>fiction, further down the page</span></p>
-      <a class="guide__row guide__row--minor" href="#octavitin" data-ch="6"><b>6</b><span class="guide__t">BEDTIME BOOK</span><span class="guide__d">Octavitin: The Rules of Under — a kids' book; read the opening pages here</span></a>
-      <a class="guide__row guide__row--minor" href="#grime95" data-ch="7"><b>7</b><span class="guide__t">GRIME95!</span><span class="guide__d">Ponder County booking records, one a day — serialized fiction, grime95.com</span></a>
-      <p class="guide__foot">Or turn the dial on the set — press once to pick, then TUNE IN.</p>
-      <p class="guide__motion"><button type="button" id="motion-plain" role="switch" aria-checked="true">Motion <b>ON</b></button><span>stops the ambient animation</span></p>
+      <p class="guide__foot">Or press a channel button on the set.</p>
     </nav>
     <audio id="bgm" src="assets/audio/bedroom-1988.mp3" loop preload="none"></audio>
   </div>
@@ -113,25 +119,6 @@
     <a class="cart" href="#table" aria-label="Magazines — the coffee table, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-table.webp" width="400" height="600" alt="" srcset="assets/carts/label-table-200.webp 200w, assets/carts/label-table.webp 400w" sizes="80px"><span class="cart__band"><small>PP-005</small><b>MAG HUNT</b><i>The coffee table</i></span></span><span class="cart__cap" aria-hidden="true">MAGAZINES</span></a>
     <a class="cart" href="#interests" aria-label="Madballs, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-balls.webp" width="400" height="600" alt="" srcset="assets/carts/label-balls-200.webp 200w, assets/carts/label-balls.webp 400w" sizes="80px"><span class="cart__band"><small>PP-006</small><b>MADBALL PUNCH-OUT!!</b><i>Madballs</i></span></span><span class="cart__cap" aria-hidden="true">MADBALLS</span></a>
   </nav>
-
-  <div class="dock" id="dock">
-  <button class="dock__tab" id="dock-tab" type="button" aria-expanded="true" aria-controls="remote" aria-label="Remote control. Hide or show."><span>REMOTE</span></button>
-  <div class="remote" id="remote">
-    <img class="remote__plate" src="assets/plates/remote7-s.webp" srcset="assets/plates/remote7-s.webp 512w, assets/plates/remote7.webp 1024w" sizes="(max-width:960px) 120px, 11vw" width="1024" height="1536" alt="">
-    <p class="remote__brand" aria-hidden="true">SPACE COMMAND</p>
-    <div class="remote__keys" role="group" aria-label="Remote control">
-      <button class="remote__key remote__key--power" type="button" id="power" aria-pressed="true" aria-label="Power. The set is on."><span>POWER</span></button>
-      <button class="remote__key" type="button" data-ch="3" aria-label="Channel 3, Work"><span><b>3</b>WORK</span></button>
-      <button class="remote__key" type="button" data-ch="4" aria-label="Channel 4, Music"><span><b>4</b>MUSIC</span></button>
-      <button class="remote__key" type="button" data-ch="5" aria-label="Channel 5, Blog"><span><b>5</b>BLOG</span></button>
-      <button class="remote__key" type="button" data-ch="6" aria-label="Channel 6, Bedtime book"><span><b>6</b>BEDTIME</span></button>
-      <button class="remote__key" type="button" data-ch="7" aria-label="Channel 7, grime95"><span><b>7</b>GRIME95</span></button>
-      <button class="remote__key remote__key--mute" type="button" id="mute" aria-pressed="true" aria-label="Sound. Muted. Press to play the soundtrack."><span>MUTE</span></button>
-    </div>
-    <button class="remote__motion" type="button" id="motion" role="switch" aria-checked="true" aria-label="Motion. On. Press to stop the ambient animation."><i aria-hidden="true"></i><span>MOTION</span></button>
-    <p class="remote__state" id="remote-state" aria-live="polite">MUTED · press MUTE for the soundtrack</p>
-  </div>
-  </div>
 </header>
 <main id="main">
 
@@ -261,7 +248,7 @@ databank% <span class="cur">▌</span></pre></div></div></div>
 </section>
 <!-- ===== GRIME95 ===== -->
 <section class="sec sec--grime" id="grime95" aria-labelledby="grime-h" tabindex="-1">
-  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-004</span><h2 id="grime-h">Booking records</h2></div>
+  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-004</span><h2 id="grime-h">grime95</h2></div>
   <p class="sec__lede">The dot-matrix under the desk never stopped. It is still printing Ponder County, one booking a day — comic small-town fiction, written for grown-ups.</p>
   <div class="grime">
     <div class="grime__pitch">

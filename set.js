@@ -2,28 +2,21 @@
 (function () {
   var root = document.documentElement;
   root.classList.add('js');
-  var stored = null; try { stored = localStorage.getItem('pp-motion'); } catch (e) {}
-  var reduce = stored === 'off' || (stored !== 'on' && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) root.classList.add('static');
-  /* the MOTION switch on the remote: stops every ambient loop, remembered on this device */
-  var motion = document.getElementById('motion');
-  var motionPlain = document.getElementById('motion-plain');
-  function paintMotion() { var on = !root.classList.contains('static'); if (motion) { motion.setAttribute('aria-checked', String(on)); motion.setAttribute('aria-label', on ? 'Motion. On. Press to stop the ambient animation.' : 'Motion. Off. Press to let the room move again.'); } if (motionPlain) { motionPlain.setAttribute('aria-checked', String(on)); motionPlain.innerHTML = 'Motion <b>' + (on ? 'ON' : 'OFF') + '</b>'; } }
-  function toggleMotion() { root.classList.toggle('static'); reduce = root.classList.contains('static'); try { localStorage.setItem('pp-motion', reduce ? 'off' : 'on'); } catch (e) {} paintMotion(); }
-  paintMotion(); if (motion) motion.addEventListener('click', toggleMotion); if (motionPlain) motionPlain.addEventListener('click', toggleMotion);
+  /* motion follows the OS preference only (prefers-reduced-motion) */
 
-  /* ---------- TV: channel knob ---------- */
+  /* ---------- TV: channel pushbuttons ---------- */
   var CH = {
-    3: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -104 },
-    4: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -52 },
-    5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 0 },
-    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · the opening pages · fiction', rot: 52 },
-    7: { name: 'GRIME95!', href: '#grime95', line: 'Ponder County booking records · fiction', rot: 104 }
+    3: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com' },
+    4: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com' },
+    5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com' },
+    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · the opening pages · fiction' },
+    7: { name: 'GRIME95', href: '#grime95', line: 'Ponder County · one mugshot a day · fiction' }
   };
-  var knob = document.getElementById('knob'), bumper = document.getElementById('bumper');
+  var bumper = document.getElementById('bumper');
   var rows = [].slice.call(document.querySelectorAll('.guide__row[data-ch]'));
-  var cur = 3, timer = null, tuneTimer = null;
-
+  var cur = 3, tuneTimer = null;
   var ctx = null, soundOn = false;
   function click() {
     if (!soundOn) return;
@@ -35,47 +28,20 @@
       o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + .07);
     } catch (e) {}
   }
-  function setCh(n, announce) {
-    clearTimeout(tuneTimer);
-    cur = n;
-    knob.style.setProperty('--rot', CH[n].rot + 'deg');
-    knob.dataset.ch = n;
-    knob.setAttribute('aria-label', 'Channel knob. Channel ' + n + ', ' + CH[n].name + '. Press to turn to the next channel; the set then shows a TUNE IN button. Arrow keys also turn it.');
-    rows.forEach(function (r) { r.classList.toggle('on', r.dataset.ch == n); });
-    click();
-    if (announce) showBumper(n);
-  }
-  var tunein = document.getElementById('tunein');
-  function showBumper(n) {
-    bumper.className = 'bumper on bumper--' + n;
-    bumper.innerHTML = '<b><i>' + n + '</i></b><span>' + CH[n].name + '</span><small>' + CH[n].line + '</small>';
-    if (tunein) { tunein.hidden = false; tunein.textContent = 'TUNE IN'; tunein.setAttribute('aria-label', 'Tune in to channel ' + n + ', ' + CH[n].name + ': ' + CH[n].line); }
-    clearTimeout(timer);
-  }
-  function hideBumper() { clearTimeout(tuneTimer); bumper.className = 'bumper'; if (tunein) tunein.hidden = true; }
-  if (tunein) tunein.addEventListener('click', function () { tune(cur); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && bumper.classList.contains('on')) { hideBumper(); knob.focus(); } });
+  function setCh(n) { cur = n; rows.forEach(function (r) { r.classList.toggle('on', r.dataset.ch == n); }); }
+  function hideBumper() { clearTimeout(tuneTimer); bumper.className = 'bumper'; }
   function tune(n, delay) {
     bumper.className = 'bumper on bumper--' + n;
-    if (tunein) tunein.hidden = true;
-    bumper.innerHTML = '<span class="bumper__tune">TUNING…</span><small>' + CH[n].line + ' · Esc to cancel</small>';
+    bumper.innerHTML = '<b><i>' + n + '</i></b><span>' + CH[n].name + '</span><small>' + CH[n].line + ' · Esc to cancel</small>';
     clearTimeout(tuneTimer);
     tuneTimer = setTimeout(function () {
       if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; if (location.hash !== CH[n].href) history.pushState(null, '', CH[n].href); } if (t) t.focus({ preventScroll: true }); return; }
       location.href = CH[n].href;
-    }, reduce ? 0 : (delay == null ? 350 : delay));
+    }, reduce ? 0 : (delay == null ? 700 : delay));
   }
-  var next = function (d) { var n = cur + d; return n > 7 ? 3 : n < 3 ? 7 : n; };
-  knob.addEventListener('click', function () { setCh(next(1), true); });
-  knob.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); setCh(next(1), true); }
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); setCh(next(-1), true); }
-  });
-  knob.addEventListener('wheel', function (e) { e.preventDefault(); setCh(next(e.deltaY > 0 ? 1 : -1), true); }, { passive: false });
-  rows.forEach(function (r) {
-    r.addEventListener('click', function () { cur = +r.dataset.ch; knob.style.setProperty('--rot', CH[cur].rot + 'deg'); knob.dataset.ch = cur; });
-  });
-  setCh(3, false);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && bumper.classList.contains('on')) { hideBumper(); } });
+  rows.forEach(function (r) { r.addEventListener('click', function () { setCh(+r.dataset.ch); }); });
+  setCh(3);
 
   /* ---------- Mac Color Classic: scroll-driven screens ---------- */
   var mac = document.getElementById('mac-screen');
@@ -124,29 +90,16 @@
     table.addEventListener('click', function (e) { if (e.target === table || e.target.classList.contains('table__top')) putDown(); });
   }
 
-  /* ---------- Remote dock (desktop): auto-hides when the pointer leaves the left edge, tab stays ---------- */
-  var dock = document.getElementById('dock'), dockTab = document.getElementById('dock-tab'), dockTimer = null, dockPinned = false;
-  function dockHide(on) { if (!dock) return; dock.classList.toggle('is-hidden', on); if (dockTab) dockTab.setAttribute('aria-expanded', String(!on)); }
-  if (dock && matchMedia('(min-width:1101px)').matches) {
-    dockTab.addEventListener('click', function () { dockPinned = !dockPinned; dockHide(!dockPinned); dockTab.setAttribute('aria-label', dockPinned ? 'Remote control. Pinned open; press to hide.' : 'Remote control. Press to pin it open.'); });
-    dock.addEventListener('mouseenter', function () { clearTimeout(dockTimer); dockHide(false); });
-    dock.addEventListener('mouseleave', function () { if (dockPinned) return; clearTimeout(dockTimer); dockTimer = setTimeout(function () { dockHide(true); }, 700); });
-    dock.addEventListener('focusin', function () { clearTimeout(dockTimer); dockHide(false); });
-    dock.addEventListener('focusout', function (e) { if (dockPinned || dock.contains(e.relatedTarget)) return; dockTimer = setTimeout(function () { dockHide(true); }, 400); });
-    document.addEventListener('mousemove', function (e) { if (e.clientX < 40 && dock.classList.contains('is-hidden') && !dockPinned) dockHide(false); });
-    dockTimer = setTimeout(function () { dockHide(true); }, 3200);
-  }
-
-  /* ---------- Remote: channels, mute, power ---------- */
+  /* ---------- TV buttons: channels, mute, power ---------- */
   var tv = document.querySelector('.tv'), audio = document.getElementById('bgm');
   var power = document.getElementById('power'), mute = document.getElementById('mute'), rstate = document.getElementById('remote-state');
   var isOn = true, warm = null;
   function press(b) { b.classList.add('is-pressed'); setTimeout(function () { b.classList.remove('is-pressed'); }, 140); click(); }
-  [].slice.call(document.querySelectorAll('.remote__key[data-ch]')).forEach(function (b) {
+  [].slice.call(document.querySelectorAll('.tvkey[data-ch]')).forEach(function (b) {
     b.addEventListener('click', function () {
       press(b);
       if (!isOn) setPower(true);
-      var n = +b.dataset.ch; setCh(n, false); tune(n, 700);
+      var n = +b.dataset.ch; setCh(n); tune(n, 700);
     });
   });
   function say(t) { if (rstate) rstate.textContent = t; }
@@ -178,7 +131,7 @@
     if (power) { power.setAttribute('aria-pressed', String(on)); power.setAttribute('aria-label', on ? 'Power. The set is on.' : 'Power. The set is off.'); }
     if (on && !reduce) { tv.classList.remove('was-on'); tv.classList.add('is-warming'); warm = setTimeout(function () { tv.classList.remove('is-warming'); tv.classList.add('was-on'); }, 1600); }
     else if (on) tv.classList.add('was-on');
-    if (!on) { hideBumper(); clearTimeout(timer); }
+    if (!on) { hideBumper(); }
     if (!on && audio && !audio.paused) { audio.pause(); }
   }
   /* in-page guide rows that aren't channels (CONTACT): jump, then hand focus to the destination */
@@ -195,6 +148,4 @@
   });
   if (power) power.addEventListener('click', function () { press(power); setPower(!isOn); });
   if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { tv.classList.toggle('offscreen', !es[0].isIntersecting); }).observe(tv);
-  /* the knob and guide are dead while the set is off */
-  knob.addEventListener('click', function (e) { if (!isOn) { e.stopImmediatePropagation(); setPower(true); } }, true);
 })();

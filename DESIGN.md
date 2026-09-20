@@ -124,7 +124,7 @@ The page is a kid's bedroom on a Saturday morning, and every object in it is doi
 
 Objects are photographs, not CSS drawings: gpt-image-2 plates on transparent backgrounds (assets/plates/*.webp, assets/toys/*.webp, assets/octavitin/*.webp), with live HTML positioned onto measured regions of each plate. Text on wood is cream; text on the CRT glows; text on paper is ink in a typewriter or pixel face. The whole page is dark walnut with a fixed grain, dimmed by a radial vignette so cream type reads.
 
-Density is high on purpose, but the hierarchy is fixed: identity on the glass first, the cream guide second, everything else is exploration. The one confirmed anti-reference is the earlier "acid-yellow / ink vat" hub and any generic retro-template look — neon-on-black gradients, floating tags, imported stock bedroom photos.
+Density is high on purpose, but the hierarchy is fixed: identity on the glass first, the cream guide second, everything else is exploration. The remote control and the channel knob were tried and retired (2026-09-20): the pushbutton row on the set does their job without a second object. Motion switches were retired too; the room honours `prefers-reduced-motion` and otherwise moves. The one confirmed anti-reference is the earlier "acid-yellow / ink vat" hub and any generic retro-template look — neon-on-black gradients, floating tags, imported stock bedroom photos.
 
 **Key Characteristics:**
 - Photoreal plates with measured content boxes; regenerate a plate → re-measure its box.
@@ -147,13 +147,13 @@ A dark walnut room lit by a cream TV Guide, with 1980s pastel-and-neon accents u
 - **Slime** (`{colors.slime}`): the primary button, focus rings, Channel 4's bumper text. Green is "go".
 - **Yellow** (`{colors.yellow}`): skip link, Madball name tags, the ledger CTA.
 - **Countach Red** (`{colors.countach-red}`): POWER, Channel 3, TONIGHT on the library card. Tape-label red `#b71212` (POWER ink, TV GUIDE head, the About Patrick eyebrow) is its ink-on-paper form.
-- **Cyan** (`{colors.cyan}`): the remote's status line; Channel 5's bumper.
+- **Cyan** (`{colors.cyan}`): the set's status line; Channel 5's bumper.
 - **Pink, Lavender, Peach** (`{colors.pink}`, `{colors.lavender}`, `{colors.peach}`): flat sticker and card fields only.
 
 ### Tertiary (section-owned)
 - **Book Navy + Orangle** (`{colors.book-navy}`, `{colors.orangle}`): Octavitin's cover, bumper 6, the book CTA. Orangle is the book's slime.
 - **Card Cream + Kraft** (`{colors.card-cream}`, `{colors.kraft}`): library card and pocket.
-- **Tape Cream** (`{colors.tape-cream}`): masking-tape labels on the remote.
+- **Tape Cream** (`{colors.tape-cream}`): masking-tape labels (library card pocket, stickers).
 - **DOS Blue + DOS Yellow** (`{colors.dos-blue}`, `{colors.dos-yellow}`): bumper 7 and the ledger — grime95's own terminal palette.
 - **Green-bar Paper + Band** (`{colors.greenbar-paper}`, `{colors.greenbar-band}`): the dot-matrix printout.
 
@@ -191,11 +191,11 @@ All self-hosted in assets/fonts, latin subset only.
 
 ## Layout
 
-`.room` is a 1320px column with `clamp(12px,3vw,40px)` gutters. The hero (`.set`) is a two-column grid, `1.9fr / minmax(320px,.95fr)` — TV | guide — then the bio row (`.who`), then the cartridge shelf (five carts, `repeat(5, minmax(0,170px))`). DOM order is TV → guide → bio → shelf → remote, and both layouts render in that order, so keyboard order follows reading order everywhere.
+`.room` is a 1320px column with `clamp(12px,3vw,40px)` gutters. The hero (`.set`) is a two-column grid, `1.9fr / minmax(320px,.95fr)` — TV | guide — then the bio row (`.who`), then the cartridge shelf (five carts, `repeat(5, minmax(0,170px))`). DOM order is TV → guide → bio → shelf, and both layouts render in that order, so keyboard order follows reading order everywhere.
 
 Sections stack with `clamp(48px,7vw,90px)` top padding and open with a section tag (PP-001…PP-006) beside the display heading and one lede line. Page order = channel order: Work (Mac + log), Music (cassette), Octavitin (pitch | book | card, `0.75fr / 1.2fr / 0.7fr`), Booking records (Polaroid stack | printer), the coffee table (magazine fan), Madballs (3×3), Contact (five GPK cards under the wax pack). PP-001…PP-006 follow that order.
 
-Breakpoints: ≤1100px the hero goes single-column (TV capped at 560px, then guide, then bio, then shelf, then the remote at 250px) so the whole guide fits the first screen and the person is the second screen; ≤960px sections collapse to one column and the book section becomes pitch → CTA → book → card; ≤640px the shelf is 2×2 + 1 centered, pack 2-up; ≤380px knob 72px; ≤340px the TV title drops a size. No horizontal overflow at 320/390/1024/1440 (the coffee-table fan is intentionally clipped).
+Breakpoints: ≤1100px the hero goes single-column (TV capped at 560px, then guide, then bio, then shelf) so the whole guide fits the first screen and the person is the second screen; ≤960px sections collapse to one column and the book section becomes pitch → CTA → book → card; ≤640px the shelf is 2×2 + 1 centered, pack 2-up; ≤380px knob 72px; ≤340px the TV title drops a size. No horizontal overflow at 320/390/1024/1440 (the coffee-table fan is intentionally clipped).
 
 Measured plate boxes (percent of plate): TV glass 11.5/14/62/65, knob 80.5/12.8 ⌀11, pilot lamp 89.9/38.5 ⌀1.3; cartridge label recess 40.5/13.5/44.5/53.5; remote keys at 17/29.1/41.2/53.2/65.3/77.4% height (seven-button plate: 18/29/40/51/62/73/84), MOTION switch at 96.5%; book cover face 6/2.5/90/95; printer slot x 13→87%.
 
@@ -211,7 +211,7 @@ Hybrid, by material. Objects cast one soft drop-shadow onto the wood (`filter: d
 - **Glass** (`inset 0 0 40px #000, inset 0 0 4px #ffffff22`): the CRT.
 
 ### Named Rules
-**The Press Rule.** Anything pressable moves down when pressed — buttons 2px, remote keys via an inset shadow, the knob by rotating. Hover never lifts UI; it only brightens.
+**The Press Rule.** Anything pressable moves down when pressed — buttons 2px, the set's pushbuttons 2px with an inset shadow. Hover never lifts UI; it only brightens.
 
 ## Shapes
 
@@ -228,13 +228,10 @@ Tactile and toy-like: every control is a physical thing you press, and every one
 - **Ghost (`.btn--ghost`):** translucent black, 3px cream border; hover fills cream with black text.
 
 ### TV Guide (signature)
-Cream paper card (2px corners) with a pixel head, then two tiers. Tier one, one row per door: a 42px ink badge with the channel number in Press Start 2P 24px, a bold title, a 13px description that names the real destination — 3 WORK, 6 MUSIC, 7 BLOG, ✉ CONTACT. Then a 2px ink rule and an ALSO IN THIS ROOM sub-head (pixel 11px + "fiction, further down the page"), under which the two fiction channels sit as minor rows: smaller 18px badge in `#5a3a1a`, 15px title, 12px description that says "kids' book" / "serialized fiction". Rows are real links (external for 3/4/5, in-page for 6/7/CONTACT) and navigate immediately — the tuning theatre belongs to the knob and remote only. Under CONTACT sits a plain `Email Patrick → pat@patpadgett.com` mailto row (44px). Hover underlines the title in pink, 3px. The guide foot carries a plain `Motion ON/OFF` switch, twin of the remote's MOTION slide.
+Cream paper card (2px corners) with a pixel head. Each row: a 42px ink badge with the channel number in Press Start 2P 24px, a bold title, a 13px description that names the real destination and says "fiction" where it applies. Six equal rows in channel order — 3 WORK, 4 MUSIC, 5 BLOG, 6 BEDTIME BOOK, 7 GRIME95, ✉ CONTACT — every badge ink, the selected channel's badge red. Rows are real links (external for 3/4/5, in-page for 6/7/CONTACT) and navigate immediately — the tuning theatre belongs to the set's buttons. Under CONTACT sits a plain `Email Patrick → pat@patpadgett.com` mailto row (44px). Hover underlines the title in pink, 3px.
 
-### Remote (signature)
-On desktop (>1100px) the remote lives in a drawer (`.dock`) fixed to the left edge, vertically centred: it slides out over the set, auto-hides 700ms after the pointer leaves (3.2s after load), and leaves a 34px walnut tab reading REMOTE (`.dock__tab`, `aria-expanded`); moving the pointer to the left 40px or focusing anything inside slides it back; pressing the tab pins it. On phones it sits in the page after the shelf, DOM = visual order. Photoreal Space Command plate; each key is a plate-wide 12%-tall row with the button drawn by `::before`. Beside every key, a masking-tape label (`tape-cream`, Press Start 2P 11px, ±1° rotation, hard 1×2px shadow): POWER (red ink), 3 WORK, 4 MUSIC, 5 BLOG, 6 BEDTIME, 7 GRIME95, MUTE (green when playing). Every key row is ≥44px tall (`min-height:44px`) and clip-pathed to the plate's 11% key pitch so adjacent hit areas never overlap; hit width is capped to the viewport. At the foot, a slide switch with engraved ON/OFF and a MOTION tape label (`role=switch`, last in DOM so tab order matches the plate); it toggles `html.static`, persisted as `pp-motion`. Status line in cyan VT323 below.
-
-### Channel knob (signature)
-`#knob` button at 80.5/12.8% of the TV plate, with a `::after` halo that keeps the hit area ≥44px on phones. Press → rotates to the next detent with a 320ms overshoot and shows a bumper that stays until changed (no timeout); a slime `#tunein` button (44px, hard base) appears low on the glass and tunes in. Escape clears the bumper and returns focus to the knob. Arrow keys turn it. Bumper digit rolls in from above (380ms).
+### Channel buttons (signature)
+Seven round pushbuttons set into the wood rail under the glass (`.tvkeys` at 6/87.2% of the TV plate, 71.5% wide): POWER (red), 3 WORK, 4 MUSIC, 5 BLOG, 6 BEDTIME, 7 GRIME95, MUTE (green when playing). Each is a ≥44px target with a cream pixel label (6–8px engraving; the TV Guide row is its 11px+ twin). A channel press shows the bumper for 700ms then tunes in; Escape cancels. POWER kills the set (glass collapses, buttons dim); MUTE starts/stops the soundtrack. Status line in cyan VT323 under the cabinet. On phones the row drops out of the plate and sits under the set as a 7-up grid at 56px.
 
 ### Cartridges
 Grey plate; label recess holds 8-bit box art (assets/carts/label-*.webp) over a black→dark-red band with a cream title (Nunito 900, wraps on words) and a gold subtitle. Above the shelf an ON THIS PAGE hint in pixel 11px (`#c99a63`); below each cart a plain shelf caption in pixel 11px (WORK STORY · THE BOOK · THE RECORD · MAGAZINES · MADBALLS) so on-page routes never share a label with the guide's external doors. Hover lifts 12px in 3 steps. aria-label names the destination and "on this page".
@@ -264,6 +261,6 @@ Outlined chip (`#c99a63`, 2px, 3px corners) with the PP-00n catalogue code in pi
 - **Don't** ease-in-and-rise, parallax, or scroll-reveal sections; the world is mechanical, not cinematic.
 - **Don't** import a photographed room or a stock retro backdrop; the room is built from objects on walnut.
 - **Don't** write internal or process copy into the page (design notes, "made to look like", provenance); provenance lives here and in the footer's one line.
-- **Don't** bounce anything but the knob; its `cubic-bezier(.34,1.56,.64,1)` is a mechanical detent and the single accepted exception.
+- **Don't** bounce anything; settles use `cubic-bezier(.16,1,.3,1)`.
 
-<!-- Detector exceptions (world, not defects): repeating-gradient stripes = woodgrain / cartridge ridges / green-bar; glow text-shadows inside .tv__glass and .mac__glass = phosphor; .smoke i "marquee" = ashtray smoke; .table clipped container = the magazine fan; low-contrast reads of cassette/cartridge overlay text = static reads against body colour, actual backgrounds are the plate bands; knob bounce-easing = detent; .mag transition:width = magazine lift (pre-existing). -->
+<!-- Detector exceptions (world, not defects): repeating-gradient stripes = woodgrain / cartridge ridges / green-bar; glow text-shadows inside .tv__glass and .mac__glass = phosphor; .smoke i "marquee" = ashtray smoke; .table clipped container = the magazine fan; low-contrast reads of cassette/cartridge overlay text = static reads against body colour, actual backgrounds are the plate bands; .mag transition:width = magazine lift (pre-existing). -->
