@@ -166,7 +166,6 @@ h1,h2{margin:0}
 .cart:hover,.cart:focus-visible{transform:translateY(-12px)}
 /* plain caption on the shelf edge under each cart — the label art stays tiny and authentic */
 .shelf__hint{position:absolute;left:50%;top:-22px;transform:translateX(-50%);margin:0;font:400 11px/1 var(--pix);letter-spacing:.06em;color:#c99a63;text-shadow:1px 1px 0 #000;white-space:nowrap}
-.vhs__eyebrow{display:block;font:400 11px/1 var(--pix);letter-spacing:.06em;color:#b71212;margin-bottom:.5em}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cart__cap{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:14px;font:400 11px/1 var(--pix);letter-spacing:.04em;color:#e9d3ad;text-shadow:1px 1px 0 #000;white-space:nowrap}
 .cart:hover .cart__cap,.cart:focus-visible .cart__cap{color:var(--yellow)}
@@ -174,6 +173,7 @@ h1,h2{margin:0}
 
 /* ===================== WHO — VHS ===================== */
 .who{grid-area:who;padding:clamp(28px,4vw,56px) 0 clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:center}
+.who__head{grid-column:1/-1;margin-bottom:0}
 .vhs{position:relative;filter:drop-shadow(0 30px 30px rgba(0,0,0,.7))}
 .vhs__plate{width:100%}
 /* measured: front sleeve 20%→88.5% x, 12%→94% y, ~1.7° */
