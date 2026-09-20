@@ -27,7 +27,7 @@ h1,h2{margin:0}
 .room{max-width:1320px;margin:0 auto;padding:0 clamp(12px,3vw,40px) 40px}
 
 /* ===================== THE SET ===================== */
-.set{padding-top:clamp(12px,2vw,24px);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(200px,.3fr) minmax(300px,.9fr);grid-template-areas:"tv remote panel" "shelf shelf shelf" "who who who";gap:clamp(14px,2.5vw,28px) clamp(14px,2.5vw,32px);align-items:start}
+.set{padding-top:clamp(12px,2vw,24px);display:grid;grid-template-columns:minmax(0,1.9fr) minmax(320px,.95fr);grid-template-areas:"tv panel" "who who" "shelf shelf";gap:clamp(14px,2.5vw,28px) clamp(14px,2.5vw,32px);align-items:start}
 .tv{position:relative;grid-area:tv;filter:drop-shadow(0 40px 50px rgba(0,0,0,.7))}
 .tv__plate{width:100%}
 /* measured on the plate: glass 11.5%→73.5% x, 14%→79% y; knob centre (86%,21%), ⌀11% */
@@ -55,9 +55,9 @@ h1,h2{margin:0}
 .title__slug .amp{color:var(--pink)}
 .title__sub{margin:.9em 0 0;font:700 clamp(12px,1.3vw,17px)/1.25 var(--body);color:#9be9ff}
 .title__sub b{color:#fff}
-.js:not(.static) .title{animation:poweron .5s steps(6) 1.1s forwards}
+.js:not(.static) .title{animation:poweron .4s steps(6) .25s forwards}
 @keyframes poweron{0%{opacity:0;transform:scaleY(.02)}40%{opacity:1;transform:scaleY(.06)}70%{transform:scaleY(1.02) scaleX(.9)}100%{opacity:1;transform:none}}
-.js:not(.static) .bars{animation:barsout .01s 1.5s forwards}
+.js:not(.static) .bars{animation:barsout .01s .55s forwards}
 @keyframes barsout{to{opacity:0}}
 .scan{position:absolute;inset:0;pointer-events:none;
   background:repeating-linear-gradient(180deg,rgba(0,0,0,.30) 0 2px,transparent 2px 4px),
@@ -67,7 +67,7 @@ h1,h2{margin:0}
 .tv__roll{position:absolute;left:0;right:0;top:-25%;height:22%;pointer-events:none;background:linear-gradient(180deg,transparent 0,rgba(255,255,255,.055) 45%,rgba(255,255,255,.02) 55%,transparent 100%);opacity:0;transform:translateZ(0);will-change:transform;contain:strict}
 .js:not(.static) .tv:not(.is-off):not(.is-dying):not(.offscreen) .tv__roll{opacity:1;animation:roll 7s steps(84) infinite}
 @keyframes roll{0%{transform:translateY(0)}100%{transform:translateY(680%)}}
-.js:not(.static) .tv:not(.is-off):not(.is-dying):not(.offscreen) .title{animation-name:poweron,flicker;animation-duration:.5s,4s;animation-timing-function:steps(6),steps(1);animation-delay:1.1s,1.6s;animation-iteration-count:1,infinite;animation-fill-mode:forwards,none}
+.js:not(.static) .tv:not(.is-off):not(.is-dying):not(.offscreen) .title{animation-name:poweron,flicker;animation-duration:.4s,4s;animation-timing-function:steps(6),steps(1);animation-delay:.25s,.7s;animation-iteration-count:1,infinite;animation-fill-mode:forwards,none}
 @keyframes flicker{0%,92%{opacity:1}93%{opacity:.93}94%{opacity:1}95%{opacity:.97}96%{opacity:1}}
 .bumper{position:absolute;inset:0;display:none;place-content:center;text-align:center;padding:6%;color:#fff}
 .bumper.on{display:grid;animation:lockon .22s steps(3) both}
@@ -117,8 +117,27 @@ h1,h2{margin:0}
 @keyframes barsout2{0%{opacity:1}99%{opacity:1}100%{opacity:0}}
 @keyframes poweron2{0%{opacity:0;transform:scaleY(.02)}40%{opacity:1;transform:scaleY(.06)}70%{transform:scaleY(1.02) scaleX(.9)}100%{opacity:1;transform:none}}
 
-/* remote: the plate stands between the set and the guide */
-.remote{grid-area:remote;container-type:inline-size;position:relative;align-self:start;justify-self:start;width:min(66%,166px);margin-top:clamp(8px,1.5vw,20px);filter:drop-shadow(0 26px 22px rgba(0,0,0,.7))}
+/* remote: on desktop a drawer docked to the left edge; on phones it sits in the page after the shelf */
+.dock{grid-area:remote}
+@media(min-width:1101px){
+  .dock{position:fixed;left:0;top:50%;z-index:40;transform:translateY(-50%);display:flex;align-items:center;transition:transform .28s cubic-bezier(.16,1,.3,1)}
+  .dock.is-hidden{transform:translate(calc(-100% + 34px),-50%)}
+  .dock.is-hidden .remote{visibility:hidden}
+  .dock .remote{width:130px;margin:0 52px 0 12px;padding:34px 0 60px;flex:none}
+  .dock .remote__key,.dock .remote__motion{width:130%}
+  .dock .remote__keys{position:absolute;inset:0;pointer-events:none}
+  .dock .remote__key,.dock .remote__motion{pointer-events:auto}
+  .dock .remote__state{right:-90%}
+  .dock__tab{order:2;position:relative;z-index:3;display:block;width:34px;height:150px;border:0;padding:0;cursor:pointer;background:linear-gradient(90deg,#c9975f 0,#a5703f 30%,#6b4222 100%);border-radius:0 6px 6px 0;box-shadow:4px 0 0 #000,inset -2px 0 0 #1a0d05,inset 2px 0 0 #e8c08a}
+  .dock__tab span{display:block;writing-mode:vertical-rl;transform:rotate(180deg);font:400 11px/1 var(--pix);letter-spacing:.1em;color:#f3e7cf;text-shadow:1px 1px 0 #000}
+  .dock__tab::after{content:"◂";position:absolute;left:0;right:0;bottom:8px;text-align:center;font:400 14px/1 var(--body);color:#f3e7cf}
+  .dock.is-hidden .dock__tab::after{content:"▸"}
+  .dock__tab:hover{background:linear-gradient(90deg,#d9a76f 0,#b5804f 30%,#7b5232 100%)}
+  .dock__tab:focus-visible{outline:4px solid var(--slime);outline-offset:2px}
+}
+@media(max-width:1100px){.dock__tab{display:none}.dock{display:contents}}
+
+.remote{container-type:inline-size;position:relative;align-self:start;justify-self:start;width:min(66%,166px);margin-top:clamp(8px,1.5vw,20px);filter:drop-shadow(0 26px 22px rgba(0,0,0,.7))}
 .remote__plate{width:100%;display:block}
 /* measured on the cropped plate: buttons at x 51.6%, y 17 / 29.1 / 41.2 / 53.2 / 65.3 (+77.4 for the sixth), ⌀13.6% */
 .remote__keys{position:absolute;inset:0}
@@ -161,7 +180,7 @@ h1,h2{margin:0}
 .remote__brand{position:absolute;left:0;right:0;top:100%;margin:8px 0 0;text-align:center;font:400 clamp(6px,.6vw,8px)/1 var(--pix);color:#d8c8a8;letter-spacing:.08em;text-shadow:0 -1px 0 #000;pointer-events:none}
 .remote__state{position:absolute;top:104%;left:0;right:-70%;margin:12px 0 0;text-align:left;font:400 14px/1.3 var(--term);color:var(--cyan)}
 
-@media(max-width:1100px){.set{grid-template-columns:1fr!important;grid-template-areas:"tv" "panel" "who" "shelf" "remote"}.set>.shelf{margin-bottom:24px}.who{padding-top:clamp(28px,5vw,48px)}.tv{max-width:560px;margin:0 auto;width:100%}.panel{max-width:520px;margin:0 auto;width:100%}.remote{width:min(250px,64vw);margin:8px auto 56px 10%}.remote__key{width:150%}.remote__state{left:0;right:-70%}}
+@media(max-width:1100px){.set{grid-template-columns:1fr!important;grid-template-areas:"tv" "panel" "who" "shelf" "remote"}.set>.shelf{margin-bottom:24px}.who{padding-top:clamp(28px,5vw,48px)}.tv{max-width:560px;margin:0 auto;width:100%}.panel{max-width:520px;margin:0 auto;width:100%}.remote{width:min(250px,64vw);margin:8px auto 56px 4%}.remote__key,.remote__motion{width:min(150%,calc(100vw - 100% * .3 - 14px - 4vw))}.remote__state{left:0;right:-70%}}
 
 /* right column: the guide */
 .panel{grid-area:panel;display:grid;gap:18px;align-content:start}
@@ -180,6 +199,9 @@ h1,h2{margin:0}
 .guide__motion button b{font:400 11px/1 var(--pix);margin-left:6px;color:#155a0a}
 .guide__motion button[aria-checked="false"] b{color:#b71212}
 .guide__motion button:hover{background:#fff8e6}
+.guide__mail{display:flex;align-items:center;min-height:44px;margin:0;padding:6px 4px;border-top:1px solid #d7c7a4;font:700 14px/1.3 var(--body);color:#5a3a1a;text-decoration:none;gap:6px;flex-wrap:wrap}
+.guide__mail b{font:400 11px/1.4 var(--pix);color:var(--ink);word-break:break-all}
+.guide__mail:hover,.guide__mail:focus-visible{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--pink)}
 .guide__sub{margin:10px 0 0;padding:8px 4px 4px;border-top:2px solid var(--ink);font:400 11px/1.5 var(--pix);color:#5a3a1a;display:flex;flex-wrap:wrap;gap:0 10px;align-items:baseline}
 .guide__sub span{font:700 12px/1.4 var(--body);text-transform:none;letter-spacing:0;color:#7a5a3a}
 .guide__row--minor{min-height:48px;padding:6px 4px}
@@ -217,7 +239,7 @@ h1,h2{margin:0}
 .shelf{padding-bottom:34px;margin-top:26px}
 
 /* ===================== WHO — VHS ===================== */
-.who{grid-area:who;padding:clamp(48px,7vw,90px) 0 0;display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:center}
+.who{grid-area:who;padding:clamp(28px,4vw,56px) 0 clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:center}
 .vhs{position:relative;filter:drop-shadow(0 30px 30px rgba(0,0,0,.7))}
 .vhs__plate{width:100%}
 /* measured: front sleeve 20%→88.5% x, 12%→94% y, ~1.7° */
@@ -377,8 +399,8 @@ h1,h2{margin:0}
   .set{grid-template-columns:1fr}
   .set{grid-template-areas:"tv" "panel" "who" "shelf" "remote"}
   .set>.shelf{margin-bottom:24px}
-  .remote{width:min(250px,64vw);margin:8px auto 56px 10%}
-  .remote__key{width:150%}
+  .remote{width:min(250px,64vw);margin:8px auto 56px 4%}.remote__key,.remote__motion{width:min(150%,calc(100vw - 100% * .3 - 14px - 4vw))}
+  
   .remote__state{left:0;right:-60%;text-align:left;font-size:13px}
   .panel{grid-template-columns:1fr 1fr;align-items:start}
   .panel .guide{grid-column:1/-1}

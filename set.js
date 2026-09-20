@@ -124,6 +124,19 @@
     table.addEventListener('click', function (e) { if (e.target === table || e.target.classList.contains('table__top')) putDown(); });
   }
 
+  /* ---------- Remote dock (desktop): auto-hides when the pointer leaves the left edge, tab stays ---------- */
+  var dock = document.getElementById('dock'), dockTab = document.getElementById('dock-tab'), dockTimer = null, dockPinned = false;
+  function dockHide(on) { if (!dock) return; dock.classList.toggle('is-hidden', on); if (dockTab) dockTab.setAttribute('aria-expanded', String(!on)); }
+  if (dock && matchMedia('(min-width:1101px)').matches) {
+    dockTab.addEventListener('click', function () { dockPinned = !dockPinned; dockHide(!dockPinned); dockTab.setAttribute('aria-label', dockPinned ? 'Remote control. Pinned open; press to hide.' : 'Remote control. Press to pin it open.'); });
+    dock.addEventListener('mouseenter', function () { clearTimeout(dockTimer); dockHide(false); });
+    dock.addEventListener('mouseleave', function () { if (dockPinned) return; clearTimeout(dockTimer); dockTimer = setTimeout(function () { dockHide(true); }, 700); });
+    dock.addEventListener('focusin', function () { clearTimeout(dockTimer); dockHide(false); });
+    dock.addEventListener('focusout', function (e) { if (dockPinned || dock.contains(e.relatedTarget)) return; dockTimer = setTimeout(function () { dockHide(true); }, 400); });
+    document.addEventListener('mousemove', function (e) { if (e.clientX < 40 && dock.classList.contains('is-hidden') && !dockPinned) dockHide(false); });
+    dockTimer = setTimeout(function () { dockHide(true); }, 3200);
+  }
+
   /* ---------- Remote: channels, mute, power ---------- */
   var tv = document.querySelector('.tv'), audio = document.getElementById('bgm');
   var power = document.getElementById('power'), mute = document.getElementById('mute'), rstate = document.getElementById('remote-state');
