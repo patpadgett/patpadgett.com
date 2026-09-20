@@ -63,17 +63,17 @@
       <div class="scan" aria-hidden="true"></div>
     </div>
     <span class="tv__lamp" aria-hidden="true"></span>
-    <button class="knob" id="knob" type="button" aria-label="Channel knob. Channel 3, Music. Press to turn; press again to tune in. Arrow keys also turn it." data-ch="3"><span class="knob__ptr"></span></button>
+    <button class="knob" id="knob" type="button" aria-label="Channel knob. Channel 3, Work. Press to turn; press again to tune in. Arrow keys also turn it." data-ch="3"><span class="knob__ptr"></span></button>
   </div>
 
   <div class="panel" id="channels">
     <nav class="guide" aria-label="Channels">
       <p class="guide__head"><b>TV GUIDE</b> Saturday · all day</p>
-      <a class="guide__row" href="https://music.patpadgett.com" data-ch="3"><b>3</b><span class="guide__t">MUSIC</span><span class="guide__d">Records, songs &amp; other noise — music.patpadgett.com</span></a>
-      <a class="guide__row" href="https://work.patpadgett.com" data-ch="4"><b>4</b><span class="guide__t">WORK</span><span class="guide__d">Résumé — billing mediation &amp; automation — work.patpadgett.com</span></a>
-      <a class="guide__row" href="https://blog.patpadgett.com" data-ch="5"><b>5</b><span class="guide__t">BLOG</span><span class="guide__d">Thoughts, notes &amp; rabbit holes — blog.patpadgett.com</span></a>
-      <a class="guide__row" href="#octavitin" data-ch="6"><b>6</b><span class="guide__t">BEDTIME BOOK</span><span class="guide__d">Octavitin: The Rules of Under — read the opening pages right here</span></a>
-      <a class="guide__row" href="#grime95" data-ch="7"><b>7</b><span class="guide__t">GRIME95!</span><span class="guide__d">Ponder County booking records, one a day — grime95.com</span></a>
+      <a class="guide__row" href="https://work.patpadgett.com" data-ch="3"><b>3</b><span class="guide__t">WORK</span><span class="guide__d">Résumé — billing mediation &amp; automation — work.patpadgett.com</span></a>
+      <a class="guide__row" href="#octavitin" data-ch="4"><b>4</b><span class="guide__t">BEDTIME BOOK</span><span class="guide__d">Octavitin: The Rules of Under — read the opening pages right here</span></a>
+      <a class="guide__row" href="#grime95" data-ch="5"><b>5</b><span class="guide__t">GRIME95!</span><span class="guide__d">Ponder County booking records, one a day — grime95.com</span></a>
+      <a class="guide__row" href="https://music.patpadgett.com" data-ch="6"><b>6</b><span class="guide__t">MUSIC</span><span class="guide__d">Records, songs &amp; other noise — music.patpadgett.com</span></a>
+      <a class="guide__row" href="https://blog.patpadgett.com" data-ch="7"><b>7</b><span class="guide__t">BLOG</span><span class="guide__d">Thoughts, notes &amp; rabbit holes — blog.patpadgett.com</span></a>
       <a class="guide__row guide__row--contact" href="#contact" data-jump><b>✉</b><span class="guide__t">CONTACT</span><span class="guide__d">pat@patpadgett.com, GitHub, LinkedIn — the trading cards at the bottom</span></a>
       <p class="guide__foot">Or turn the dial on the set — press once to pick, again to tune in.</p>
     </nav>
@@ -86,11 +86,11 @@
     <p class="remote__brand" aria-hidden="true">SPACE COMMAND</p>
     <div class="remote__keys" role="group" aria-label="Remote control">
       <button class="remote__key remote__key--power" type="button" id="power" aria-pressed="true" aria-label="Power. The set is on."><span>POWER</span></button>
-      <button class="remote__key" type="button" data-ch="3" aria-label="Channel 3, Music"><span><b>3</b>MUSIC</span></button>
-      <button class="remote__key" type="button" data-ch="4" aria-label="Channel 4, Work"><span><b>4</b>WORK</span></button>
-      <button class="remote__key" type="button" data-ch="5" aria-label="Channel 5, Blog"><span><b>5</b>BLOG</span></button>
-      <button class="remote__key" type="button" data-ch="6" aria-label="Channel 6, Bedtime book"><span><b>6</b>BEDTIME</span></button>
-      <button class="remote__key" type="button" data-ch="7" aria-label="Channel 7, grime95"><span><b>7</b>GRIME95</span></button>
+      <button class="remote__key" type="button" data-ch="3" aria-label="Channel 3, Work"><span><b>3</b>WORK</span></button>
+      <button class="remote__key" type="button" data-ch="4" aria-label="Channel 4, Bedtime book"><span><b>4</b>BEDTIME</span></button>
+      <button class="remote__key" type="button" data-ch="5" aria-label="Channel 5, grime95"><span><b>5</b>GRIME95</span></button>
+      <button class="remote__key" type="button" data-ch="6" aria-label="Channel 6, Music"><span><b>6</b>MUSIC</span></button>
+      <button class="remote__key" type="button" data-ch="7" aria-label="Channel 7, Blog"><span><b>7</b>BLOG</span></button>
       <button class="remote__key remote__key--mute" type="button" id="mute" aria-pressed="true" aria-label="Sound. Muted. Press to play the soundtrack."><span>MUTE</span></button>
     </div>
     <p class="remote__state" id="remote-state" aria-live="polite">MUTED · press MUTE for the soundtrack</p>
@@ -98,11 +98,11 @@
 
   <!-- shelf under the set: cartridges = table of contents -->
   <nav class="shelf" aria-label="Sections on this page">
-    <a class="cart" href="#music" aria-label="Music — the record, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-music.webp" width="400" height="600" alt="" srcset="assets/carts/label-music-200.webp 200w, assets/carts/label-music.webp 400w" sizes="80px"><span class="cart__band"><small>PP-001</small><b>SUPER BASS BROS.</b><i>The record</i></span></span><span class="cart__cap" aria-hidden="true">MUSIC</span></a>
-    <a class="cart" href="#table" aria-label="Magazines — the coffee table, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-table.webp" width="400" height="600" alt="" srcset="assets/carts/label-table-200.webp 200w, assets/carts/label-table.webp 400w" sizes="80px"><span class="cart__band"><small>PP-002</small><b>MAG HUNT</b><i>The coffee table</i></span></span><span class="cart__cap" aria-hidden="true">MAGAZINES</span></a>
-    <a class="cart" href="#interests" aria-label="Madballs, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-balls.webp" width="400" height="600" alt="" srcset="assets/carts/label-balls-200.webp 200w, assets/carts/label-balls.webp 400w" sizes="80px"><span class="cart__band"><small>PP-003</small><b>MADBALL PUNCH-OUT!!</b><i>Madballs</i></span></span><span class="cart__cap" aria-hidden="true">MADBALLS</span></a>
-    <a class="cart" href="#work" aria-label="Work — the work log, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-work.webp" width="400" height="600" alt="" srcset="assets/carts/label-work-200.webp 200w, assets/carts/label-work.webp 400w" sizes="80px"><span class="cart__band"><small>PP-004</small><b>SYSOP'S QUEST</b><i>The work log</i></span></span><span class="cart__cap" aria-hidden="true">WORK</span></a>
-    <a class="cart" href="#octavitin" aria-label="The book — Octavitin, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-octavitin.webp" width="400" height="600" alt="" srcset="assets/carts/label-octavitin-200.webp 200w, assets/carts/label-octavitin.webp 400w" sizes="80px"><span class="cart__band"><small>PP-005</small><b>UNDER THE BED</b><i>The bedtime book</i></span></span><span class="cart__cap" aria-hidden="true">THE BOOK</span></a>
+    <a class="cart" href="#work" aria-label="Work — the work log, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-work.webp" width="400" height="600" alt="" srcset="assets/carts/label-work-200.webp 200w, assets/carts/label-work.webp 400w" sizes="80px"><span class="cart__band"><small>PP-001</small><b>SYSOP'S QUEST</b><i>The work log</i></span></span><span class="cart__cap" aria-hidden="true">WORK</span></a>
+    <a class="cart" href="#octavitin" aria-label="The book — Octavitin, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-octavitin.webp" width="400" height="600" alt="" srcset="assets/carts/label-octavitin-200.webp 200w, assets/carts/label-octavitin.webp 400w" sizes="80px"><span class="cart__band"><small>PP-002</small><b>UNDER THE BED</b><i>The bedtime book</i></span></span><span class="cart__cap" aria-hidden="true">THE BOOK</span></a>
+    <a class="cart" href="#music" aria-label="Music — the record, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-music.webp" width="400" height="600" alt="" srcset="assets/carts/label-music-200.webp 200w, assets/carts/label-music.webp 400w" sizes="80px"><span class="cart__band"><small>PP-004</small><b>SUPER BASS BROS.</b><i>The record</i></span></span><span class="cart__cap" aria-hidden="true">MUSIC</span></a>
+    <a class="cart" href="#table" aria-label="Magazines — the coffee table, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-table.webp" width="400" height="600" alt="" srcset="assets/carts/label-table-200.webp 200w, assets/carts/label-table.webp 400w" sizes="80px"><span class="cart__band"><small>PP-005</small><b>MAG HUNT</b><i>The coffee table</i></span></span><span class="cart__cap" aria-hidden="true">MAGAZINES</span></a>
+    <a class="cart" href="#interests" aria-label="Madballs, on this page"><img class="cart__shell" src="assets/plates/cart-s.webp" srcset="assets/plates/cart-xs.webp 180w, assets/plates/cart-s.webp 360w, assets/plates/cart.webp 1024w" sizes="(max-width:640px) 45vw, 200px" width="1024" height="1536" alt=""><span class="cart__label"><img class="cart__art" src="assets/carts/label-balls.webp" width="400" height="600" alt="" srcset="assets/carts/label-balls-200.webp 200w, assets/carts/label-balls.webp 400w" sizes="80px"><span class="cart__band"><small>PP-006</small><b>MADBALL PUNCH-OUT!!</b><i>Madballs</i></span></span><span class="cart__cap" aria-hidden="true">MADBALLS</span></a>
   </nav>
 </header>
 <main id="main">
@@ -128,104 +128,9 @@
   </div>
 </section>
 
-<!-- ===== MUSIC ===== -->
-<section class="sec sec--music" id="music" aria-labelledby="music-h">
-  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-001</span><h2 id="music-h">Music</h2></div>
-  <div class="tape">
-    <div class="tape__obj">
-      <img class="tape__plate" src="assets/plates/cassette-s.webp" srcset="assets/plates/cassette-s.webp 700w, assets/plates/cassette.webp 1536w" sizes="(max-width:960px) 70vw, 30vw" width="1536" height="1024" alt="">
-      <p class="tape__label"><b>KORUPSI</b> <span>Ledakan Pemuda</span><small>JKT 2019 → USA 2025 · 11 tracks</small></p>
-      <span class="tape__side" aria-hidden="true">A</span>
-    </div>
-    <div class="tape__body">
-      <p>Eleven tracks of Indonesian protest music pushed through modern dubstep bass. I produced, mixed and played on it; the 30-second previews and the full record live on the music site.</p>
-      <p class="tape__ctas"><a class="btn btn--slime" href="https://music.patpadgett.com">▶ Play the record</a><a class="btn btn--ghost" href="https://ledakanpemuda.com/">Ledakan Pemuda ↗</a></p>
-      <p class="tape__note">Bass player first. Producer because somebody had&nbsp;to&nbsp;be.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== INTERESTS ===== -->
-<!-- ===== THE COFFEE TABLE ===== -->
-<section class="sec sec--table" id="table" aria-labelledby="table-h">
-  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-002</span><h2 id="table-h">The coffee table</h2></div>
-  <p class="sec__lede">Every cover I was ever on, if you believe the coffee table. (You shouldn't — the covers are made up; the Linux Magazine and 2600 write-ups in the work log are real.) Pick one up.</p>
-  <div class="table" id="coffee-table">
-    <img class="table__top" src="assets/mags/table.webp" width="1536" height="1024" alt="" srcset="assets/mags/table-768.webp 768w, assets/mags/table-1100.webp 1100w, assets/mags/table.webp 1536w" sizes="(max-width:960px) 100vw, 1100px">
-    <img class="beercan" src="assets/mags/beercan.webp" width="512" height="512" alt="" aria-hidden="true">
-    <div class="ashtray" aria-hidden="true">
-      <img src="assets/mags/ashtray.webp" width="512" height="512" alt="" srcset="assets/mags/ashtray-256.webp 256w, assets/mags/ashtray-512.webp 512w, assets/mags/ashtray.webp 1024w" sizes="(max-width:640px) 100px, 220px">
-      <span class="smoke"><i></i><i></i><i></i><i></i><i></i></span>
-    </div>
-    <ul class="mags" role="list">
-      <li class="mag" style="--x:2%;--y:6%;--r:-13deg;--z:1"><button type="button" aria-pressed="false"><img src="assets/mags/mag0.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Kerrang!</b> · Dec 1985 · Born to shred</span></button></li>
-      <li class="mag" style="--x:19%;--y:0%;--r:6deg;--z:2"><button type="button" aria-pressed="false"><img src="assets/mags/mag1.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>SPIN</b> · Oct 1988 · Behind the curtain</span></button></li>
-      <li class="mag" style="--x:37%;--y:9%;--r:-4deg;--z:3"><button type="button" aria-pressed="false"><img src="assets/mags/mag2.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Thrasher</b> · 1987 · Padgett does it again</span></button></li>
-      <li class="mag" style="--x:55%;--y:1%;--r:8deg;--z:4"><button type="button" aria-pressed="false"><img src="assets/mags/mag3.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Hit Parader</b> · Aug 1986 · Crazy rock legend</span></button></li>
-      <li class="mag" style="--x:72%;--y:12%;--r:-7deg;--z:5"><button type="button" aria-pressed="false"><img src="assets/mags/mag4.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>RIP</b> · The bedroom rocker revolution</span></button></li>
-      <li class="mag" style="--x:8%;--y:50%;--r:5deg;--z:6"><button type="button" aria-pressed="false"><img src="assets/mags/mag5.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Rolling Stone</b> · Jul 1988 · Voice of the pit</span></button></li>
-      <li class="mag" style="--x:27%;--y:54%;--r:-10deg;--z:7"><button type="button" aria-pressed="false"><img src="assets/mags/mag6.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>CREEM</b> · Garage sessions exposed</span></button></li>
-      <li class="mag" style="--x:47%;--y:50%;--r:9deg;--z:8"><button type="button" aria-pressed="false"><img src="assets/mags/mag7.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Circus</b> · May 1986 · Rock in the raw</span></button></li>
-    </ul>
-    <p class="table__hint" aria-live="polite">Tap a cover to pick it up · tap again to put it down</p>
-  </div>
-</section>
-
-<section class="sec sec--balls" id="interests" aria-labelledby="int-h">
-  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-003</span><h2 id="int-h">Madballs</h2></div>
-  <p class="sec__lede">Nine gross-out rubber balls, one per obsession. Everything that was under the bed in 1988 and, honestly, still is.</p>
-  <ul class="balls">
-    <li class="ball">
-      <img src="assets/toys/ball-nintendo.webp" width="512" height="512" alt="Blow-Hard Bart — a gross-out rubber ball for Nintendo" loading="lazy" srcset="assets/toys/ball-nintendo-256.webp 256w, assets/toys/ball-nintendo.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Blow-Hard Bart</b><span>Nintendo</span></p>
-      <p class="ball__line">NES → SNES. Blowing in the cartridge worked. Don't argue.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-thrasher.webp" width="512" height="512" alt="Road-Rash Rudy — a gross-out rubber ball for Thrasher" loading="lazy" srcset="assets/toys/ball-thrasher-256.webp 256w, assets/toys/ball-thrasher.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Road-Rash Rudy</b><span>Thrasher</span></p>
-      <p class="ball__line">Skate mag, skate rock, Vision Street Wear high-tops.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-fnm.webp" width="512" height="512" alt="Epic Eddie — a gross-out rubber ball for Faith No More" loading="lazy" srcset="assets/toys/ball-fnm-256.webp 256w, assets/toys/ball-fnm.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Epic Eddie</b><span>Faith No More</span></p>
-      <p class="ball__line">The Real Thing. Mike Patton doing whatever that was.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-gnr.webp" width="512" height="512" alt="Jungle Jimmy — a gross-out rubber ball for Guns N' Roses" loading="lazy" srcset="assets/toys/ball-gnr-256.webp 256w, assets/toys/ball-gnr.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Jungle Jimmy</b><span>Guns N' Roses</span></p>
-      <p class="ball__line">Appetite. RIP Magazine on the floor next to it.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-synth.webp" width="512" height="512" alt="Neon Nate — a gross-out rubber ball for Synthwave" loading="lazy" srcset="assets/toys/ball-synth-256.webp 256w, assets/toys/ball-synth.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Neon Nate</b><span>Synthwave</span></p>
-      <p class="ball__line">Countach, Testarossa, neon grid to the horizon.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-gpk.webp" width="512" height="512" alt="Wax-Pack Wally — a gross-out rubber ball for Garbage Pail Kids" loading="lazy" srcset="assets/toys/ball-gpk-256.webp 256w, assets/toys/ball-gpk.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Wax-Pack Wally</b><span>Garbage Pail Kids</span></p>
-      <p class="ball__line">In the shoebox under the bed, sorted by grossness.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-nick.webp" width="512" height="512" alt="Slime-Time Sam — a gross-out rubber ball for Nickelodeon" loading="lazy" srcset="assets/toys/ball-nick-256.webp 256w, assets/toys/ball-nick.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Slime-Time Sam</b><span>Nickelodeon</span></p>
-      <p class="ball__line">You Can't Do That on Television. "I don't know" — slime.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-nes.webp" width="512" height="512" alt="Falkor Fred — a gross-out rubber ball for Neverending Story" loading="lazy">
-      <p class="ball__tag"><b>Falkor Fred</b><span>Neverending Story</span></p>
-      <p class="ball__line">Falkor. The Nothing. We don't talk about the horse.</p>
-    </li>
-    <li class="ball">
-      <img src="assets/toys/ball-bride.webp" width="512" height="512" alt="Inconceivable Ike — a gross-out rubber ball for Princess Bride" loading="lazy" srcset="assets/toys/ball-bride-256.webp 256w, assets/toys/ball-bride.webp 512w" sizes="(max-width:640px) 45vw, 260px">
-      <p class="ball__tag"><b>Inconceivable Ike</b><span>Princess Bride</span></p>
-      <p class="ball__line">As you wish. Have fun storming the castle.</p>
-    </li>
-  </ul>
-</section>
-
 <!-- ===== WORK ===== -->
 <section class="sec sec--work" id="work" aria-labelledby="work-h">
-  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-004</span><h2 id="work-h">Work</h2></div>
+  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-001</span><h2 id="work-h">Work</h2></div>
   <div class="mac">
     <div class="mac__obj">
       <img class="mac__plate" src="assets/plates/mac-s.webp" srcset="assets/plates/mac-s.webp 600w, assets/plates/mac.webp 1024w" sizes="(max-width:960px) 440px, 35vw" width="1024" height="1536" alt="">
@@ -271,7 +176,7 @@ databank% <span class="cur">▌</span></pre></div></div></div>
         <li><b>2000</b><span><strong>corkscrew</strong> — SSH over HTTP proxies, in C. Linux Magazine, 2600 (Vol. 19 No. 2), Wikipedia, still in the distros.</span></li>
         <li><b>2001–2015</b><span><strong>Sprint</strong> — Tier-3 SME, wireless &amp; wireline billing mediation. Nortel, Ericsson, Lucent AMA/CDR. $2M saved, +250% throughput, −50% alarm time-to-resolution.</span></li>
         <li><b>2015–2019</b><span><strong>Jabil, then Raymond James</strong> — infrastructure automation: Kubernetes, Jenkins, Ansible, Terraform, ELK.</span></li>
-        <li><b>now</b><span><strong>Looking</strong> for billing-mediation, telecom data or infrastructure-automation work — senior engineer or SME. Tampa Bay FL · remote, hybrid or contract. <a href="https://work.patpadgett.com">Full résumé on channel 4 →</a></span></li>
+        <li><b>now</b><span><strong>Looking</strong> for billing-mediation, telecom data or infrastructure-automation work — senior engineer or SME. Tampa Bay FL · remote, hybrid or contract. <a href="https://work.patpadgett.com">Full résumé on channel 3 →</a></span></li>
       </ol>
     </div>
   </div>
@@ -279,7 +184,7 @@ databank% <span class="cur">▌</span></pre></div></div></div>
 
 <!-- ===== OCTAVITIN ===== -->
 <section class="sec sec--octavitin" id="octavitin" aria-labelledby="octavitin-h" tabindex="-1">
-  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-005</span><h2 id="octavitin-h">Bedtime reading</h2></div>
+  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-002</span><h2 id="octavitin-h">Bedtime reading</h2></div>
   <p class="sec__lede">The library book that never went back. Open it — the first pages are right there.</p>
   <div class="bedtime">
     <div class="pitch">
@@ -331,7 +236,7 @@ databank% <span class="cur">▌</span></pre></div></div></div>
 </section>
 <!-- ===== GRIME95 ===== -->
 <section class="sec sec--grime" id="grime95" aria-labelledby="grime-h" tabindex="-1">
-  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-006</span><h2 id="grime-h">Booking records</h2></div>
+  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-003</span><h2 id="grime-h">Booking records</h2></div>
   <p class="sec__lede">The dot-matrix under the desk never stopped. It is still printing Ponder County, one booking a day — comic small-town fiction, written for grown-ups.</p>
   <div class="grime">
     <div class="grime__pitch">
@@ -380,6 +285,101 @@ databank% <span class="cur">▌</span></pre></div></div></div>
       <p class="desk__status" id="desk-status" role="status">Latest on file: <b>booking 5 of 313</b>. Next one prints at noon Eastern.</p>
     </div>
   </div>
+</section>
+
+<!-- ===== MUSIC ===== -->
+<section class="sec sec--music" id="music" aria-labelledby="music-h">
+  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-004</span><h2 id="music-h">Music</h2></div>
+  <div class="tape">
+    <div class="tape__obj">
+      <img class="tape__plate" src="assets/plates/cassette-s.webp" srcset="assets/plates/cassette-s.webp 700w, assets/plates/cassette.webp 1536w" sizes="(max-width:960px) 70vw, 30vw" width="1536" height="1024" alt="">
+      <p class="tape__label"><b>KORUPSI</b> <span>Ledakan Pemuda</span><small>JKT 2019 → USA 2025 · 11 tracks</small></p>
+      <span class="tape__side" aria-hidden="true">A</span>
+    </div>
+    <div class="tape__body">
+      <p>Eleven tracks of Indonesian protest music pushed through modern dubstep bass. I produced, mixed and played on it; the 30-second previews and the full record live on the music site.</p>
+      <p class="tape__ctas"><a class="btn btn--slime" href="https://music.patpadgett.com">▶ Play the record</a><a class="btn btn--ghost" href="https://ledakanpemuda.com/">Ledakan Pemuda ↗</a></p>
+      <p class="tape__note">Bass player first. Producer because somebody had&nbsp;to&nbsp;be.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTERESTS ===== -->
+<!-- ===== THE COFFEE TABLE ===== -->
+<section class="sec sec--table" id="table" aria-labelledby="table-h">
+  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-005</span><h2 id="table-h">The coffee table</h2></div>
+  <p class="sec__lede">Every cover I was ever on, if you believe the coffee table. (You shouldn't — the covers are made up; the Linux Magazine and 2600 write-ups in the work log are real.) Pick one up.</p>
+  <div class="table" id="coffee-table">
+    <img class="table__top" src="assets/mags/table.webp" width="1536" height="1024" alt="" srcset="assets/mags/table-768.webp 768w, assets/mags/table-1100.webp 1100w, assets/mags/table.webp 1536w" sizes="(max-width:960px) 100vw, 1100px">
+    <img class="beercan" src="assets/mags/beercan.webp" width="512" height="512" alt="" aria-hidden="true">
+    <div class="ashtray" aria-hidden="true">
+      <img src="assets/mags/ashtray.webp" width="512" height="512" alt="" srcset="assets/mags/ashtray-256.webp 256w, assets/mags/ashtray-512.webp 512w, assets/mags/ashtray.webp 1024w" sizes="(max-width:640px) 100px, 220px">
+      <span class="smoke"><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+    <ul class="mags" role="list">
+      <li class="mag" style="--x:2%;--y:6%;--r:-13deg;--z:1"><button type="button" aria-pressed="false"><img src="assets/mags/mag0.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Kerrang!</b> · Dec 1985 · Born to shred</span></button></li>
+      <li class="mag" style="--x:19%;--y:0%;--r:6deg;--z:2"><button type="button" aria-pressed="false"><img src="assets/mags/mag1.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>SPIN</b> · Oct 1988 · Behind the curtain</span></button></li>
+      <li class="mag" style="--x:37%;--y:9%;--r:-4deg;--z:3"><button type="button" aria-pressed="false"><img src="assets/mags/mag2.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Thrasher</b> · 1987 · Padgett does it again</span></button></li>
+      <li class="mag" style="--x:55%;--y:1%;--r:8deg;--z:4"><button type="button" aria-pressed="false"><img src="assets/mags/mag3.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Hit Parader</b> · Aug 1986 · Crazy rock legend</span></button></li>
+      <li class="mag" style="--x:72%;--y:12%;--r:-7deg;--z:5"><button type="button" aria-pressed="false"><img src="assets/mags/mag4.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>RIP</b> · The bedroom rocker revolution</span></button></li>
+      <li class="mag" style="--x:8%;--y:50%;--r:5deg;--z:6"><button type="button" aria-pressed="false"><img src="assets/mags/mag5.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Rolling Stone</b> · Jul 1988 · Voice of the pit</span></button></li>
+      <li class="mag" style="--x:27%;--y:54%;--r:-10deg;--z:7"><button type="button" aria-pressed="false"><img src="assets/mags/mag6.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>CREEM</b> · Garage sessions exposed</span></button></li>
+      <li class="mag" style="--x:47%;--y:50%;--r:9deg;--z:8"><button type="button" aria-pressed="false"><img src="assets/mags/mag7.webp" width="300" height="445" alt="" loading="lazy"><span class="mag__cap"><b>Circus</b> · May 1986 · Rock in the raw</span></button></li>
+    </ul>
+    <p class="table__hint" aria-live="polite">Tap a cover to pick it up · tap again to put it down</p>
+  </div>
+</section>
+
+<section class="sec sec--balls" id="interests" aria-labelledby="int-h">
+  <div class="sec__head"><span class="sec__cart" aria-hidden="true">PP-006</span><h2 id="int-h">Madballs</h2></div>
+  <p class="sec__lede">Nine gross-out rubber balls, one per obsession. Everything that was under the bed in 1988 and, honestly, still is.</p>
+  <ul class="balls">
+    <li class="ball">
+      <img src="assets/toys/ball-nintendo.webp" width="512" height="512" alt="Blow-Hard Bart — a gross-out rubber ball for Nintendo" loading="lazy" srcset="assets/toys/ball-nintendo-256.webp 256w, assets/toys/ball-nintendo.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Blow-Hard Bart</b><span>Nintendo</span></p>
+      <p class="ball__line">NES → SNES. Blowing in the cartridge worked. Don't argue.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-thrasher.webp" width="512" height="512" alt="Road-Rash Rudy — a gross-out rubber ball for Thrasher" loading="lazy" srcset="assets/toys/ball-thrasher-256.webp 256w, assets/toys/ball-thrasher.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Road-Rash Rudy</b><span>Thrasher</span></p>
+      <p class="ball__line">Skate mag, skate rock, Vision Street Wear high-tops.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-fnm.webp" width="512" height="512" alt="Epic Eddie — a gross-out rubber ball for Faith No More" loading="lazy" srcset="assets/toys/ball-fnm-256.webp 256w, assets/toys/ball-fnm.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Epic Eddie</b><span>Faith No More</span></p>
+      <p class="ball__line">The Real Thing. Mike Patton doing whatever that was.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-gnr.webp" width="512" height="512" alt="Jungle Jimmy — a gross-out rubber ball for Guns N' Roses" loading="lazy" srcset="assets/toys/ball-gnr-256.webp 256w, assets/toys/ball-gnr.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Jungle Jimmy</b><span>Guns N' Roses</span></p>
+      <p class="ball__line">Appetite. RIP Magazine on the floor next to it.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-synth.webp" width="512" height="512" alt="Neon Nate — a gross-out rubber ball for Synthwave" loading="lazy" srcset="assets/toys/ball-synth-256.webp 256w, assets/toys/ball-synth.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Neon Nate</b><span>Synthwave</span></p>
+      <p class="ball__line">Countach, Testarossa, neon grid to the horizon.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-gpk.webp" width="512" height="512" alt="Wax-Pack Wally — a gross-out rubber ball for Garbage Pail Kids" loading="lazy" srcset="assets/toys/ball-gpk-256.webp 256w, assets/toys/ball-gpk.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Wax-Pack Wally</b><span>Garbage Pail Kids</span></p>
+      <p class="ball__line">In the shoebox under the bed, sorted by grossness.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-nick.webp" width="512" height="512" alt="Slime-Time Sam — a gross-out rubber ball for Nickelodeon" loading="lazy" srcset="assets/toys/ball-nick-256.webp 256w, assets/toys/ball-nick.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Slime-Time Sam</b><span>Nickelodeon</span></p>
+      <p class="ball__line">You Can't Do That on Television. "I don't know" — slime.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-nes.webp" width="512" height="512" alt="Falkor Fred — a gross-out rubber ball for Neverending Story" loading="lazy">
+      <p class="ball__tag"><b>Falkor Fred</b><span>Neverending Story</span></p>
+      <p class="ball__line">Falkor. The Nothing. We don't talk about the horse.</p>
+    </li>
+    <li class="ball">
+      <img src="assets/toys/ball-bride.webp" width="512" height="512" alt="Inconceivable Ike — a gross-out rubber ball for Princess Bride" loading="lazy" srcset="assets/toys/ball-bride-256.webp 256w, assets/toys/ball-bride.webp 512w" sizes="(max-width:640px) 45vw, 260px">
+      <p class="ball__tag"><b>Inconceivable Ike</b><span>Princess Bride</span></p>
+      <p class="ball__line">As you wish. Have fun storming the castle.</p>
+    </li>
+  </ul>
 </section>
 
 <dialog class="reader" id="reader" aria-labelledby="reader-title">

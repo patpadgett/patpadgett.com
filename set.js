@@ -12,11 +12,11 @@
 
   /* ---------- TV: channel knob ---------- */
   var CH = {
-    3: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: -104 },
-    4: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -52 },
-    5: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 0 },
-    6: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · the opening pages', rot: 52 },
-    7: { name: 'GRIME95!', href: '#grime95', line: 'Ponder County booking records', rot: 104 }
+    3: { name: 'WORK',  href: 'https://work.patpadgett.com',  line: 'work.patpadgett.com',  rot: -104 },
+    4: { name: 'BEDTIME BOOK', href: '#octavitin', line: 'Octavitin · the opening pages', rot: -52 },
+    5: { name: 'GRIME95!', href: '#grime95', line: 'Ponder County booking records', rot: 0 },
+    6: { name: 'MUSIC', href: 'https://music.patpadgett.com', line: 'music.patpadgett.com', rot: 52 },
+    7: { name: 'BLOG',  href: 'https://blog.patpadgett.com',  line: 'blog.patpadgett.com',  rot: 104 }
   };
   var knob = document.getElementById('knob'), bumper = document.getElementById('bumper');
   var rows = [].slice.call(document.querySelectorAll('.guide__row[data-ch]'));

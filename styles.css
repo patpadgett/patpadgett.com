@@ -78,7 +78,7 @@ h1,h2{margin:0}
 .bumper span{display:block;font:400 clamp(16px,2.4vw,34px)/1 var(--pix)}
 .bumper small{display:block;margin-top:1em;font:400 clamp(9px,1vw,13px)/1.4 var(--pix);opacity:.85}
 .bumper__tune{font-family:var(--term)!important;font-size:clamp(30px,5vw,70px)!important}
-.bumper--3{background:var(--red)}.bumper--4{background:#000;color:var(--slime)}.bumper--5{background:var(--cyan);color:#001}.bumper--6{background:#171d32;color:#ffb16b}.bumper--7{background:#0000aa;color:#ffff55}
+.bumper--3{background:#000;color:var(--slime)}.bumper--4{background:#171d32;color:#ffb16b}.bumper--5{background:#0000aa;color:#ffff55}.bumper--6{background:var(--red)}.bumper--7{background:var(--cyan);color:#001}
 
 /* pilot lamp: measured on the plate at (91.2%, 39.8%), ⌀1% */
 .tv__lamp{position:absolute;left:89.9%;top:38.5%;width:1.3%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff0e8,#ff3a2a 35%,#c01008 75%);box-shadow:0 0 5px 2px rgba(255,42,26,.9),0 0 16px 5px rgba(255,42,26,.5);transition:box-shadow .2s,background .2s;pointer-events:none}
