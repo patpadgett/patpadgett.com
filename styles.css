@@ -173,7 +173,6 @@ h1,h2{margin:0}
 
 /* ===================== WHO — VHS ===================== */
 .who{grid-area:who;padding:clamp(28px,4vw,56px) 0 clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:center}
-.who__head{grid-column:1/-1;margin-bottom:0}
 .vhs{position:relative;filter:drop-shadow(0 30px 30px rgba(0,0,0,.7))}
 .vhs__plate{width:100%}
 /* measured: front sleeve 20%→88.5% x, 12%→94% y, ~1.7° */
