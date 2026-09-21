@@ -16,7 +16,7 @@
   };
   var bumper = document.getElementById('bumper');
   var rows = [].slice.call(document.querySelectorAll('.guide__row[data-ch]'));
-  var cur = 3, tuneTimer = null;
+  var cur = null, committed = null, tuneTimer = null;
   var ctx = null, soundOn = false;
   function click() {
     if (!soundOn) return;
@@ -28,20 +28,22 @@
       o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + .07);
     } catch (e) {}
   }
-  function setCh(n) { cur = n; rows.forEach(function (r) { r.classList.toggle('on', r.dataset.ch == n); }); }
-  function hideBumper() { clearTimeout(tuneTimer); bumper.className = 'bumper'; }
+  function setCh(n) { cur = n; rows.forEach(function (r) { r.classList.toggle('on', n != null && r.dataset.ch == n); }); }
+  function hideBumper() { clearTimeout(tuneTimer); bumper.className = 'bumper'; bumper.hidden = true; setCh(committed); }
   function tune(n, delay) {
-    bumper.className = 'bumper on bumper--' + n;
-    bumper.innerHTML = '<b><i>' + n + '</i></b><span>' + CH[n].name + '</span><small>' + CH[n].line + ' · Esc to cancel</small>';
+    bumper.hidden = false; bumper.className = 'bumper on bumper--' + n;
+    bumper.setAttribute('aria-label', 'Tuning to channel ' + n + ', ' + CH[n].name + '. Press to cancel.');
+    bumper.innerHTML = '<b><i>' + n + '</i></b><span>' + CH[n].name + '</span><small>' + CH[n].line + ' · tap or Esc to cancel</small>';
     clearTimeout(tuneTimer);
     tuneTimer = setTimeout(function () {
-      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; if (location.hash !== CH[n].href) history.pushState(null, '', CH[n].href); } if (t) t.focus({ preventScroll: true }); return; }
+      committed = n;
+      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; bumper.hidden = true; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; if (location.hash !== CH[n].href) history.pushState(null, '', CH[n].href); } if (t) t.focus({ preventScroll: true }); return; }
       location.href = CH[n].href;
     }, reduce ? 0 : (delay == null ? 700 : delay));
   }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && bumper.classList.contains('on')) { hideBumper(); } });
-  rows.forEach(function (r) { r.addEventListener('click', function () { setCh(+r.dataset.ch); }); });
-  setCh(3);
+  bumper.addEventListener('click', function () { hideBumper(); });
+  rows.forEach(function (r) { r.addEventListener('click', function () { committed = +r.dataset.ch; setCh(committed); }); });
 
   /* ---------- Mac Color Classic: scroll-driven screens ---------- */
   var mac = document.getElementById('mac-screen');
@@ -113,6 +115,7 @@
   if (mute && audio) {
     mute.addEventListener('click', function () {
       press(mute);
+      if (!isOn) setPower(true);
       if (audio.paused) { audio.volume = .55; audio.play().then(paintMute, function () { paintMute(); say('THE SET WON’T PLAY YET · press MUTE once more'); }); } else { audio.pause(); paintMute(); }
     });
     audio.addEventListener('pause', paintMute); audio.addEventListener('play', paintMute); audio.addEventListener('ended', paintMute);

@@ -56,7 +56,7 @@
         <p class="title__slug">Music, work <span class="amp">&amp;</span> words</p>
         <p class="title__sub">Producer · engineer · nerd · <b>est.&nbsp;1979</b></p>
       </div>
-      <div class="bumper" id="bumper" aria-live="polite"></div>
+      <button class="bumper" id="bumper" type="button" aria-live="polite" tabindex="-1" hidden></button>
       <div class="fuzz" aria-hidden="true"></div>
       <div class="tv__roll" aria-hidden="true"></div>
       <div class="tv__dot" aria-hidden="true"></div>
@@ -64,13 +64,13 @@
     </div>
     <span class="tv__lamp" aria-hidden="true"></span>
     <div class="tvkeys" role="group" aria-label="Channel buttons">
-      <button class="tvkey tvkey--power" type="button" id="power" aria-pressed="true" aria-label="Power. The set is on."><i></i><span>POWER</span></button>
-      <button class="tvkey" type="button" data-ch="3" aria-label="Channel 3, Work — work.patpadgett.com"><i></i><span><b>3</b>WORK</span></button>
-      <button class="tvkey" type="button" data-ch="4" aria-label="Channel 4, Music — music.patpadgett.com"><i></i><span><b>4</b>MUSIC</span></button>
-      <button class="tvkey" type="button" data-ch="5" aria-label="Channel 5, Blog — blog.patpadgett.com"><i></i><span><b>5</b>BLOG</span></button>
-      <button class="tvkey" type="button" data-ch="6" aria-label="Channel 6, Bedtime book, on this page"><i></i><span><b>6</b>BEDTIME</span></button>
-      <button class="tvkey" type="button" data-ch="7" aria-label="Channel 7, grime95, on this page"><i></i><span><b>7</b>GRIME95</span></button>
-      <button class="tvkey tvkey--mute" type="button" id="mute" aria-pressed="true" aria-label="Sound. Muted. Press to play the soundtrack."><i></i><span>MUTE</span></button>
+      <button class="tvkey tvkey--power" type="button" id="power" aria-pressed="true" aria-label="Power. The set is on."><i></i><span><em>POWER</em></span></button>
+      <button class="tvkey" type="button" data-ch="3" aria-label="Channel 3, Work — work.patpadgett.com"><i></i><span><b>3</b><em>WORK</em></span></button>
+      <button class="tvkey" type="button" data-ch="4" aria-label="Channel 4, Music — music.patpadgett.com"><i></i><span><b>4</b><em>MUSIC</em></span></button>
+      <button class="tvkey" type="button" data-ch="5" aria-label="Channel 5, Blog — blog.patpadgett.com"><i></i><span><b>5</b><em>BLOG</em></span></button>
+      <button class="tvkey" type="button" data-ch="6" aria-label="Channel 6, Bedtime book, on this page"><i></i><span><b>6</b><em>BEDTIME</em></span></button>
+      <button class="tvkey" type="button" data-ch="7" aria-label="Channel 7, grime95, on this page"><i></i><span><b>7</b><em>GRIME95</em></span></button>
+      <button class="tvkey tvkey--mute" type="button" id="mute" aria-pressed="true" aria-label="Sound. Muted. Press to play the soundtrack."><i></i><span><em>MUTE</em></span></button>
     </div>
     <p class="tv__state" id="remote-state" aria-live="polite">MUTED · press MUTE for the soundtrack</p>
   </div>
@@ -93,7 +93,7 @@
 <!-- ===== WHO ===== -->
 <section class="who" id="who" aria-labelledby="who-h">
   <div class="vhs">
-    <img class="vhs__plate" src="assets/plates/vhs-s.webp" srcset="assets/plates/vhs-s.webp 600w, assets/plates/vhs.webp 1024w" sizes="(max-width:960px) 92vw, 35vw" width="1024" height="1536" alt="" loading="lazy" decoding="async">
+    <img class="vhs__plate" src="assets/plates/vhs-s.webp" srcset="assets/plates/vhs-s.webp 600w, assets/plates/vhs.webp 1024w" sizes="(max-width:960px) min(92vw,420px), 35vw" width="1024" height="1536" alt="" loading="lazy" decoding="async">
     <div class="vhs__sleeve">
       <p class="vhs__kicker">PADGETT HOME VIDEO PRESENTS</p>
       <img class="vhs__photo" src="assets/portrait-film-s.webp" srcset="assets/portrait-film-s.webp 560w, assets/portrait-film.webp 1048w" sizes="(max-width:960px) 260px, 22vw" width="524" height="524" loading="lazy" decoding="async" alt="Patrick Padgett — a square film print with a '88 7 14 date stamp">
@@ -104,7 +104,7 @@
     <span class="vhs__spine" aria-hidden="true">PATRICK PADGETT — THE MOVIE</span>
   </div>
   <div class="who__copy">
-    <p>I make systems that turn raw switch data into bills that are right. For fourteen years I was the top-tier expert on Sprint's billing mediation platforms, working the data off Nortel, Ericsson and Lucent gear. Later I ran infrastructure automation at Jabil and Raymond James: Kubernetes, Jenkins and a lot of Linux.</p>
+    <p class="who__lead">I make systems that turn raw switch data into bills that are right. For fourteen years I was the top-tier expert on Sprint's billing mediation platforms, working the data off Nortel, Ericsson and Lucent gear. Later I ran infrastructure automation at Jabil and Raymond James: Kubernetes, Jenkins and a lot of Linux.</p>
     <p>In 2000 I wrote <a href="https://github.com/patpadgett/corkscrew">corkscrew</a>, a small C tool that tunnels SSH through HTTP proxies. It got a review in <cite>Linux Magazine</cite>, a mention in <cite>2600: The Hacker's Quarterly</cite> (Vol. 19, Issue 2, Summer 2002) and <a href="https://en.wikipedia.org/wiki/Corkscrew_(program)">its own Wikipedia article</a>; it still ships in most distributions.</p>
     <p>I play bass and produce records. The newest is <a href="https://music.patpadgett.com">Korupsi</a> by Ledakan Pemuda, recorded in Jakarta in 2019 and finished in the US in 2025. I live in the Tampa Bay area.</p>
     <p class="who__warn">FBI WARNING: unauthorized reproduction of this bio is punishable by a very stern look.</p>
