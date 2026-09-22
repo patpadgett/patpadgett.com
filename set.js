@@ -28,7 +28,7 @@
       o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + .07);
     } catch (e) {}
   }
-  function setCh(n) { cur = n; rows.forEach(function (r) { r.classList.toggle('on', n != null && r.dataset.ch == n); }); }
+  function setCh(n) { cur = n; rows.forEach(function (r) { var on = n != null && r.dataset.ch == n; r.classList.toggle('on', on); if (on) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current'); }); }
   function hideBumper() { clearTimeout(tuneTimer); bumper.className = 'bumper'; bumper.hidden = true; setCh(committed); }
   function tune(n, delay) {
     bumper.hidden = false; bumper.className = 'bumper on bumper--' + n;
@@ -98,7 +98,9 @@
   var isOn = true, warm = null;
   function press(b) { b.classList.add('is-pressed'); setTimeout(function () { b.classList.remove('is-pressed'); }, 140); click(); }
   [].slice.call(document.querySelectorAll('.tvkey[data-ch]')).forEach(function (b) {
-    b.addEventListener('click', function () {
+    b.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return; /* modifier clicks: let the link do its native thing */
+      e.preventDefault();
       press(b);
       if (!isOn) setPower(true);
       var n = +b.dataset.ch; setCh(n); tune(n, 700);
@@ -116,7 +118,7 @@
     mute.addEventListener('click', function () {
       press(mute);
       if (!isOn) setPower(true);
-      if (audio.paused) { audio.volume = .55; audio.play().then(paintMute, function () { paintMute(); say('THE SET WON’T PLAY YET · press MUTE once more'); }); } else { audio.pause(); paintMute(); }
+      if (audio.paused) { audio.volume = .55; audio.play().then(paintMute, function (err) { paintMute(); say(err && err.name === 'NotAllowedError' ? 'THE BROWSER BLOCKED SOUND · press MUTE once more' : 'NO SOUNDTRACK LOADED · check your connection and try again'); }); } else { audio.pause(); paintMute(); }
     });
     audio.addEventListener('pause', paintMute); audio.addEventListener('play', paintMute); audio.addEventListener('ended', paintMute);
     paintMute();
