@@ -26,3 +26,5 @@ Probes: `~/.hermes/cache/scratch/pp/{confirm,engines,bands}.cjs` (Playwright; Ch
 - ≤380px: rail 7px wider each side with even `minmax(0,1fr)` cells so BEDTIME and GRIME95 keep air.
 - THE SITES rows: the site address is a deliberate third line (`.guide__dom--url{display:block}`) instead of a one-word orphan; `.guide__d` gets `text-wrap:pretty`.
 - `Doto-var.woff2`: the STAT table's wght=900 axis value pointed at nameID 17, which the subset had dropped; Firefox discarded the table and logged two errors on every load. NameIDs 16/17 restored (+32 bytes).
+- Hero → About gap: `.who` top padding `clamp(16px,2vw,28px)` (was up to 56px on top of the 28px row gap) so the band of wood under the guide is section spacing, not a hole, and the VHS sleeve arrives inside the 900px fold.
+- THE SITES addresses set in VT323 15px `#745628` as a station-ID field (5.6:1 on the paper); DESIGN.md updated.
