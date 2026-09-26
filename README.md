@@ -18,3 +18,11 @@ Measured round on 320/390/1024/1440, reader and 404, then one batched fix:
 - Browser surfaces: `::selection` per world (yellow / orange in the reader / grime yellow), `scrollbar-color` from the palette, thin themed scrollbar inside the reader page.
 
 Probes: `~/.hermes/cache/scratch/pp/{confirm,engines,bands}.cjs` (Playwright; Chromium/WebKit/Firefox).
+
+## Follow-up (2026-09-26, same day)
+
+- Hero breakpoint 1100 → 1000px: the TV Guide card sits beside the set on 1024-wide tablets/laptops and fits the 768px fold with its footer (was single-column with the guide starting at y=478). `DESIGN.md` updated.
+- Pushbutton rail re-seated on the plate's control strip: dot centre lands at 0.8985 of the cabinet height at every two-column width (strip centre measured at 0.899 from the plate's luminance profile), dots scale with the cabinet (`min(26%,20px)`), caption floor 7px, numerals 3px clear of the buttons, captions clear of the plinth by ≥3px.
+- ≤380px: rail 7px wider each side with even `minmax(0,1fr)` cells so BEDTIME and GRIME95 keep air.
+- THE SITES rows: the site address is a deliberate third line (`.guide__dom--url{display:block}`) instead of a one-word orphan; `.guide__d` gets `text-wrap:pretty`.
+- `Doto-var.woff2`: the STAT table's wght=900 axis value pointed at nameID 17, which the subset had dropped; Firefox discarded the table and logged two errors on every load. NameIDs 16/17 restored (+32 bytes).
