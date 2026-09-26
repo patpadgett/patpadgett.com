@@ -16,14 +16,14 @@
 .grime__pitch{display:grid;gap:14px;align-content:start;padding-top:12px}
 .grime__title{margin:0 0 4px;font:400 clamp(44px,5vw,72px)/.9 var(--disp);letter-spacing:.02em;color:var(--gyellow);text-shadow:4px 4px 0 #000}
 .grime__title a{color:inherit;text-decoration:none}
-.grime__title a:hover,.grime__title a:focus-visible{text-decoration:underline;text-decoration-thickness:4px;text-decoration-color:var(--gblue);text-underline-offset:6px}
+@media(hover:hover){.grime__title a:hover{text-decoration:underline;text-decoration-thickness:4px;text-decoration-color:var(--gblue);text-underline-offset:6px}}.grime__title a:focus-visible{text-decoration:underline;text-decoration-thickness:4px;text-decoration-color:var(--gblue);text-underline-offset:6px}
 .grime__title span{display:block;margin-top:10px;font:800 12px/1.45 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#e9d3ad;text-shadow:0 1px 0 #000}
 .grime__line{margin:0;font:400 16px/1.55 var(--body);color:var(--cream);max-width:44ch;text-shadow:0 1px 0 #000}
-.grime__line a{color:var(--gyellow);text-decoration-thickness:2px;text-underline-offset:3px}
+.grime__line a{color:var(--gyellow);text-decoration-thickness:2px;text-underline-offset:3px;display:inline-block;padding:.25em 0;margin:-.25em 0}
 .grime__line--fine{font-size:14px;color:#e9d3ad}
 .grime__ctas{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 0}
 .btn--grime{background:var(--gyellow);color:#000;box-shadow:0 5px 0 #7a7a00}
-.btn--grime:hover{box-shadow:0 3px 0 #7a7a00}
+@media(hover:hover){.btn--grime:hover{box-shadow:0 3px 0 #7a7a00}}
 
 /* the desk: polaroid left, printer right, paper up out of the slot */
 .desk{position:relative;display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.6fr);gap:clamp(12px,2vw,28px);align-items:start}
@@ -39,7 +39,7 @@
 .polaroid[data-i="2"]{--x:13%;--y:44%;--r:9deg;z-index:1;box-shadow:0 12px 18px -10px rgba(0,0,0,.8)}
 .polaroid[data-i="0"] .polaroid__img{filter:saturate(.86) contrast(1.06) sepia(.12)}
 .polaroid:not([data-i="0"]) .polaroid__img{filter:saturate(.7) contrast(1) sepia(.2) brightness(.92)}
-.stack:hover .polaroid[data-i="0"],.stack:focus-visible .polaroid[data-i="0"]{--r:-2deg;--y:1%}
+@media(hover:hover){.stack:hover .polaroid[data-i="0"]{--r:-2deg;--y:1%}}.stack:focus-visible .polaroid[data-i="0"]{--r:-2deg;--y:1%}
 .polaroid.is-lifting{z-index:5!important;transform:translate(var(--x,0),calc(var(--y,0) - 10%)) rotate(var(--r,0deg)) scale(1.04)}
 .polaroid__frame{display:block;aspect-ratio:4/5;overflow:hidden;background:#0d0b0a;box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
 .polaroid__img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
@@ -71,7 +71,7 @@
 .paper__narr p:last-child{margin-bottom:0}
 .paper__more{margin:22px 0 0;padding-top:22px;border-top:1px dashed var(--grule);color:var(--gink-soft)}
 .paper__more span{color:var(--gink);text-decoration:underline;text-decoration-color:#aa0000;text-underline-offset:3px;text-transform:uppercase}
-.paper:hover .paper__more span,.paper:focus-visible .paper__more span{color:#aa0000}
+@media(hover:hover){.paper:hover .paper__more span{color:#aa0000}}.paper:focus-visible .paper__more span{color:#aa0000}
 .paper:focus-visible{outline:4px solid var(--slime);outline-offset:-4px}
 /* the bail's shadow across the sheet where it leaves the platen */
 .printer__slot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));pointer-events:none;z-index:3}
@@ -118,3 +118,4 @@
   .desk__status{justify-self:start;font-size:15px}
 }
 @media(prefers-reduced-motion:reduce){.paper,.paper.is-refed{animation:none!important;transform:none!important}}
+.grime ::selection{background:var(--gyellow);color:#000}

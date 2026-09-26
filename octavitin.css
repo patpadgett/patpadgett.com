@@ -13,7 +13,7 @@
 .bedtime__floor::before{content:"";position:absolute;left:52%;bottom:20px;width:min(60%,340px);height:150px;pointer-events:none;z-index:0;background:radial-gradient(farthest-side at 12% 60%,rgba(255,232,170,.42),rgba(255,205,130,.16) 45%,transparent 100%);filter:blur(10px)}
 .book{position:relative;display:block;width:min(100%,540px);margin:0 auto;box-shadow:none;padding:0;border:0;background:transparent;cursor:pointer;color:inherit;text-align:left;transform:rotate(-3deg);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1);perspective:1100px;perspective-origin:120% 50%;container-type:inline-size}
 .book{transition:transform .28s cubic-bezier(.16,1,.3,1)}
-.book:hover,.book:focus-visible{transform:rotate(-1deg) translateY(-10px)}
+@media(hover:hover){.book:hover{transform:rotate(-1deg) translateY(-10px)}}.book:focus-visible{transform:rotate(-1deg) translateY(-10px)}
 .book:active{transform:rotate(-1deg) translateY(-4px);transition-duration:.1s}
 /* the flashlight finds the book once, when the section first comes into view */
 .js:not(.static) .bedtime__floor::before{opacity:0;transform-origin:12% 60%}
@@ -46,7 +46,7 @@
 .pitch__line{margin:0 0 4px;font:400 16px/1.55 var(--body);color:var(--cream);max-width:40ch;text-shadow:0 1px 0 #000}
 .pitch__cta{display:none!important}
 .pitch .btn--slime{background:var(--orangle);color:#1a1210;box-shadow:0 5px 0 #8a4a1a;display:inline-flex;align-items:center;min-height:52px;font-size:15px}
-.pitch .btn--slime:hover{background:#ffc28c;box-shadow:0 3px 0 #8a4a1a}
+@media(hover:hover){.pitch .btn--slime:hover{background:#ffc28c;box-shadow:0 3px 0 #8a4a1a}}
 
 
 
@@ -85,13 +85,13 @@
 .due__ctas{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:stretch;margin:22px 0 0}
 .due__ctas .btn{display:inline-flex;align-items:center;min-height:52px;box-sizing:border-box;font-size:15px;padding:0 20px}
 .due__ctas .btn--slime{background:var(--orangle);color:#1a1210;box-shadow:0 5px 0 #8a4a1a}
-.due__ctas .btn--slime:hover{background:#ffc28c;box-shadow:0 3px 0 #8a4a1a}
+@media(hover:hover){.due__ctas .btn--slime:hover{background:#ffc28c;box-shadow:0 3px 0 #8a4a1a}}
 .due__ctas .btn--ghost{background:#00000055;color:#fff;border:3px solid var(--cream)}
-.due__ctas .btn--ghost:hover{background:var(--cream);color:#000}
+@media(hover:hover){.due__ctas .btn--ghost:hover{background:var(--cream);color:#000}}
 
 /* the open book */
 .reader{border:0;padding:0;background:transparent;width:min(1120px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:visible;overscroll-behavior:contain;color:#1a1210}
-.reader::backdrop{background:rgba(9,6,12,.985)}
+.reader::backdrop{background:#09060c}
 .reader__bar{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;margin:0 0 10px;color:var(--cream)}
 .reader__resume{animation:slidein .32s cubic-bezier(.16,1,.3,1) both;display:inline-flex;align-items:center;gap:6px;margin:0 auto 0 0;padding:0 12px;min-height:44px;background:#e6d9b9;color:#3a2a1a;border-radius:4px;font:400 13px/1.4 var(--body);white-space:nowrap;transition:opacity .25s}
 /* on desktop the note can leave the row without moving anything; on mobile it fades but keeps its row */
@@ -100,7 +100,7 @@
 .reader__bar>span{font:400 12px/1.4 var(--pix);color:#c99a63;min-width:0}
 .reader__bar>span i{font-style:normal}
 .reader__close{white-space:nowrap;border:2px solid var(--cream);background:#0000;color:#fff;padding:10px 14px;min-height:44px;cursor:pointer;font:900 14px/1 var(--body);border-radius:6px}
-.reader__close:hover{background:var(--cream);color:#000}
+@media(hover:hover){.reader__close:hover{background:var(--cream);color:#000}}
 .reader__spread{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);position:relative;height:calc(100dvh - 120px);max-height:800px;border-radius:2px;margin:12px;box-shadow:0 0 0 1px #d8ccaa,0 0 0 10px var(--navy),0 0 0 11px #0b0f1c,0 50px 90px -10px #000;perspective:1500px;background:#efe4c6}
 .reader__spread::before{content:"";position:absolute;inset:0;left:calc(41.17% - 70px);width:140px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(58,36,17,.08) 30%,rgba(58,36,17,.28) 48%,rgba(20,12,6,.45) 50%,rgba(58,36,17,.3) 52%,rgba(58,36,17,.08) 70%,transparent)}
 /* page-block thickness on the outer edges */
@@ -110,12 +110,12 @@
 .page--left img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:50% 30%;border-radius:6px;box-shadow:0 12px 24px rgba(0,0,0,.25)}
 .page--left p{margin:0;text-align:center;font:400 clamp(20px,2vw,26px)/1.3 var(--book);font-style:italic}
 .page--left small{display:block;text-align:center;font:400 13px/1.5 var(--book);font-style:italic;color:#6a5a3a;margin-top:2px}
-.page--right{overflow:auto;min-height:0;border-radius:0 6px 6px 0;padding:clamp(24px,3.4vw,52px) clamp(22px,4vw,60px) 40px clamp(28px,4.5vw,68px)}
+.page--right{overflow:auto;scrollbar-width:thin;scrollbar-color:#b89a6a #efe4c6;min-height:0;border-radius:0 6px 6px 0;padding:clamp(24px,3.4vw,52px) clamp(22px,4vw,60px) 40px clamp(28px,4.5vw,68px)}
 .page--right h2{margin:0 0 22px;font:700 clamp(34px,3.6vw,50px)/1 var(--book);letter-spacing:-.03em;color:#1a1210;text-shadow:none}
 .page--right h2 span{display:block;font:800 12px/1.5 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#925021;margin-bottom:10px}
 .chapter-text{font:400 clamp(18px,1.35vw,20px)/1.8 var(--book);color:#292d3e;max-width:62ch}
 .chapter-text p{margin:0 0 1.05em}
-.chapter-text>p:first-child::first-letter{float:left;font-size:3.3em;line-height:.8;margin:.06em .06em 0 0;color:#925021;font-weight:700}
+.chapter-text>p:first-child::first-letter{float:left;font-size:3.68em;line-height:.97;margin:0 .06em 0 0;color:#925021;font-weight:700}
 .chapter-text .chapter-end{text-align:center;margin-top:34px;font-size:.95em}
 .chapter-text .chapter-end span{font-size:1.7em;color:#925021}
 .chapter-text .chapter-end p{margin:8px 0 0;font:800 15px/1.5 var(--body)}
@@ -123,7 +123,7 @@
 .page__after a{color:#1a1210;font-weight:800;padding:12px 0;display:inline-block;min-height:44px;box-sizing:border-box}
 .page__aside .page__again{min-height:44px;padding:12px 0}
 .page__after a.page__more{background:var(--navy);color:var(--card);box-shadow:0 5px 0 #0a0e1c;padding:0 20px;display:inline-flex;align-items:center;min-height:52px;font-size:15px;line-height:1}
-.page__after a.page__more:hover{background:var(--due);color:#fff;box-shadow:0 3px 0 #5a0e0a}
+@media(hover:hover){.page__after a.page__more:hover{background:var(--due);color:#fff;box-shadow:0 3px 0 #5a0e0a}}
 .page__aside{display:flex;flex-wrap:wrap;align-items:center;gap:0 10px}
 .page__aside i{font-style:normal}
 /* leaves fanning across as the book opens */
@@ -168,7 +168,7 @@
   .card__grid th{font-size:11px;letter-spacing:.08em}.card__grid td{font-size:13px;padding:0 8px}.card__grid td span{font-size:14px}
   .card__line--blurb{font-size:15px}
   .reader{width:calc(100% - 16px);max-height:calc(100dvh - 16px)}
-  .reader__spread{display:block;height:auto;-webkit-overflow-scrolling:touch;max-height:calc(100dvh - 100px);margin:10px;box-shadow:0 0 0 1px #d8ccaa,0 0 0 8px var(--navy),0 0 0 9px #0b0f1c;overflow:auto;border-radius:6px;padding-bottom:env(safe-area-inset-bottom)}
+  .reader__spread{display:block;height:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#b89a6a #efe4c6;max-height:calc(100dvh - 100px);margin:10px;box-shadow:0 0 0 1px #d8ccaa,0 0 0 8px var(--navy),0 0 0 9px #0b0f1c;overflow:auto;border-radius:6px;padding-bottom:env(safe-area-inset-bottom)}
   .reader__spread::after{display:none}
   .reader__bar>span{font-size:11px}
   .reader__bar{flex-wrap:wrap;margin:0 10px 10px;gap:8px 12px}
@@ -187,7 +187,7 @@
   .reader__resume{animation:none}
   .reader.is-flipping .leaves i:nth-child(3),.reader[open].is-opening .leaves::after{animation:none}
   .bedtime__floor::before{opacity:1;animation:none!important}
-  .book:hover,.book:focus-visible{transform:rotate(-3deg)}
+  @media(hover:hover){.book:hover{transform:rotate(-3deg)}}.book:focus-visible{transform:rotate(-3deg)}
   .book.is-opening .book__face{transform:none}
   .leaves{display:none}
 }
@@ -198,3 +198,4 @@
 
 .page__cue{display:block;text-align:right;margin:-6px 0 10px;font:400 11px/1 var(--pix);color:#5a4a2e;letter-spacing:.04em;opacity:1;transition:opacity .3s}
 .reader.is-scrolled .page__cue{opacity:0}
+.reader ::selection{background:var(--orangle);color:#1a1210}
