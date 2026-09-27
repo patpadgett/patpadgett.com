@@ -28,3 +28,7 @@ Probes: `~/.hermes/cache/scratch/pp/{confirm,engines,bands}.cjs` (Playwright; Ch
 - `Doto-var.woff2`: the STAT table's wght=900 axis value pointed at nameID 17, which the subset had dropped; Firefox discarded the table and logged two errors on every load. NameIDs 16/17 restored (+32 bytes).
 - Hero → About gap: `.who` top padding `clamp(16px,2vw,28px)` (was up to 56px on top of the 28px row gap) so the band of wood under the guide is section spacing, not a hole, and the VHS sleeve arrives inside the 900px fold.
 - THE SITES addresses set in VT323 15px `#745628` as a station-ID field (5.6:1 on the paper); DESIGN.md updated.
+
+## Overdrive pass (2026-09-26)
+
+`crt.js` (new, ~9 KB gzipped, loads after `set.js`): a WebGL1 tube over the glass (curvature, aperture grille, scanlines, bloom, phosphor persistence; roll/tear/snow on a channel change, the beam collapse on power-off), the room lit by the set (soft-light lift + screen-blended phosphor hue in the tuned channel's colour, dying with the power; pointer/tilt-driven glass reflection and guide shadow), and View Transitions for channels 6/7 (the numeral settles into the section tag). All three degrade to the previous CSS behaviour with no WebGL, reduced motion, or no JS. Verified: Chromium/WebKit render the tube, Firefox (no WebGL headless) keeps the CSS picture, zero console errors in all three; a11y tree of the glass unchanged; reduced-motion gets no canvas, no lamps, no transition; steady-state loop pauses offscreen and when hidden. Details in DESIGN.md → Overdrive.

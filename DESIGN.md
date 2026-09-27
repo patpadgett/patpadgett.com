@@ -128,7 +128,7 @@ Density is high on purpose, but the hierarchy is fixed: identity on the glass fi
 
 **Key Characteristics:**
 - Photoreal plates with measured content boxes; regenerate a plate → re-measure its box.
-- Woodgrain everywhere; phosphor glow only inside the glass.
+- Woodgrain everywhere; phosphor glow only inside the glass — and, since the overdrive pass, spilling *from* it: the set is the room's only lamp (see Overdrive below).
 - Four house faces with strict jobs (cartoon display, pixel labels, terminal, reading body) plus two guest faces owned by their sections (Brygada for the book, Courier Prime for the printout).
 - Motion is mechanical: steps, snaps, detents, one authored moment per object. Nothing eases in for decoration.
 - Every toy control has a plain-language twin (guide row, caption, aria-label).
@@ -162,7 +162,7 @@ A dark walnut room lit by a cream TV Guide, with 1980s pastel-and-neon accents u
 - Grey plastic for cartridges and knob comes from the plates, not tokens.
 
 ### Named Rules
-**The Phosphor Rule.** Glow (text-shadow, box-shadow blur) is allowed only inside `.tv__glass`, on the pilot lamp and the Mac screen. The book cover's title and author use stacked hard offsets, not blur. Everywhere else, shadows are hard offsets (`4px 4px 0 #000`, `0 5px 0 <darker>`).
+**The Phosphor Rule.** Glow (text-shadow, box-shadow blur) is allowed only inside `.tv__glass`, on the pilot lamp and the Mac screen — plus the one light source that spills out of the glass onto the room (`.set__light`/`.set__glow`, `.guide::before`, the bezel bloom on `.tv.crt .tv__glass`), which is light, not decoration: it carries the tuned picture's colour and dies with the power. The book cover's title and author use stacked hard offsets, not blur. Everywhere else, shadows are hard offsets (`4px 4px 0 #000`, `0 5px 0 <darker>`).
 **The Flat Field Rule.** Accents are solid fills. No gradients except material ones — woodgrain, cartridge ridges, green-bar paper, the knob's radial plastic.
 
 ## Typography
@@ -264,3 +264,13 @@ Outlined chip (`#c99a63`, 2px, 3px corners) with the PP-00n catalogue code in pi
 - **Don't** bounce anything; settles use `cubic-bezier(.16,1,.3,1)`.
 
 <!-- Detector exceptions (world, not defects): repeating-gradient stripes = woodgrain / cartridge ridges / green-bar; glow text-shadows inside .tv__glass and .mac__glass = phosphor; .smoke i "marquee" = ashtray smoke; .table clipped container = the magazine fan; low-contrast reads of cassette/cartridge overlay text = static reads against body colour, actual backgrounds are the plate bands; .mag transition:width = magazine lift (pre-existing). -->
+
+## Overdrive (2026-09-26): the tube, the room, the channel change
+
+Three effects, all progressive, all reading state from the classes `set.js` already sets; nothing changes what the set does, only how it shows it.
+
+- **The tube (`crt.js`, WebGL1).** The title card and the channel bumper are measured off the DOM — every character's box, font, colour and shadow via `Range.getBoundingClientRect()` with element transforms switched off — painted into a Canvas 2D texture and shown through three passes: signal (roll, tear, squeeze, retrace lift, phosphor persistence against the previous frame), quarter-size bloom, and the tube face (barrel `k=.045`, RGB aperture grille, 4px scanlines, vignette, the 4s mains flicker; snow and the dying dot land here, after persistence). Boot = bars → gap → the `poweron` keyframes; tune = roll with blanking bar + tear + snow → wobble that damps; untune = a snow flash; dying = the `collapse` keyframes with a short trail; off = snow, then the resting dot. The DOM copy stays underneath (readers, focus, clicks — the canvas is `pointer-events:none`). Steady state runs at 30fps and stops when the set is `.offscreen`, the tab is hidden, or the dead-air dot has settled. No WebGL (headless Firefox, old GPUs), `.static`, or a lost context: the CSS picture is the design, byte for byte.
+- **The room (`crt.js` + CSS).** Two full-width sheets behind `.room`, both in the picture's colour (`--phos`: lavender for the title card, each bumper's colour while tuning, grey for snow): `.set__light` (`soft-light`) lifts the wood, `.set__glow` (`screen`) tints it. Both are centred on the cabinet with radii of half the cabinet plus ≤110×60px, flat to 64% then gone — so the falloff happens on the strip of wall you can actually see beside and above the set, and the corners stay dark. Intensity `--lk` follows how much the picture emits (title 1, a bumper .2, snow .35). Measured at 1440: the wall beside the cabinet goes from (38,25,17) to (69,54,58) — ×1.8, blue channel ×3 — while the page corners stay at (26,16,7)/(21,12,3). `.guide::before` catches the spill on the paper's near edge (left on desktop, top when stacked) and `.guide::after` puts the far side faintly in shade, so the card sits in the same room. Everything goes dark on `.is-off` with a 1.5s hold then six steps, like the snow going out. You are the other lamp: `--lx/--ly` from pointer position (or tilt on Android, never prompted on iOS) move the glass reflection and the guide's two shadows.
+- **The channel change (`set.js`).** Channels 6 and 7 commit through a same-document View Transition: the bumper numeral (`view-transition-name: chan`) shrinks along `cubic-bezier(.16,1,.3,1)` into the section's `.sec__cart` tag while the page itself cuts (root old/new animations are `none`); the numeral holds for the first half and the tag cuts in at the end (`steps(1,end)`), because a channel change is a cut, not a dissolve. Channels 3/4/5 leave the site and keep their hard `location.href`.
+
+Rules that came out of it: a white `soft-light` lift on walnut only makes amber walnut — the lift has to be in the light's colour too, or it reads as a stain; a wide radius reads as a vignette, a tight one as a lamp; blend modes on a pseudo-element blend inside its parent, not with the page — the lamps are siblings at `<body>` level; the tube never repaints the DOM picture except on state change, resize, or fonts loading.

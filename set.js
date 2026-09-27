@@ -37,7 +37,20 @@
     clearTimeout(tuneTimer);
     tuneTimer = setTimeout(function () {
       committed = n;
-      if (CH[n].href.charAt(0) === '#') { bumper.className = 'bumper'; bumper.hidden = true; var t = document.querySelector(CH[n].href); if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; if (location.hash !== CH[n].href) history.pushState(null, '', CH[n].href); } if (t) t.focus({ preventScroll: true }); return; }
+      if (CH[n].href.charAt(0) === '#') {
+        var t = document.querySelector(CH[n].href);
+        var go = function () { bumper.className = 'bumper'; bumper.hidden = true; if (t) { var sb = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; t.scrollIntoView({ block: 'start' }); root.style.scrollBehavior = sb; if (location.hash !== CH[n].href) history.pushState(null, '', CH[n].href); t.focus({ preventScroll: true }); } };
+        /* the numeral leaves the tube and settles as the section's cartridge tag (same-document view transition); the page cuts under it */
+        var tag = t && t.querySelector('.sec__cart'), num = bumper.querySelector('b');
+        if (t && tag && num && !reduce && document.startViewTransition) {
+          try { tv.dispatchEvent(new CustomEvent('tv:leave')); } catch (e) {}
+          num.style.viewTransitionName = 'chan';
+          var done = function () { tag.style.viewTransitionName = ''; };
+          var vt = document.startViewTransition(function () { num.style.viewTransitionName = ''; go(); tag.style.viewTransitionName = 'chan'; });
+          vt.finished.then(done, done);
+        } else go();
+        return;
+      }
       location.href = CH[n].href;
     }, reduce ? 0 : (delay == null ? 700 : delay));
   }

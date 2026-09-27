@@ -99,6 +99,42 @@ h1,h2{margin:0}
 .tv.offscreen .fuzz{animation-play-state:paused}
 @keyframes fuzz{0%{background-position:0 0}25%{background-position:37px 61px}50%{background-position:-29px 13px}75%{background-position:71px -47px}100%{background-position:-53px 89px}}
 .static .tv.is-off .fuzz{animation:none}
+/* ===== the tube (crt.js): when WebGL owns the picture, the DOM copy goes clear but stays for readers and clicks ===== */
+.tv__crt{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.tv:not(.crt) .tv__crt{display:none}
+.tv.crt .tv__glass{box-shadow:inset 0 0 40px #000,inset 0 0 4px #ffffff22,0 0 30px 8px rgba(var(--phos,182,174,242),.3);transition:box-shadow .3s steps(3)}
+.tv.crt.is-off .tv__glass,.tv.crt.is-dying .tv__glass{box-shadow:inset 0 0 40px #000,inset 0 0 4px #ffffff22}
+.tv.crt .title{opacity:1!important;transform:none!important;animation:none!important}
+.tv.crt .bumper,.tv.crt .bumper b i{animation:none!important}
+.tv.crt .bars,.tv.crt .fuzz,.tv.crt .tv__roll,.tv.crt .tv__dot,.tv.crt .scan{display:none!important}
+.tv.crt.is-dying .tv__glass::after{inset:-12%;background:linear-gradient(115deg,rgba(255,255,255,.10) 0 18%,transparent 30%,transparent 70%,rgba(255,255,255,.05) 100%);z-index:auto}
+/* ===== the room: the set is the only lamp. Phosphor in the tuned channel's colour falls on the wood and the paper, breathes with the picture, dies with the power ===== */
+.set__light,.set__glow{position:absolute;left:0;top:0;width:100%;height:0;z-index:-1;pointer-events:none;opacity:var(--lk,1);transition:opacity .3s steps(3);animation:flicker 4s steps(1) infinite}
+.set__light{mix-blend-mode:soft-light;
+  background:radial-gradient(var(--lw,450px) var(--lh,300px) at var(--lcx,30%) var(--lcy,35%),rgba(var(--phos,182,174,242),1) 0 64%,rgba(var(--phos,182,174,242),.66) 78%,rgba(var(--phos,182,174,242),.24) 90%,transparent 100%)}
+.set__glow{mix-blend-mode:screen;
+  background:radial-gradient(var(--lw,450px) var(--lh,300px) at var(--lcx,30%) var(--lcy,35%),rgba(var(--phos,182,174,242),.5) 0 64%,rgba(var(--phos,182,174,242),.3) 78%,rgba(var(--phos,182,174,242),.1) 90%,transparent 100%)}
+.set__light.dark,.set__glow.dark{opacity:0;animation:none;transition:opacity .6s steps(6) 1.5s}
+.guide{position:relative}
+.guide::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;transition:opacity .3s steps(3);
+  background:radial-gradient(ellipse 75% 85% at -10% 45%,rgba(var(--phos,182,174,242),.62),rgba(var(--phos,182,174,242),.22) 55%,transparent 80%)}
+.guide::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(90deg,transparent 30%,rgba(120,90,70,.16) 100%);transition:opacity .3s steps(3)}
+.set.dark .guide::after{opacity:0;transition:opacity .6s steps(6) 1.5s}
+.set.dark .guide::before{opacity:0;transition:opacity .6s steps(6) 1.5s}
+@media(max-width:1000px){.guide::before{background:radial-gradient(ellipse 85% 55% at 50% -12%,rgba(var(--phos,176,150,255),.22),rgba(var(--phos,176,150,255),.07) 55%,transparent 80%)}}
+/* you are the other lamp: the reflection on the glass and the guide's shadow follow the pointer (--lx/--ly, −1…1, set by crt.js) */
+.tv__glass::after{inset:-12%;transform:translate(calc(var(--lx,0)*5%),calc(var(--ly,0)*4%));transition:transform .25s linear}
+.tv.crt .tv__glass::after{background:linear-gradient(115deg,rgba(255,255,255,.13) 0 18%,transparent 30%,transparent 70%,rgba(255,255,255,.06) 100%)}
+/* ===== channel change (set.js): the numeral leaves the tube and settles as the section's cartridge tag; the page itself cuts, a channel change is not a dissolve ===== */
+.sec__cart{display:inline-block}
+::view-transition-old(root){animation:none;opacity:0}
+::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-group(chan){animation-duration:.6s;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+::view-transition-image-pair(chan){isolation:auto}
+::view-transition-old(chan){animation:vt-out .6s steps(1,end) both;mix-blend-mode:normal;object-fit:contain;object-position:center}
+::view-transition-new(chan){animation:vt-in .6s steps(1,end) both;mix-blend-mode:normal;object-fit:contain;object-position:center}
+@keyframes vt-out{0%,50%{opacity:1}100%{opacity:0}}
+@keyframes vt-in{0%,50%{opacity:0}100%{opacity:1}}
 /* power-on replay */
 .js .tv.is-warming .bars{display:grid;opacity:1;animation:barsout2 .01s 1.1s forwards}
 .js .tv.is-warming .title,.js:not(.static) .tv.is-warming:not(.offscreen) .title{opacity:0;transform:scaleY(.02);animation:poweron2 .5s steps(6) .8s forwards}
@@ -134,7 +170,7 @@ h1,h2{margin:0}
 /* right column: the guide */
 .panel{grid-area:panel;display:grid;gap:18px;align-content:start}
 .guide{background:var(--paper);color:var(--ink);padding:14px 16px 8px;border-radius:2px;
-  transform:rotate(-.8deg);box-shadow:3px 4px 0 #0009,0 20px 30px -10px #000}
+  transform:rotate(-.8deg);box-shadow:calc(3px - var(--lx,0)*3px) calc(4px - var(--ly,0)*2px) 0 #0009,calc(var(--lx,0)*-16px) calc(20px - var(--ly,0)*6px) 30px -10px #000}
 .guide__head{margin:0 0 2px;font:700 13px/1.4 var(--body);color:#5a3a1a;text-transform:uppercase;letter-spacing:.04em;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}
 .guide__head .nb{margin-left:.3em}
 .guide__head b{font:400 11px/1 var(--pix);color:#b71212;margin-right:8px}
@@ -399,6 +435,7 @@ h1,h2{margin:0}
 @media(max-width:340px){.title__name{font-size:clamp(24px,7.4vw,96px)}.title{padding-top:7%}}
 
 @media print{
+  .set__light,.set__glow,.tv__crt{display:none!important}
   body,body::before{background:#fff!important;color:#000!important}
   .set,.shelf,.shelf__hint,.tv,.table,.smoke,.mac,.pack__art,.flashlight,.bedtime__floor::before,.bedtime__floor::after,.fuzz,.tv__roll,.tv__dot,.bumper,.leaves,.polaroid,.printer{display:none!important}
   .sec{padding:12pt 0!important;break-inside:avoid}
