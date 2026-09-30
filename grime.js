@@ -1,6 +1,6 @@
 /* grime.js — the printer under the desk and the stack of Polaroids beside it.
    Progressive: the HTML ships the three bookings that were latest at build time; with JS we fetch grime95.com/ledger.json
-   (CORS: *) for the newest three, pull each record page's embedded JSON for the first two narrative paragraphs, and feed the
+   (CORS: *) for the newest three, pull each record page's embedded JSON for the opening narrative paragraph, and feed the
    sheet out of the slot when the printer scrolls into view. Clicking the stack sends the top Polaroid to the back and the
    printer tears off the old sheet and prints the booking now on top. */
 (function () {
@@ -19,9 +19,13 @@
   function recPath(b) { return BASE + '/rec/' + encodeURIComponent(b) + '/'; }
   function mugUrl(m) { return /^https?:/.test(m) ? m : BASE + (m.charAt(0) === '/' ? '' : '/') + m; }
 
+  /* the roll started 2026-09-15 at noon Eastern, one booking a day; the promise is release-aware, not clock-only */
+  var START = Date.UTC(2026, 8, 15, 16, 0, 0);
   function noonLine(n, total) {
-    var et = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    var now = new Date(), et = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
     if (n >= total) return 'The roll is complete: ' + total + ' bookings on file.';
+    var due = Math.floor((now.getTime() - START) / 864e5) + 1;   // bookings that should be on file by now
+    if (n < due) return 'Booking ' + (n + 1) + ' is running late; it prints when Terminal 03 catches up.';
     return 'Next one prints ' + (et.getHours() < 12 ? 'today' : 'tomorrow') + ' at noon Eastern.';
   }
 
@@ -50,13 +54,14 @@
   function fill(b) {
     var c = b.c, a = b.a;
     paper.href = recPath(a.booking);
-    text('paper-bkg', 'Booking ' + a.booking);
+    text('paper-bkg', 'Bkg\u00a0' + a.booking);
     text('p-subject', c.name.toUpperCase());
-    var aka = $('p-aka'); if (aka) aka.innerHTML = c.alias ? '<span class="aka">&ldquo;' + esc(c.alias) + '&rdquo;</span>' : '&mdash;';
+    var aka = $('p-aka'), akaDt = $('p-aka-dt');
+    if (aka) { aka.innerHTML = c.alias ? '<span class="aka">&ldquo;' + esc(c.alias) + '&rdquo;</span>' : '&mdash;'; aka.hidden = !c.alias; if (akaDt) akaDt.hidden = !c.alias; }
     text('p-charge', a.charge || '\u2014'); text('p-location', a.location || '\u2014'); text('p-officer', a.officer || '\u2014');
     text('p-date', a.date ? fmtDate(a.date) : '12-02-1995');
     var narr = $('p-narr');
-    if (narr) narr.innerHTML = (b.story && b.story.length ? b.story.slice(0, 2) : ['The full report is on file at grime95.com.']).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+    if (narr) narr.innerHTML = (b.story && b.story.length ? b.story.slice(0, 1) : ['The full report is on file at grime95.com.']).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
     paper.setAttribute('aria-label', 'Booking ' + a.booking + ', ' + c.name + '. Read the full report on grime95.com');
   }
   function status(b) {

@@ -346,6 +346,13 @@ h1,h2{margin:0}
 .log li a{color:var(--slime);text-decoration-thickness:2px}
 .log li:last-child{background:#00000066;border:2px solid var(--slime);border-radius:6px;padding:14px 12px;margin-top:10px}
 .log li:last-child b{color:var(--slime)}
+.log__doors{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px 12px;margin-top:14px}
+.log__doors small{flex-basis:100%;margin-top:2px;font:400 15px/1.35 var(--term);color:#e9d3ad;text-wrap:pretty}
+.btn--sm{min-height:44px;padding:0 16px;font-size:15px}
+/* the doors are buttons, not log links: undo the link rules above (.log li a outranks .btn--slime) */
+.log li .log__doors a{display:inline-flex;padding:0 16px;margin:0;line-height:1;text-decoration:none}
+.log li .log__doors .btn--slime{color:#000}
+.log li .log__doors .btn--ghost{color:#fff}
 
 /* CONTACT — the wax pack */
 .pack{padding:clamp(56px,8vw,110px) 0 0;display:grid;grid-template-columns:1fr;gap:clamp(18px,3vw,36px);align-items:center}

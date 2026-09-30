@@ -56,6 +56,11 @@ typography:
     fontSize: "15px"
     fontWeight: 400
     lineHeight: 1.47
+  printout-head:
+    fontFamily: "Doto, 'Courier Prime', monospace"
+    fontSize: "17px"
+    fontWeight: 900
+    lineHeight: 1.3
 rounded:
   hairline: "1px"
   chip: "3px"
@@ -197,7 +202,7 @@ Sections stack with `clamp(48px,7vw,90px)` top padding and open with a section t
 
 Breakpoints: ≤1000px the hero goes single-column (TV capped at 560px, then guide, then bio, then shelf) so the whole guide fits the first screen and the person is the second screen; ≤960px sections collapse to one column and the book section becomes pitch → CTA → book → card; ≤640px the shelf is 3+2 (compact, ~400px), pack 2-up; the bio's lead paragraph sits above the VHS sleeve; ≤380px knob 72px; ≤340px the TV title drops a size. No horizontal overflow at 320/390/1024/1440 (the coffee-table fan is intentionally clipped).
 
-Measured plate boxes (percent of plate): TV glass 11.5/14/62/65, pushbutton rail 6/87.2/71.5/5.6, pilot lamp 89.9/38.5 ⌀1.3; cartridge label recess 40.5/13.5/44.5/53.5; remote keys at 17/29.1/41.2/53.2/65.3/77.4% height (seven-button plate: 18/29/40/51/62/73/84), MOTION switch at 96.5%; book cover face 6/2.5/90/95; printer slot x 13→87%.
+Measured plate boxes (percent of plate): TV glass 11.5/14/62/65, pushbutton rail 6/87.2/71.5/5.6, pilot lamp 89.9/38.5 ⌀1.3; cartridge label recess 40.5/13.5/44.5/53.5; remote keys at 17/29.1/41.2/53.2/65.3/77.4% height (seven-button plate: 18/29/40/51/62/73/84), MOTION switch at 96.5%; book cover face 6/2.5/90/95; printer (pixel-scanned, tools/plate_paperpath.py + plate_pins.py): bay x 13.8→86.1%, bail bar y 28.6→30.6%, platen y 30→35%, print-head line y 41%, deck lip y 48.5%, tractor pins x 17.7% / 82.3%, PAPER OUT lamp (52.8%, 72%) unlit.
 
 ## Elevation & Depth
 
@@ -241,6 +246,9 @@ Cream ruled card (24px rule, VT323 15px, typewriter voice) tucked into a kraft p
 
 ### Reader dialog
 Native `<dialog>`; a two-page spread on desktop (illustration | chapter), one scrolling cream column on phones. Brygada 1918 prose with a drop-cap, a pixel "Scroll to read ↓" cue on its own line that fades after 24px, a toolbar with a 44px resume note, Close, and reading position kept per paragraph in localStorage.
+
+### The desk (grime95 · PP-007)
+Three columns at desktop — the pitch copy, then the desk: a pile of the three newest Polaroids leaning on the printer's left shoulder, and the CompuPrint with grime95's own green-bar sheet standing out of its bay. The sheet is drawn over the plate down to the print-head line (41% of the plate) and the plate is drawn again, clipped to the bail bar, in front of it, so the bar holds the paper to the platen; the pin-hole columns ride the tractor pins. The paper is the record's opening — header, the fields the phone can spare (officer/date hidden ≤640px), ONE narrative paragraph, CONTINUED ON GRIME95.COM — so the sheet is proportionate to the machine (≈1.8× its height at desktop) instead of dictating the section. Copy: the section heading `grime95` is the only wordmark; the pitch title is the series' tagline in the display face, its station-ID line in VT323 (`grime95.com · Ponder County booking records · fiction`). `tools/grime_seed.py` rewrites the shipped desk from grime95.com/ledger.json (no-JS fallback = the real latest booking); grime.js refreshes it live and the status line is release-aware (a missed noon says "running late" instead of promising tomorrow). TAP TO SHUFFLE is a tape strip on the top print's border, never on the photograph.
 
 ### Section tag
 Outlined chip (`#c99a63`, 2px, 3px corners) with the PP-00n catalogue code in pixel 11px, baseline-aligned beside the heading.
